@@ -1,0 +1,6 @@
+/app/config
+/app/tmp
+/plugins
+/vendors
+.DS_Store
+._.DS_Store
