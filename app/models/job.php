@@ -1,8 +1,9 @@
 <?php
-class User extends AppModel {
-	var $name = 'User';
+class Job extends AppModel {
+	var $name = 'Job';
+	var $displayField = 'name';
 	var $validate = array(
-		'username' => array(
+		'name' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
 				//'message' => 'Your custom message here',
@@ -20,17 +21,9 @@ class User extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'password' => array(
-			'notempty' => array(
-				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-			'maxlength' => array(
-				'rule' => array('maxlength'),
+		'startdate' => array(
+			'date' => array(
+				'rule' => array('date'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -38,17 +31,9 @@ class User extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'email' => array(
-			'email' => array(
-				'rule' => array('email'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
-				//'required' => false,
-				//'last' => false, // Stop validation after this rule
-				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
-			'notempty' => array(
-				'rule' => array('notempty'),
+		'starttime' => array(
+			'time' => array(
+				'rule' => array('time'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -56,9 +41,19 @@ class User extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
-		'point' => array(
+		'jobtime' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
+				//'message' => 'Your custom message here',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'checkin' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
@@ -69,36 +64,27 @@ class User extends AppModel {
 	);
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 
+	var $belongsTo = array(
+		'User' => array(
+			'className' => 'User',
+			'foreignKey' => 'user_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		),
+		'Jobkind' => array(
+			'className' => 'Jobkind',
+			'foreignKey' => 'jobkind_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		)
+	);
+
 	var $hasMany = array(
 		'Feed' => array(
 			'className' => 'Feed',
-			'foreignKey' => 'user_id',
-			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
-		),
-		'Friend' => array(
-			'className' => 'Friend',
-			'foreignKey' => 'user_id',
-			'dependent' => false,
-			'conditions' => '',
-			'fields' => '',
-			'order' => '',
-			'limit' => '',
-			'offset' => '',
-			'exclusive' => '',
-			'finderQuery' => '',
-			'counterQuery' => ''
-		),
-		'Job' => array(
-			'className' => 'Job',
-			'foreignKey' => 'user_id',
+			'foreignKey' => 'job_id',
 			'dependent' => false,
 			'conditions' => '',
 			'fields' => '',
@@ -111,7 +97,7 @@ class User extends AppModel {
 		),
 		'Like' => array(
 			'className' => 'Like',
-			'foreignKey' => 'user_id',
+			'foreignKey' => 'job_id',
 			'dependent' => false,
 			'conditions' => '',
 			'fields' => '',

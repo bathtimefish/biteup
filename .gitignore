@@ -4,3 +4,6 @@
 /vendors
 .DS_Store
 ._.DS_Store
+.htaccess
+/app/.htaccess
+/app/webroot/.htaccess
