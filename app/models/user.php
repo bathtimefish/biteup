@@ -12,8 +12,8 @@ class User extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 			'maxlength' => array(
-				'rule' => array('maxlength'),
-				//'message' => 'Your custom message here',
+				'rule' => array('maxlength', '20'),
+				'message' => 'Usernames must be no larger than 20 characters long.',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
@@ -29,9 +29,17 @@ class User extends AppModel {
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+			'minlength' => array(
+				'rule' => array('minlength', '6'),
+				'message' => 'Usernames must be at least 6 characters long.',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
 			'maxlength' => array(
-				'rule' => array('maxlength'),
-				//'message' => 'Your custom message here',
+				'rule' => array('maxlength', '20'),
+				'message' => 'Usernames must be no larger than 20 characters long.',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
