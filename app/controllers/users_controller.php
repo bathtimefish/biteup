@@ -2,11 +2,23 @@
 class UsersController extends AppController {
 
 	var $name = 'Users';
-	var $helpers = array('Javascript');
+    var $helpers = array('Javascript');
+    var $components = array('Auth');
 
-	function index() {
+    function beforeFilter(){
+        $this->Auth->userModel = 'User';
+        $this->Auth->loginAction = array('action' => 'login');
+        $this->Auth->loginRedirect = array('action' => 'index');
+        $this->Auth->logoutRedirect = array('action' => 'login');
+        $this->Auth->allow('login', 'logout', 'add');
+        $this->Auth->loginError = 'username or password is invalid.';
+        $this->Auth->authError = 'Please try logon as admin.';
+    }
+
+    function index() {
+        $this->layout = '';
 		$this->User->recursive = 0;
-		$this->set('users', $this->paginate());
+        $this->set('user', $this->User->read(null, $this->Auth->user('id')));
 	}
 
 	function view($id = null) {
@@ -17,8 +29,10 @@ class UsersController extends AppController {
 		$this->set('user', $this->User->read(null, $id));
 	}
 
-	function add() {
-		if (!empty($this->data)) {
+    function add() {
+        $this->layout = '';
+        if (!empty($this->data)) {
+            $this->data['User']['point'] = 0; //アカウント登録時の初期ポイントを設定
 			$this->User->create();
 			if ($this->User->save($this->data)) {
 				$this->Session->setFlash(__('The user has been saved', true));
@@ -62,7 +76,18 @@ class UsersController extends AppController {
 	function admin_index() {
 		$this->User->recursive = 0;
 		$this->set('users', $this->paginate());
-	}
+    }
+
+    function login() {
+        $this->layout = '';
+    }
+
+    function logout() {
+        $this->redirect($this->Auth->logout());
+    }
+
+
+    //*** Admin Controllers ***
 
 	function admin_view($id = null) {
 		if (!$id) {

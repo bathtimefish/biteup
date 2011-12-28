@@ -3,6 +3,17 @@ class JobsController extends AppController {
 
 	var $name = 'Jobs';
 	var $helpers = array('Javascript');
+    var $components = array('Auth');
+
+    function beforeFilter(){
+        $this->Auth->userModel = 'User';
+        $this->Auth->loginAction = array('action' => 'login');
+        $this->Auth->loginRedirect = array('action' => 'index');
+        $this->Auth->logoutRedirect = array('action' => 'login');
+        $this->Auth->allow('login', 'logout');
+        $this->Auth->loginError = 'username or password is invalid.';
+        $this->Auth->authError = 'Please try logon as admin.';
+    }
 
 	function index() {
 		$this->Job->recursive = 0;
@@ -17,7 +28,8 @@ class JobsController extends AppController {
 		$this->set('job', $this->Job->read(null, $id));
 	}
 
-	function add() {
+    function add() {
+        $this->layout = '';
 		if (!empty($this->data)) {
 			$this->Job->create();
 			if ($this->Job->save($this->data)) {
@@ -27,9 +39,9 @@ class JobsController extends AppController {
 				$this->Session->setFlash(__('The job could not be saved. Please, try again.', true));
 			}
 		}
-		$users = $this->Job->User->find('list');
 		$jobkinds = $this->Job->Jobkind->find('list');
-		$this->set(compact('users', 'jobkinds'));
+		$this->set(compact('jobkinds'));
+        $this->set('user', $this->Job->User->read(null, $this->Auth->user('id')));
 	}
 
 	function edit($id = null) {

@@ -1,10 +1,10 @@
+<?php if ($session->check('Message.auth')) $session->flash('auth'); ?>
 <div class="users form">
 <?php echo $this->Form->create('User');?>
 	<fieldset>
-		<legend><?php __('Add User'); ?></legend>
+		<legend><?php __('Login User'); ?></legend>
 	<?php
 		echo $this->Form->input('username');
-		echo $this->Form->input('email');
 		echo $this->Form->input('password');
 	?>
 	</fieldset>
