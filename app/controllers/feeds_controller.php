@@ -3,6 +3,7 @@ class FeedsController extends AppController {
 
 	var $name = 'Feeds';
 	var $helpers = array('Javascript');
+	var $uses = array('Feed', 'Friend', 'Like');
 
 	function index() {
 		$this->Feed->recursive = 0;
@@ -125,5 +126,33 @@ class FeedsController extends AppController {
 		}
 		$this->Session->setFlash(__('Feed was not deleted', true));
 		$this->redirect(array('action' => 'index'));
+	}
+
+	function timeline($id = null) {
+		if (!$id) {
+			$this->Session->setFlash(__('Invalid feed', true));
+			$this->redirect(array('action' => 'index'));
+		}
+		$this->set('feeds', $this->paginate());
+		$friends = $this->Friend->find('all', array('conditions'=> array('user_id'=>$id)));
+		
+		$feed_id = '';
+		foreach ($friends as $val) {
+			$feed_id .= $val['Friend']['friend_id'].',';
+		}
+		$feed_id = $feed_id.$id;
+		$timeline = $this->Feed->find('all', array('order' => 'Feed.created DESC','conditions'=> array("Feed.user_id IN ($feed_id)")));
+		$this->set(compact('timeline'));
+	}
+	
+	function detail($feed_id) {
+		if (!$feed_id) {
+			$this->Session->setFlash(__('Invalid feed', true));
+			$this->redirect(array('action' => 'index'));
+		}
+		$this->set('feeds', $this->paginate());
+		$detail = $this->Feed->find('first', array('conditions'=> array("Feed.id" => $feed_id)));
+		$likes  = $this->Like->find('all', array('conditions'=> array("Like.feed_id" => $feed_id)));
+		$this->set(compact('detail', 'likes'));
 	}
 }
