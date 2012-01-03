@@ -3,6 +3,7 @@ class FeedsController extends AppController {
 
 	var $name = 'Feeds';
 	var $helpers = array('Javascript');
+	var $components = array('Auth', 'WebApi');
 	var $uses = array('Feed', 'Friend', 'Like');
 
 	function index() {
@@ -128,7 +129,8 @@ class FeedsController extends AppController {
 		$this->redirect(array('action' => 'index'));
 	}
 
-	function timeline($id = null) {
+	function timeline() {
+		$id = $this->Auth->user('id');
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid feed', true));
 			$this->redirect(array('action' => 'index'));
