@@ -10,8 +10,11 @@
 			<th><?php echo $this->Paginator->sort('jobtime');?></th>
 			<th><?php echo $this->Paginator->sort('jobkind_id');?></th>
 			<th><?php echo $this->Paginator->sort('checkin');?></th>
+            <th><?php echo $this->Paginator->sort('checkout');?></th>
+            <!--
 			<th><?php echo $this->Paginator->sort('created');?></th>
-			<th><?php echo $this->Paginator->sort('modified');?></th>
+            <th><?php echo $this->Paginator->sort('modified');?></th>
+            -->
 			<th class="actions"><?php __('Actions');?></th>
 	</tr>
 	<?php
@@ -35,9 +38,14 @@
 			<?php echo $this->Html->link($job['Jobkind']['name'], array('controller' => 'jobkinds', 'action' => 'view', $job['Jobkind']['id'])); ?>
 		</td>
 		<td><?php echo $job['Job']['checkin']; ?>&nbsp;</td>
+        <td><?php echo $job['Job']['checkout']; ?>&nbsp;</td>
+        <!--
 		<td><?php echo $job['Job']['created']; ?>&nbsp;</td>
-		<td><?php echo $job['Job']['modified']; ?>&nbsp;</td>
+        <td><?php echo $job['Job']['modified']; ?>&nbsp;</td>
+        -->
 		<td class="actions">
+			<?php echo $this->Html->link(__('Checkin', true), array('action' => 'checkin', $job['Job']['id'])); ?>
+			<?php echo $this->Html->link(__('Checkout', true), array('action' => 'checkout', $job['Job']['id'])); ?>
 			<?php echo $this->Html->link(__('View', true), array('action' => 'view', $job['Job']['id'])); ?>
 			<?php echo $this->Html->link(__('Edit', true), array('action' => 'edit', $job['Job']['id'])); ?>
 			<?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $job['Job']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $job['Job']['id'])); ?>

@@ -10,7 +10,6 @@
 		echo $this->Form->input('starttime');
 		echo $this->Form->input('jobtime');
 		echo $this->Form->input('jobkind_id');
-		echo $this->Form->input('checkin');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit', true));?>

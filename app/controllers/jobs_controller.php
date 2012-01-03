@@ -29,8 +29,8 @@ class JobsController extends AppController {
         }
         $job = $this->Job->read(null, $id);
         if (!empty($job)) {
-            $job['Job']['checkin'] = 'Now()';
-            if ($this->Job->save($this->data)) {
+            $job['Job']['checkin'] = DboSource::expression('Now()');
+            if ($this->Job->save($job)) {
                 $this->addFeed();
 				$this->Session->setFlash(__('The checkin has been saved', true));
 				$this->redirect(array('action' => 'index'));
@@ -53,7 +53,22 @@ class JobsController extends AppController {
 			$this->redirect(array('action' => 'index'));
         }
         $job = $this->Job->read(null, $id);
-        $this->addFeed();
+        if (!empty($job)) {
+            $job['Job']['checkout'] = DboSource::expression('Now()');
+            if ($this->Job->save($job)) {
+                $this->addFeed();
+				$this->Session->setFlash(__('The checkout has been saved', true));
+				$this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('The checkout could not be saved. Please, try again.', true));
+			}
+		}
+		if (empty($this->data)) {
+			$this->data = $this->Job->read(null, $id);
+		}
+		$users = $this->Job->User->find('list');
+		$jobkinds = $this->Job->Jobkind->find('list');
+		$this->set(compact('users', 'jobkinds'));
     }
 
 	function view($id = null) {
