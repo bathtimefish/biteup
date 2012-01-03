@@ -5,6 +5,7 @@
 			<th><?php echo $this->Paginator->sort('id');?></th>
 			<th><?php echo $this->Paginator->sort('user_id');?></th>
 			<th><?php echo $this->Paginator->sort('friend_id');?></th>
+			<th><?php echo $this->Paginator->sort('user_name');?></th>
 			<th><?php echo $this->Paginator->sort('created');?></th>
 			<th><?php echo $this->Paginator->sort('modified');?></th>
 			<th class="actions"><?php __('Actions');?></th>
@@ -23,6 +24,7 @@
 			<?php echo $this->Html->link($friend['User']['id'], array('controller' => 'users', 'action' => 'view', $friend['User']['id'])); ?>
 		</td>
 		<td><?php echo $friend['Friend']['friend_id']; ?>&nbsp;</td>
+		<td><?php echo $friend['User']['username']; ?>&nbsp;</td>
 		<td><?php echo $friend['Friend']['created']; ?>&nbsp;</td>
 		<td><?php echo $friend['Friend']['modified']; ?>&nbsp;</td>
 		<td class="actions">
