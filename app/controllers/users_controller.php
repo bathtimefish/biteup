@@ -3,7 +3,7 @@ class UsersController extends AppController {
 
 	var $name = 'Users';
     var $helpers = array('Javascript');
-    var $components = array('Auth');
+    var $components = array('Auth', 'WebApi');
     var $uses = array('User', 'Friend');
 
     function beforeFilter(){
@@ -20,16 +20,6 @@ class UsersController extends AppController {
         $this->layout = '';
         $this->User->recursive = 0;
         $this->set('user', $this->User->read(null, $this->Auth->user('id')));
-    }
-
-    // user check in a job.
-    function checkin() {
-
-    }
-
-    // user check out a job.
-    function checkout() {
-
     }
 
     // search friend
@@ -167,14 +157,14 @@ class UsersController extends AppController {
         $this->Friend->recursive = 0;
         if (!$id) {
             $data = array('success'=>false, 'error'=>'noid');
-            $this->sendApiResult($data);
+            $this->WebApi->sendApiResult($data);
             return false;
         }
         // 既にフォローされているか?
         $followed = $this->Friend->find('first', array('conditions'=>array('Friend.user_id'=>$this->Auth->user('id'), 'Friend.friend_id'=>$id)));
         if(!empty($followed)) {
             $data = array('success'=>false, 'error'=>'alreadyfollowed', 'userid'=>$id);
-            $this->sendApiResult($data);
+            $this->WebApi->sendApiResult($data);
             return false;
         }
         // Friend データを構成
@@ -182,10 +172,10 @@ class UsersController extends AppController {
         $this->User->create();
         if ($this->User->Friend->save($friend)) {
             $data = array('success'=>true, 'userid'=>$id);
-            $this->sendApiResult($data);
+            $this->WebApi->sendApiResult($data);
             return true;
         } else {
-            $this->sendApiResult(null);
+            $this->WebApi->sendApiResult(null);
         }
     }
 
@@ -194,30 +184,18 @@ class UsersController extends AppController {
         $this->autoRender = false;
         if (!$id) {
             $data = array('success'=>false, 'error'=>'noid');
-            $this->sendApiResult($data);
+            $this->WebApi->sendApiResult($data);
             return false;
         }
         $friend = $this->User->Friend->find('first', array('conditions'=>array('Friend.friend_id'=>$id, 'Friend.user_id'=>$this->Auth->user('id'))));
         if($friend) {
             if ($this->User->Friend->delete($friend['Friend']['id'])) {
                 $data = array('success'=>true, 'userid'=>$id);
-                $this->sendApiResult($data);
+                $this->WebApi->sendApiResult($data);
             }
             return true;
         }
-        $this->sendApiResult(null);
-    }
-
-    // Result data send as JSON
-    function sendApiResult($dataArray = null) {
-        if(!empty($dataArray)) {
-            $json = json_encode($dataArray);
-            header('Content-type: application/json');
-            echo $json;
-        } else {
-            header('Content-type: text/plain; charset=utf-8');
-            echo 'undefined';
-        }
+        $this->WebApi->sendApiResult(null);
     }
 
     //*** Admin Controllers ***
