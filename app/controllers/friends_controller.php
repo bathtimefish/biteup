@@ -64,7 +64,7 @@ class FriendsController extends AppController {
 		$this->redirect(array('action' => 'index'));
 	}
 	function admin_index() {
-		$this->Friend->recursive = 0;
+		$this->Friend->recursive = 1;
 		$this->set('friends', $this->paginate());
 	}
 

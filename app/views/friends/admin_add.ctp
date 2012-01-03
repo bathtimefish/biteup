@@ -4,7 +4,7 @@
 		<legend><?php __('Admin Add Friend'); ?></legend>
 	<?php
 		echo $this->Form->input('user_id');
-		echo $this->Form->input('friend_id');
+		echo $this->Form->input('friend_id', array('type'=>'select', 'options'=>$users));
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit', true));?>

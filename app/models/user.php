@@ -105,7 +105,22 @@ class User extends AppModel {
 			'exclusive' => '',
 			'finderQuery' => '',
 			'counterQuery' => ''
-		),
+        ),
+        /*
+		'Friend' => array(
+			'className' => 'Friend',
+			'foreignKey' => 'friend_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+        ),
+         */
 		'Job' => array(
 			'className' => 'Job',
 			'foreignKey' => 'user_id',
