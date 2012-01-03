@@ -10,7 +10,7 @@
 	<tr>
 		<td><?php echo $feed['User']['username']; ?></td>
 		<td><?php echo $feed['Feed']['message']; ?></td>
-		<td><?php echo $feed['Feed']['created']; ?><?php echo $this->Html->link("＞", "/feeds/detail/{$feed['Feed']['id']}"); ?></td>
+		<td><?php echo $feed['Feed']['created']; ?><?php echo $this->Html->link("＞", array('action' => 'detail', $feed['Feed']['id'])); ?></td>
 	</tr>
 <?php endforeach; ?>
 	</table>
