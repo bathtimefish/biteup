@@ -17,7 +17,8 @@ function checkInUI () {
 		hundle = $(container).append(code).find(".hundle").css({"position":"absolute"});
 		$(container).bind("mousedown touchstart",touchStart);
 		//maxLength = parseInt($(container).width()) - parseInt($(hundle).innerWidth());
-		maxLength = 640-219;
+		//maxLength = 640-219;
+		maxLength = 320-109;
 		//alert(parseInt($(hundle).width()))
 	}
 	
@@ -80,7 +81,7 @@ function checkInUI () {
 		var sendData = null, codes = null;
 		if(msg === "checkIn") { // まあまあ楽
 			sendData = {"isWorking": true, "workID": "バイトのID", "userID": "nakashizu"};
-			codes = "<div class='commentArea' style='display:none; position:relative; top: 40px;'><p class='sendingIcon'>送信中</p></div>";
+			codes = "<div class='commentArea' style='display:none; top: 40px;'><p class='sendingIcon'>送信中</p></div>";
 			$(container).append(codes);
 			$(container).find(".commentArea").slideDown(400,function (){
 					postSend (sendData);
@@ -90,7 +91,7 @@ function checkInUI () {
 		}else{ //　チェックアウト
 		//console.log(msg)
 			sendData = { "isWorking": false, "workID": "バイトのID", "userID": userData.rows[0].userName, "comment": "ユーザのコメント" };
-			codes = "<div class='commentArea' style='display:none; position:relative; top: 40px;'><textarea></textarea><a href='#'>送信する</a></div>";
+			codes = "<div class='commentArea' style='display:none; top: 40px;'><textarea></textarea><a href='#'>送信する</a></div>";
 			$(container).append(codes);
 			var tx = $(container).find(".commentArea textarea")[0];
 			var btn = $(container).find(".commentArea a")[0];
