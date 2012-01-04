@@ -6,40 +6,94 @@
 	position: relative;
 }
 .woodFrame.registFrame h1{
-	margin:0 0 0 22px;
+	margin:0 0 0 11px;
 	position: absolute;
-	top:14px;
+	top:7px;
 }
 .woodFrame.registFrame dl{
-	margin:0 0 0 45px;
-	padding-top: 70px;
+	margin:0 0 0 22px;
+	padding-top: 35px;
 }
 .woodFrame.registFrame dt{
 	background: url(../img/regist_icon_subtitle.png) no-repeat 0 0;
+	background-size: 13px 19px;
 	color:#3d0404;
 	font-weight:bold;
-	padding:8px 0 8px 30px;
-	text-shadow:-1px -1px 1px rgba(255,255,255,0.8);
+	padding:0 0 4px 20px;
+	text-shadow:-1px -1px 1px rgba(255,255,255,1);
+}
+.woodFrame.registFrame dd{
+	padding-bottom: 10px;
 }
 
 .woodFrame.registFrame .selectWorks{
-	background: url(../img/regist_icon_select.png) no-repeat 470px 12px,
-				url(../img/regist_bg_input.png) no-repeat 0 0;
+	background: url(../img/regist_bg_select.png) no-repeat 0 0;
+	background-size: 269px 44px;
 	-webkit-appearance:none;
 	border:none;
-	width: 540px;
-	height: 83px;
-	padding: 0 20px;
-	margin-bottom: 10px;
+	width: 269px;
+	height: 44px;
+	padding: 0 10px 0 15px;
 }
 .woodFrame.registFrame .newRegist{
-	background: url(../img/regist_icon_plus.png) no-repeat 20px 25px,
-				url(../img/regist_bg_input.png) no-repeat 0 0;
+	background: url(../img/regist_bg_input.png) no-repeat 0 0;
+	background-size: 269px 44px;
 	-webkit-appearance:none;
 	border: none;
-	width: 450px;
-	height: 83px;
-	padding: 0 20px 0 70px;
+	width: 229px;
+	height: 44px;
+	padding: 0 20px;
+}
+.woodFrame.registFrame dd.calender{
+	background: url(../img/regist_bg_calender.png) no-repeat 0 0;
+	background-size: 271px 49px;
+	padding: 10px 0 10px 20px;
+	margin-bottom: 10px;
+}
+.woodFrame.registFrame dd.calender em{
+	font-size: 1.4em;
+	font-weight: bold;
+	margin: 0 5px 0 8px;
+}
+.woodFrame.registFrame div.time{
+	background: url(../img/regist_bg_time.png) no-repeat 0 0;
+	background-size: 238px 45px;
+	display: inline-block;
+	width:238px;
+	height: 37px;
+	padding: 8px 0 0;
+}
+.woodFrame.registFrame div.time em{
+	font-size: 1.4em;
+	font-weight: bold;
+}
+.woodFrame.registFrame div.time.start em:first-of-type{
+	padding: 0 55px;
+}
+.woodFrame.registFrame div.time.start{
+	background: url(../img/regist_bg_timecolon.png) no-repeat 100px 10px,
+				url(../img/regist_bg_time.png) no-repeat 0 0;
+	background-size: 12px 25px, 238px 45px;
+	display: inline-block;
+	width:238px;
+	height: 45px;
+	padding: 8px 0 0;	
+}
+.woodFrame.registFrame div.time.while{
+	padding-left: 50px;
+}
+.woodFrame.registFrame div.time.while em{
+	padding: 0 10px;
+}
+
+.registBtn{
+	display: box;
+	display: -webkit-box;
+	display: -moz-box;
+	box-pack: justify;
+	-webkit-box-pack: justify;
+	-moz-box-pack: justify;
+	margin: 10px 6px 0;
 }
 
 /*	4_yotei_ichiran

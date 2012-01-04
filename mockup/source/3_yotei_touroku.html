@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, user-scalable=no"><!---->
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
 		<title>予定を登録する</title>
 		<script src="js/jquery-1.7.min.js"></script>
 
@@ -36,19 +36,19 @@
 					<!--<span class="pageBack"><a href="#">Back</a></span>
 					<h1><img src="#" alt="Logo"></h1>
 					<h2>kazumissimi</h2>-->
-					<span class="profileBtn"><a href="/9_account_page.html"><img src="img/header_btn_profile.png" alt="MyProfile"></a></span>
+					<span class="profileBtn"><a href="/9_account_page.html"><img src="img/header_btn_profile.png" alt="MyProfile" width="47" height="48"></a></span>
 					<nav>
 						<ul>
-							<li><a href="4_yotei_ichiran.html" title="バイト予定一覧"><img src="img/header_btn_list.png" alt="予定リスト"></a></li>
-							<li><a href="3_yotei_touroku.html" title="バイト登録"><img src="img/header_btn_regist.png" alt="バイト予定"></a></li>
-							<li><a href="6_friend_timeline.html" title="SNSタイムライン"><img src="img/header_btn_supporter.png" alt="マイサポーター"></a></li>
+							<li><a href="4_yotei_ichiran.html" title="バイト予定一覧"><img src="img/header_btn_list.png" alt="予定リスト" width="127" height="46"></a></li>
+							<li><a href="3_yotei_touroku.html" title="バイト登録"><img src="img/header_btn_regist.png" alt="バイト予定" width="71" height="72"></a></li>
+							<li><a href="6_friend_timeline.html" title="SNSタイムライン"><img src="img/header_btn_supporter.png" alt="マイサポーター" width="117" height="46"></a></li>
 						</ul>
 					</nav>
 				</header>
 			<div id="registration">
 				<form action="#" method="post">
 				<div class="woodFrame registFrame">
-				<h1><img src="img/regist_title_select.png" alt="バイト先を選ぶ"></h1>
+				<h1><img src="img/regist_title_select.png" alt="バイト先を選ぶ" width="298" height="54"></h1>
 					<div class="woodWrapper">
 					<dl>
 						<dt>今までのバイト先から選ぶ</dt>
@@ -64,11 +64,39 @@
 						</dd>
 						<dt>新しいバイト先を追加する</dt>
 						<dd><input type="text" placeholder="新しいバイト先を入れてぽ" class="newRegist"></dd>
+						<dt>バイト先のジャンルを選ぶ</dt>
+						<dd>
+							<select name="job" class="selectWorks">
+								<option value="-">▼ジャンルをえらんでぽ</option>
+								<option value="力仕事・労働">力仕事・労働</option>
+								<option value="オフィスワーク">オフィスワーク</option>
+							</select>
+						</dd>
 					</dl>
 					</div>
 				</div>
+
+				<div class="woodFrame registFrame">
+				<h1><img src="img/regist_title_date.png" alt="日時を入れてぽ" width="298" height="54"></h1>
+					<div class="woodWrapper">
+					<dl>
+						<dt>カレンダーから日付を選ぶ</dt>
+						<dd class="calender"><em>10</em>月<em>11</em>日<em>金</em>曜日</dd>
+						<dt>バイトの開始時刻と時間を選ぶ</dt>
+						<dd>
+							<div class="time start"><em>10</em><em>00</em></div>から
+							<div class="time while"><em>5</em>時間<em>00</em>分</div>
+						</dd>
+					</dl>
+					</div>
+				</div>
+				
+				<div class="registBtn">
+					<p><a href="#"><img src="img/regist_btn_back.png" alt="戻る" width="67" height="59"></a></p>
+					<p><a href="#"><img src="img/regist_btn.png" alt="予定を登録する" width="233" height="57"></a></p>
+				</div>
 					
-					<div class="workStartTime">
+					<!--<div class="workStartTime">
 						<div class="timeFlick">
 							<span class="TimeFlickHour">4</span>
   						<span class="TimeFlickMinite">10</span>
@@ -98,9 +126,9 @@
 								<option value="終日">終日</option>
 							</select>
 						</div>
-					</div><!--  /.workStartTime -->
+					</div>--><!--  /.workStartTime -->
 					
-					<div class="icons">
+					<!--<div class="icons">
 						<ul>
 							<li><img src="#" alt="力仕事"></li>
 							<li><img src="#" alt="力仕事"></li>
@@ -113,7 +141,10 @@
 					
 					<p id="submitBtn">
 						<input type="submit" value="登録">
-					</p>
+					</p>-->
+					
+				
+				
 					
 				</form>
 			</div><!-- /#registration -->
