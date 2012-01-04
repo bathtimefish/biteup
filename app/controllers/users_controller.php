@@ -17,9 +17,9 @@ class UsersController extends AppController {
     }
 
     function toptest() {
-        $this->layout = '';
-        $this->set('userid', $this->Auth->user('id'));
-        $this->set('nickname', $this->Auth->user('username'));
+            $this->set('async_json_data', json_encode(array('rows'=>array('name'=>'nakashizu', 'userid'=>'1234'))));
+            $this->set('userid', $this->Auth->user('id'));
+            $this->set('nickname', $this->Auth->user('username'));
     }
 
     function index() {
@@ -111,7 +111,8 @@ class UsersController extends AppController {
 		}
 	}
 
-	function edit($id = null) {
+    function edit($id = null) {
+        if(!$id) $id = $this->Auth->user('id'); //セッションからユーザIDを取得
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash(__('Invalid user', true));
 			$this->redirect(array('action' => 'index'));
@@ -142,10 +143,6 @@ class UsersController extends AppController {
 		$this->redirect(array('action' => 'index'));
     }
 
-	function admin_index() {
-		$this->User->recursive = 0;
-		$this->set('users', $this->paginate());
-    }
 
     function login() {
         $this->layout = '';
@@ -206,7 +203,14 @@ class UsersController extends AppController {
 
     //*** Admin Controllers ***
 
+	function admin_index() {
+		$this->User->recursive = 0;
+        $this->layout = 'admin';
+		$this->set('users', $this->paginate());
+    }
+
 	function admin_view($id = null) {
+        $this->layout = 'admin';
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid user', true));
 			$this->redirect(array('action' => 'index'));
@@ -215,6 +219,7 @@ class UsersController extends AppController {
 	}
 
 	function admin_add() {
+        $this->layout = 'admin';
 		if (!empty($this->data)) {
 			$this->User->create();
 			if ($this->User->save($this->data)) {
@@ -227,6 +232,7 @@ class UsersController extends AppController {
 	}
 
 	function admin_edit($id = null) {
+        $this->layout = 'admin';
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash(__('Invalid user', true));
 			$this->redirect(array('action' => 'index'));
