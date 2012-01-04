@@ -7,16 +7,29 @@
 	<tr>
 		<td><?php echo $detail['Feed']['message']; ?><br />
 		<?php
-		foreach ($likes as $like) :
-		echo $like['Like']['message'].$like['User']['username'];?><br />
-		<?php endforeach; ?>
+		echo 'いいね'.count($likes).'個';
+		$comment_cnt = 0;
+		foreach ($likes as $like) {
+			if ($like['Like']['message']!='') {
+				echo $like['Like']['message'].$like['User']['username'].'<br />';
+				$comment_cnt++;
+			}
+			
+		} 
+		echo 'コメント'.$comment_cnt.'個';
+		?>
 		</td>
 	</tr>
 	<tr>
-		<td><?php echo $this->Form->create('Feed',array('controller' => 'feed', 'action' => 'detail','url'=>array($detail['Feed']['id'])));
-		echo $this->Form->input('message');
-		echo $this->Form->submit('Submit');
-		echo $this->Form->end($options=null); ?>
+		<td>
+<?php
+		if($like_flg) {
+			echo $this->Form->create('Feed',array('controller' => 'feed', 'action' => 'detail','url'=>array($detail['Feed']['id'])));
+			echo $this->Form->input('message');
+			echo $this->Form->submit('Submit');
+			echo $this->Form->end($options=null); 
+		}
+?>
 
 </td>
 	</tr>

@@ -153,7 +153,8 @@ class FeedsController extends AppController {
 			$this->redirect(array('action' => 'index'));
 		}
 		$detail = $this->Feed->read('', $feed_id);
-		if (!empty($this->data)) {
+		$like_flg = $this->Like->find('first', array('conditions'=> array("Like.feed_id" => $feed_id, "Like.friend_id" => $this->Auth->user('id')))) ? false : true ;
+		if (!empty($this->data) && $like_flg === true) {
 			$jobs = $this->Job->read('', $detail['Feed']['job_id']);
 			$data = array();
 			$data['Like']['user_id']    = $detail['Feed']['user_id'];
@@ -164,10 +165,12 @@ class FeedsController extends AppController {
 			$data['Like']['jobkind_id'] = $jobs['Job']['jobkind_id'];
 			$data['Like']['point']      = 5;
 			$this->Like->save($data);
+			$like_flg = false;
 		}
 		$this->set('feeds', $this->paginate());
-		$likes  = $this->Like->find('all', array('conditions'=> array("Like.feed_id" => $feed_id)));
-		$this->set(compact('detail', 'likes'));
-	}
 
+		$likes  = $this->Like->find('all', array('conditions'=> array("Like.feed_id" => $feed_id)));
+
+		$this->set(compact('detail', 'likes', 'like_flg'));
+	}
 }
