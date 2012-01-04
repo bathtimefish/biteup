@@ -17,9 +17,7 @@ function checkInUI () {
 		hundle = $(container).append(code).find(".hundle").css({"position":"absolute"});
 		$(container).bind("mousedown touchstart",touchStart);
 		//maxLength = parseInt($(container).width()) - parseInt($(hundle).innerWidth());
-		//maxLength = 640-219;
 		maxLength = 320-109;
-		//alert(parseInt($(hundle).width()))
 	}
 	
 	function touchStart (e) {
