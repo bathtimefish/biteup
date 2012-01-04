@@ -18,7 +18,7 @@ class Like extends AppModel {
 	var $belongsTo = array(
 		'User' => array(
 			'className' => 'User',
-			'foreignKey' => 'user_id',
+			'foreignKey' => 'friend_id',
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''

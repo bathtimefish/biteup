@@ -4,7 +4,7 @@ class FeedsController extends AppController {
  var $name = 'Feeds';
  var $helpers = array('Javascript');
  var $components = array('Auth', 'WebApi');
- var $uses = array('Feed', 'Friend', 'Like');
+ var $uses = array('Feed', 'Friend', 'Like', 'Job');
 
  function index() {
   $this->Feed->recursive = 0;
@@ -146,15 +146,28 @@ class FeedsController extends AppController {
   $timeline = $this->Feed->find('all', array('order' => 'Feed.created DESC','conditions'=> array("Feed.user_id IN ($feed_id)")));
   $this->set(compact('timeline'));
  }
+ 
+	function detail($feed_id) {
+		if (!$feed_id) {
+			$this->Session->setFlash(__('Invalid feed', true));
+			$this->redirect(array('action' => 'index'));
+		}
+		$detail = $this->Feed->read('', $feed_id);
+		if (!empty($this->data)) {
+			$jobs = $this->Job->read('', $detail['Feed']['job_id']);
+			$data = array();
+			$data['Like']['user_id']    = $detail['Feed']['user_id'];
+			$data['Like']['friend_id']  = $this->Auth->user('id');
+			$data['Like']['feed_id']    = $feed_id;
+			$data['Like']['job_id']     = $detail['Feed']['job_id'];
+			$data['Like']['message']    = $this->data['Feed']['message'];
+			$data['Like']['jobkind_id'] = $jobs['Job']['jobkind_id'];
+			$data['Like']['point']      = 5;
+			$this->Like->save($data);
+		}
+		$this->set('feeds', $this->paginate());
+		$likes  = $this->Like->find('all', array('conditions'=> array("Like.feed_id" => $feed_id)));
+		$this->set(compact('detail', 'likes'));
+	}
 
- function detail($feed_id) {
-  if (!$feed_id) {
-   $this->Session->setFlash(__('Invalid feed', true));
-   $this->redirect(array('action' => 'index'));
-  }
-  $this->set('feeds', $this->paginate());
-  $detail = $this->Feed->find('first', array('conditions'=> array("Feed.id" => $feed_id)));
-  $likes  = $this->Like->find('all', array('conditions'=> array("Like.feed_id" => $feed_id)));
-  $this->set(compact('detail', 'likes'));
- }
 }

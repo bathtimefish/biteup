@@ -2,17 +2,24 @@
 	<h2><?php __('Feeds');?></h2>
 	<table cellpadding="0" cellspacing="0">
 	<tr>
-			<th>ユーザ名</th>
 			<th>つぶやき</th>
-			<th>日時</th>
 	</tr>
-<?php foreach ($timeline as $feed): ?>
 	<tr>
-		<td><?php echo $feed['User']['username']; ?></td>
-		<td><?php echo $feed['Feed']['message']; ?></td>
-		<td><?php echo $feed['Feed']['created']; ?><?php echo $this->Html->link("＞", "/feeds/detail/{$feed['Feed']['id']}"); ?></td>
+		<td><?php echo $detail['Feed']['message']; ?><br />
+		<?php
+		foreach ($likes as $like) :
+		echo $like['Like']['message'].$like['User']['username'];?><br />
+		<?php endforeach; ?>
+		</td>
 	</tr>
-<?php endforeach; ?>
+	<tr>
+		<td><?php echo $this->Form->create('Feed',array('controller' => 'feed', 'action' => 'detail','url'=>array($detail['Feed']['id'])));
+		echo $this->Form->input('message');
+		echo $this->Form->submit('Submit');
+		echo $this->Form->end($options=null); ?>
+
+</td>
+	</tr>
 	</table>
 	<p>
 	<?php
