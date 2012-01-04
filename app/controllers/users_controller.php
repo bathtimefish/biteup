@@ -16,6 +16,12 @@ class UsersController extends AppController {
         $this->Auth->authError = 'Please try logon as admin.';
     }
 
+    function toptest() {
+        $this->layout = '';
+        $this->set('userid', $this->Auth->user('id'));
+        $this->set('nickname', $this->Auth->user('username'));
+    }
+
     function index() {
         $this->layout = '';
         $this->User->recursive = 0;

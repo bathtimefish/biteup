@@ -149,7 +149,7 @@ class JobsController extends AppController {
         }
     }
 
-    /*** Admin Controllers ***/
+ /*** Admin Controllers ***/
 
  function admin_index() {
   $this->Job->recursive = 0;

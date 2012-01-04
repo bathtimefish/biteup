@@ -1,0 +1,216 @@
+@charset "UTF-8";
+
+/* reset */
+html{color:#000;background:#FFF;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td{margin:0;padding:0;}
+table{border-collapse:collapse;border-spacing:0;}
+fieldset,img{border:0;}
+address,caption,cite,code,dfn,em,strong,th,var,optgroup{font-style:inherit;font-weight:inherit;}
+li{list-style:none;}
+caption,th{text-align:left;}
+h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}
+legend{color:#000;}
+input,button,textarea,select,optgroup,option{font-family:inherit;font-size:inherit;font-style:inherit;font-weight:inherit;}
+input,button,textarea,select{*font-size:100%;}
+select,input,button,textarea,button{font:99% arial,helvetica,clean,sans-serif;}
+table{font-size:inherit;font:100%;}
+
+html {
+}
+
+body {
+	background: url(../img/bg_header.png) top no-repeat, url(../img/bg_footer.png) bottom no-repeat, url(../img/bg_blue.gif) repeat-y;
+	width: 640px;
+	padding-bottom: 300px;
+}
+
+#container {
+	overflow: hidden;
+	width: 640px;
+}
+
+.containerInner {
+	background: url(../img/bg_rails_chara.png) 0 70px no-repeat;
+	-webkit-transition: 1s;
+}
+
+header {
+	overflow: hidden;
+	}
+	
+header .profileBtn {
+	float: right;
+}
+
+header nav ul {
+	clear: both;
+	display: -webkit-box;
+	-webkit-box-pack: center;
+	-webkit-box-align: center;
+	height: 145px;
+}
+
+header nav ul li {
+	text-align: center;
+}
+
+.woodFrame {
+	background: url(../img/bg_timeline_head.png) top no-repeat, url(../img/bg_timeline_footer.png) bottom no-repeat;
+	padding: 60px 0 61px;
+}
+
+.woodFrame .woodWrapper {
+	background: url(../img/bg_timeline_body.png) repeat-y;
+}
+
+.woodFrame li {
+	padding: 30px 40px 5px;
+	overflow: hidden;
+	background: url(../img/border_timeline.png) top center no-repeat, url(../img/icon_arrow_timeline.png) 95% center no-repeat;
+}
+.woodFrame li a{
+	text-decoration: none;
+	color: #452506;
+}
+.woodFrame li:first-child {
+	padding-top: 0;
+	background: url(../img/icon_arrow_timeline.png) 95% center no-repeat;
+}
+
+.woodFrame li:last-child {
+	padding-bottom: 0;
+}
+
+.woodFrame li p.comment span{
+	font-size: 20px;
+	font-weight: bold;
+	text-shadow: 1px 1px 1px rgba(255,255,255,0.6);
+}
+.woodFrame li p.icon span {
+	font-size: 24px;
+	font-weight: bold;
+	font-family: Arial, Helvetica, sans-serif;
+	text-shadow: 1px 1px 1px rgba(255,255,255,0.6);
+	padding: 10px 0 10px 50px;
+}
+.woodFrame li p.icon span.comment {
+	background: url(../img/icon_comment.png) no-repeat;
+	margin-right: 20px;
+}
+.woodFrame li p.icon span.otsu {
+	background: url(../img/icon_otukare.png) no-repeat;
+	padding-left: 40px;
+}
+.woodFrame li .activity {
+	float: left;
+	width: 330px;
+}
+.woodFrame li .activity .footer{
+	display: box;
+	display: -webkit-box;
+	display: -moz-box;
+	box-pack: justify;
+	-webkit-box-pack: justify;
+	-moz-box-pack: justify;
+}
+.woodFrame li .avatarIcon {
+	width: 140px;
+	float: left;
+	margin-right: 20px;
+}
+
+.woodFrame li .likes {
+	text-align: right;
+	position: relative;
+	float: right;
+}
+
+.woodFrame li .comment {
+	margin-bottom: 1em;
+}
+
+#topics {
+	padding: 30px 0 0;
+	height: 400px;
+	overflow: hidden;
+	background: url(../img/bg_cloud.png) bottom right no-repeat;
+	
+}
+
+#topics .cloud {
+	float: right;
+	margin-right: 10px;
+}
+
+.checkInWrapper {
+	width: 100%;
+	height: 153px;
+	background: url(../img/bg_checkin.png) no-repeat;
+}
+
+.checkInWrapperUp {
+	background-position: 0 -50px;
+}
+
+.checkInWrapper .hundle {
+	width: 219px;
+	height: 109px;
+	margin-top: 20px;
+	background: url(../img/checkin_hundle.png) no-repeat;
+}
+
+.working .checkInWrapper {
+	background: url(../img/bg_checkout.png) no-repeat;
+}
+
+.working .checkInWrapper .hundle {
+	background: url(../img/checkout_hundle.png) no-repeat;
+}
+
+.commentArea {
+	padding: 15px;
+	text-align: center;
+}
+
+.commentArea textarea {
+	width: 90%;
+	height: 6em;
+	display: block;
+	margin: auto;
+}
+
+.commentArea a {
+	display: inline-block;
+}
+
+.sendingIcon {
+	text-align: center;
+	font-size: 26px;
+}
+
+@-webkit-keyframes loadingIcon {
+	0%{
+		-webkit-transform: rotate(0deg);
+	}
+	99%{
+		-webkit-transform: rotate(359deg);
+	}
+}
+
+.sendingIcon span img {
+	-webkit-animation-name: loadingIcon;
+	-webkit-animation-duration: 1s;
+	-webkit-animation-timing-function: linear;
+}
+
+
+
+
+
+
+
+
+
+
+
+
