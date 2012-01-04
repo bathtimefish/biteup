@@ -4,7 +4,7 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no"><!---->
 		<title>トップページ</title>
-		<script src="/common/js/jquery-1.7.min.js"></script>
+		<script src="common/js/jquery-1.7.min.js"></script>
 
 		<!-- ここから、サーバに吐き出してもらいたいscript -->
 		<script>
@@ -22,7 +22,7 @@
 					sl.isWorking = true; //勤務中はtrue,つまりチェックアウトが出る
 					sl.init("checkInSlider");
 					
-					$.fn.subwindow.open("/alert/sending.html", {"filter":"#target"}, 200,200);
+					$.fn.subwindow.open("alert/sending.html", {"filter":"#target"}, 200,200);
 					/*$(".profileBtn").click(function (e){
 						e.preventDefault();
 							
@@ -32,7 +32,8 @@
 				
 		</script>
 		
-		<link rel="stylesheet" type="text/css" href="/common/css/style.css">
+		<link rel="stylesheet" type="text/css" href="common/css/style.css">
+		<link rel="stylesheet" type="text/css" href="common/css/jquery.subwindow.css">
 	</head>
 	
 	<body>
@@ -62,69 +63,62 @@
 					<div class="woodWrapper">
 						<ul>
 						<li>
-							<a class="avatarIcon" href="#"><img src="common/img/dummy/dummy_avatar.png" alt="#"></a>
+							<a href="#">
+							<img src="common/img/dummy/dummy_avatar.png" alt="#" class="avatarIcon">
 							<div class="activity">
 								<p class="comment">
-									<a href="#">nakashizu</a>さんがバイトにチェックインしました。
+									<span>nakashizuさん</span>がバイトにチェックインしました。
 								</p>
-								<p class="times">5時間前 横浜市青葉区</p>
-								<p class="otsu">50</p>
-								<div class="likes"><a href="#"><img src="common/img/btn_like_timeline.png" width="88" height="64" alt="おつかれ！"></a></div>
-	
+								<div class="footer">
+									<p class="icon"><span class="comment">2</span><span class="otsu">50</span></p>
+									<p class="times">5分前</p>
+								</div>
 							</div>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+							<img src="common/img/dummy/dummy_avatar.png" alt="#" class="avatarIcon">
+							<div class="activity">
+								<p class="comment">
+									<span>nakashizuさん</span>がバイトにチェックインしました。
+								</p>
+								<div class="footer">
+									<p class="icon"><span class="comment">2</span><span class="otsu">50</span></p>
+									<p class="times">5分前</p>
+								</div>
+							</div>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+							<img src="common/img/dummy/dummy_avatar.png" alt="#" class="avatarIcon">
+							<div class="activity">
+								<p class="comment">
+									<span>nakashizuさん</span>がバイトにチェックインしました。
+								</p>
+								<div class="footer">
+									<p class="icon"><span class="comment">2</span><span class="otsu">50</span></p>
+									<p class="times">5分前</p>
+								</div>
+							</div>
+							</a>
+						</li>
+						<li>
+							<a href="#">
+							<img src="common/img/dummy/dummy_avatar.png" alt="#" class="avatarIcon">
+							<div class="activity">
+								<p class="comment">
+									<span>nakashizuさん</span>がバイトにチェックインしました。
+								</p>
+								<div class="footer">
+									<p class="icon"><span class="comment">2</span><span class="otsu">50</span></p>
+									<p class="times">5分前</p>
+								</div>
+							</div>
+							</a>
 						</li>
 						
-						<li>
-							<a class="avatarIcon" href="#"><img src="common/img/dummy/dummy_avatar.png" alt="#"></a>
-							<div class="activity">
-								<p class="comment">
-									<a href="#">nakashizu</a>さんがバイトにチェックインしました。
-								</p>
-								<p class="times">5時間前 横浜市青葉区</p>
-								<p class="otsu">50</p>
-								<div class="likes"><a href="#"><img src="common/img/btn_like_timeline.png" width="88" height="64" alt="おつかれ！"></a></div>
-							</div>
-							
-						</li>
-						
-						<li>
-							<a class="avatarIcon" href="#"><img src="common/img/dummy/dummy_avatar.png" alt="#"></a>
-							<div class="activity">
-								<p class="comment">
-									<a href="#">nakashizu</a>さんがバイトにチェックインしました。
-								</p>
-								<p class="times">5時間前 横浜市青葉区</p>
-								<p class="otsu">50</p>
-								<div class="likes"><a href="#"><img src="common/img/btn_like_timeline.png" width="88" height="64" alt="おつかれ！"></a></div>
-							</div>
-							
-						</li>
-						
-						<li>
-							<a class="avatarIcon" href="#"><img src="common/img/dummy/dummy_avatar.png" alt="#"></a>
-							<div class="activity">
-								<p class="comment">
-									<a href="#">nakashizu</a>さんがバイトにチェックインしました。
-								</p>
-								<p class="times">5時間前 横浜市青葉区</p>
-								<p class="otsu">50</p>
-								<div class="likes"><a href="#"><img src="common/img/btn_like_timeline.png" width="88" height="64" alt="おつかれ！"></a></div>
-							</div>
-							
-						</li>
-						
-						<li>
-							<a class="avatarIcon" href="#"><img src="common/img/dummy/dummy_avatar.png" alt="#"></a>
-							<div class="activity">
-								<p class="comment">
-									<a href="#">nakashizu</a>さんがバイトにチェックインしました。
-								</p>
-								<p class="times">5時間前 横浜市青葉区</p>
-								<p class="otsu">50</p>
-								<div class="likes"><a href="#"><img src="common/img/btn_like_timeline.png" width="88" height="64" alt="おつかれ！"></a></div>
-							</div>
-							
-						</li>
 						
 					</ul>
 					</div>

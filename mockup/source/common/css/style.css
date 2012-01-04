@@ -64,11 +64,14 @@ header nav ul li {
 }
 
 .woodFrame li {
-	padding: 50px 40px 20px;
+	padding: 30px 40px 5px;
 	overflow: hidden;
 	background: url(../img/border_timeline.png) top center no-repeat, url(../img/icon_arrow_timeline.png) 95% center no-repeat;
 }
-
+.woodFrame li a{
+	text-decoration: none;
+	color: #452506;
+}
 .woodFrame li:first-child {
 	padding-top: 0;
 	background: url(../img/icon_arrow_timeline.png) 95% center no-repeat;
@@ -78,27 +81,42 @@ header nav ul li {
 	padding-bottom: 0;
 }
 
-.woodFrame li .otsu {
-	background: url(../img/bg_like_timeline.png) no-repeat;
-	width: 160px;
-	height: 32px;
-	padding: 0 0 0 30px;
-	text-decoration: none;
-	color: #452506;
+.woodFrame li p.comment span{
+	font-size: 20px;
+	font-weight: bold;
+	text-shadow: 1px 1px 1px rgba(255,255,255,0.6);
+}
+.woodFrame li p.icon span {
 	font-size: 24px;
 	font-weight: bold;
 	font-family: Arial, Helvetica, sans-serif;
-	margin-top: .5em;
+	text-shadow: 1px 1px 1px rgba(255,255,255,0.6);
+	padding: 10px 0 10px 50px;
 }
-
+.woodFrame li p.icon span.comment {
+	background: url(../img/icon_comment.png) no-repeat;
+	margin-right: 20px;
+}
+.woodFrame li p.icon span.otsu {
+	background: url(../img/icon_otukare.png) no-repeat;
+	padding-left: 40px;
+}
 .woodFrame li .activity {
-	float: right;
-	width: 400px;
+	float: left;
+	width: 330px;
 }
-
+.woodFrame li .activity .footer{
+	display: box;
+	display: -webkit-box;
+	display: -moz-box;
+	box-pack: justify;
+	-webkit-box-pack: justify;
+	-moz-box-pack: justify;
+}
 .woodFrame li .avatarIcon {
 	width: 140px;
 	float: left;
+	margin-right: 20px;
 }
 
 .woodFrame li .likes {
@@ -108,7 +126,7 @@ header nav ul li {
 }
 
 .woodFrame li .comment {
-	margin-bottom: .5em;
+	margin-bottom: 1em;
 }
 
 #topics {
