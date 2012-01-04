@@ -108,6 +108,45 @@
 	top:60px;
 }
 
+/*	06_friend_timeline2
+============================================*/
+.woodFrame.friendTimelineDetail li{
+	background: none;
+}
+.woodFrame.friendTimelineDetail li .activity {
+	float: left;
+	width: 400px;
+}
+.commentForm{
+	background-color: #e9c174;
+	padding: 10px;
+	margin: 10px;
+}
+.commentList li{
+	overflow: hidden;
+	background: #fff4df url(../img/icon_arrow_timeline.png) 95% center no-repeat;
+	padding: 10px;
+	margin: 10px;
+}
+.commentList li a{
+	text-decoration: none;
+	color:#333;
+}
+.commentList li p.commentAvatar{
+	width:80px;
+	float: left;
+	margin-right: 20px;
+}
+.commentList li p.commentAvatar img{
+	width:80px;
+	height: 80px;
+}
+.commentList li div.detail{
+	width:330px;
+	float: left;
+}
+
+
 /*	07_search_result
 ============================================*/
 .woodFrame.friendList li{
@@ -137,4 +176,5 @@
 	height: 80px;
 	float: left;
 }
+
 

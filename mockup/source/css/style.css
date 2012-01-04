@@ -86,6 +86,10 @@ header nav ul li {
 	font-weight: bold;
 	text-shadow: 1px 1px 1px rgba(255,255,255,0.6);
 }
+
+.woodFrame li p.times {
+	color:#978a85;
+}
 .woodFrame li p.icon span {
 	font-size: 24px;
 	font-weight: bold;
