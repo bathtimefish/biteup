@@ -1,0 +1,102 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<title>バイト予定登録</title>
+		<script src="/common/js/jquery-1.7.min.js"></script>
+		<script src="common/js/global.js"></script>
+		<link rel="stylesheet" type="text/css" href="/common/css/style.css">
+	</head>
+	
+	<body>
+	
+		<div id="container">
+			<header>
+				<span class="pageBack"><a href="#">Back</a></span>
+				<h1><img src="#" alt="Logo"></h1>
+				<h2>バイト予定登録</h2>
+				<span class="profileBtn"><a href="/9_account_page.html">MyProfile</a></span>
+				<nav>
+					<ul>
+						<li><a href="4_yotei_ichiran.html" title="バイト予定一覧">バイト予定</a></li>
+						<li><a href="3_yotei_touroku.html" title="バイト登録">＋</a></li>
+						<li><a href="6_friend_timeline.html" title="SNSタイムライン">友だち</a></li>
+					</ul>
+				</nav>
+			</header>
+			<div id="registration">
+				<form action="#" method="post">
+					
+					<dl>
+						<dt>バイト先</dt>
+						<dd>
+							<select name="company">
+								<option value="○○株式会社">○○株式会社</option>
+								<option value="コンビニ">コンビニ</option>
+								<option value="new">新しいバイト先</option>
+							</select>
+							<div class="newCompany">
+								<input type="text" name="newComp" placeholder="バイト先を入力してください">
+							</div>
+						</dd>
+					</dl>
+					
+					<div class="workStartTime">
+						<div class="timeFlick">
+							<span class="TimeFlickHour">4</span>
+  						<span class="TimeFlickMinite">10</span>
+						</div>
+						<div class="workHour">
+							<select name="workHour">
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								<option value="7">7</option>
+								<option value="8">8</option>
+								<option value="9">9</option>
+								<option value="10">10</option>
+								<option value="11">11</option>
+								<option value="12">12</option>
+								<option value="13">13</option>
+								<option value="14">14</option>
+								<option value="15">15</option>
+								<option value="16">16</option>
+								<option value="17">17</option>
+								<option value="18">18</option>
+								<option value="19">19</option>
+								<option value="20">20</option>
+								<option value="終日">終日</option>
+							</select>
+						</div>
+					</div><!--  /.workStartTime -->
+					
+					<div class="icons">
+						<ul>
+							<li><img src="#" alt="力仕事"></li>
+							<li><img src="#" alt="力仕事"></li>
+							<li><img src="#" alt="力仕事"></li>
+							<li><img src="#" alt="力仕事"></li>
+							<li><img src="#" alt="力仕事"></li>
+							<li><img src="#" alt="力仕事"></li>
+						</ul>
+					</div>
+					
+					<p id="submitBtn">
+						<input type="submit" value="変更する">
+					</p>
+					
+					<p id="deleteBtn">
+						<a href="#">この予定を削除する</a>
+					</p>
+					
+				</form>
+			</div><!-- /#registration -->
+	
+		</div><!-- /#container -->
+	
+	</body>
+</html>

@@ -1,0 +1,140 @@
+@charset "UTF-8";
+
+/*	3_yotei_touroku
+============================================*/
+.woodFrame.registFrame{
+	position: relative;
+}
+.woodFrame.registFrame h1{
+	margin:0 0 0 22px;
+	position: absolute;
+	top:14px;
+}
+.woodFrame.registFrame dl{
+	margin:0 0 0 45px;
+	padding-top: 70px;
+}
+.woodFrame.registFrame dt{
+	background: url(../img/regist_icon_subtitle.png) no-repeat 0 0;
+	color:#3d0404;
+	font-weight:bold;
+	padding:8px 0 8px 30px;
+	text-shadow:-1px -1px 1px rgba(255,255,255,0.8);
+}
+
+.woodFrame.registFrame .selectWorks{
+	background: url(../img/regist_icon_select.png) no-repeat 470px 12px,
+				url(../img/regist_bg_input.png) no-repeat 0 0;
+	-webkit-appearance:none;
+	border:none;
+	width: 540px;
+	height: 83px;
+	padding: 0 20px;
+	margin-bottom: 10px;
+}
+.woodFrame.registFrame .newRegist{
+	background: url(../img/regist_icon_plus.png) no-repeat 20px 25px,
+				url(../img/regist_bg_input.png) no-repeat 0 0;
+	-webkit-appearance:none;
+	border: none;
+	width: 450px;
+	height: 83px;
+	padding: 0 20px 0 70px;
+}
+
+/*	4_yotei_ichiran
+============================================*/
+.woodFrame.listWrap ul{
+	margin-top: -10px;
+}
+.woodFrame.listWrap ul li{
+	padding: 30px 40px 0;
+}
+.woodFrame.listWrap ul li:first-child{
+	background: url(../img/icon_arrow_timeline.png) 95% center no-repeat;
+	padding-top: 0;
+}
+.woodFrame.listWrap ul li img{
+	margin-right: 10px;
+	float: left;
+}
+.woodFrame.listWrap ul li a{
+	text-decoration: none;
+	color: #3c220c;
+}
+.woodFrame.listWrap ul li h3{
+	font-size: 120%;
+	font-weight: bold;
+}
+.woodFrame.listWrap ul li span em{
+	font-size: 140%;
+	font-weight: bold;
+}
+.woodFrame.listWrap ul li span.date{
+	background: url(../img/icon_calender.png) no-repeat 0 0;
+	padding: 8px 0 0 35px;
+	margin-right: 10px;
+}
+.woodFrame.listWrap ul li span.time{
+	background: url(../img/icon_date.png) no-repeat 0 0;
+	padding: 8px 0 2px 35px;
+}
+
+/*	06_friend_timeline
+============================================*/
+.searchBox{
+	background: url(../img/search_bg.png) no-repeat 0 0;
+	margin-top: -40px;
+	padding: 85px 20px 90px 30px;
+	position: relative;
+}
+
+.searchBox input.searchTxt{
+	-webkit-appearance: none;
+	border: none;
+	background: none;
+	font-size: 30px;
+	text-shadow: -1px -1px 1px rgba(255,255,255,0.8);
+}
+.searchBox input.searchBtn{
+	-webkit-appearance: none;
+	border: none;
+	text-indent: -9999px;
+	background: url(../img/search_btn.png) no-repeat 0 0;
+	width:149px;
+	height: 101px;
+	position: absolute;
+	right:15px;
+	top:60px;
+}
+
+/*	07_search_result
+============================================*/
+.woodFrame.friendList li{
+	padding: 30px 40px 10px;
+}
+.woodFrame.friendList li:first-child{
+	padding-top: 0;
+}
+.woodFrame.friendList li .activity{
+	width:455px;
+}
+.friendList .activity p.name{
+	color: #0b278b;
+	font-weight: bold;
+}
+.friendList .activity p.detail img{
+	vertical-align: middle;
+
+}
+.friendList .activity p.detail span.job{
+	margin-right: 15px;
+}
+
+
+.woodFrame.friendList img.avatarIcon{
+	width:80px;
+	height: 80px;
+	float: left;
+}
+
