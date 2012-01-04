@@ -84,8 +84,9 @@
 ============================================*/
 .searchBox{
 	background: url(../img/search_bg.png) no-repeat 0 0;
-	margin-top: -40px;
-	padding: 85px 20px 90px 30px;
+	background-size: 320px 91px;
+	margin-top: -20px;
+	padding: 42px 10px 45px 15px;
 	position: relative;
 }
 
@@ -93,7 +94,6 @@
 	-webkit-appearance: none;
 	border: none;
 	background: none;
-	font-size: 30px;
 	text-shadow: -1px -1px 1px rgba(255,255,255,0.8);
 }
 .searchBox input.searchBtn{
@@ -101,11 +101,12 @@
 	border: none;
 	text-indent: -9999px;
 	background: url(../img/search_btn.png) no-repeat 0 0;
-	width:149px;
-	height: 101px;
+	background-size: 75px 50px;
+	width:75px;
+	height: 50px;
 	position: absolute;
-	right:15px;
-	top:60px;
+	right:7px;
+	top:30px;
 }
 
 /*	06_friend_timeline2
@@ -115,18 +116,18 @@
 }
 .woodFrame.friendTimelineDetail li .activity {
 	float: left;
-	width: 400px;
+	width: 200px;
 }
 .commentForm{
 	background-color: #e9c174;
-	padding: 10px;
-	margin: 10px;
+	padding: 5px;
+	margin: 5px;
 }
 .commentList li{
 	overflow: hidden;
-	background: #fff4df url(../img/icon_arrow_timeline.png) 95% center no-repeat;
-	padding: 10px;
-	margin: 10px;
+	background: #fff4df url(../img/icon_arrow_timeline.png) 93% center no-repeat;
+	padding: 5px;
+	margin: 5px;
 }
 .commentList li a{
 	text-decoration: none;
@@ -135,14 +136,14 @@
 .commentList li p.commentAvatar{
 	width:80px;
 	float: left;
-	margin-right: 20px;
+	margin-right: 10px;
 }
 .commentList li p.commentAvatar img{
 	width:80px;
 	height: 80px;
 }
 .commentList li div.detail{
-	width:330px;
+	width:115px;
 	float: left;
 }
 
@@ -150,13 +151,13 @@
 /*	07_search_result
 ============================================*/
 .woodFrame.friendList li{
-	padding: 30px 40px 10px;
+	padding: 15px 20px 5px;
 }
 .woodFrame.friendList li:first-child{
 	padding-top: 0;
 }
 .woodFrame.friendList li .activity{
-	width:455px;
+	width:227px;
 }
 .friendList .activity p.name{
 	color: #0b278b;
@@ -167,7 +168,7 @@
 
 }
 .friendList .activity p.detail span.job{
-	margin-right: 15px;
+	margin-right: 7px;
 }
 
 

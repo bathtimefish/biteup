@@ -20,18 +20,22 @@ html {
 
 body {
 	background: url(../img/bg_header.png) top no-repeat, url(../img/bg_footer.png) bottom no-repeat, url(../img/bg_blue.gif) repeat-y;
-	width: 640px;
-	padding-bottom: 300px;
+	background-size: 320px 202px, 320px 248px;
+	padding-bottom: 150px;
+	text-align: center;
+	font-size: 14px;
 }
 
 #container {
 	overflow: hidden;
-	width: 640px;
+	width: 320px;
+	text-align: left;
 }
 
 .containerInner {
 	background: url(../img/bg_rails_chara.png) 0 70px no-repeat;
 	-webkit-transition: 1s;
+	background-size: 320px 306px;
 }
 
 header {
@@ -47,26 +51,32 @@ header nav ul {
 	display: -webkit-box;
 	-webkit-box-pack: center;
 	-webkit-box-align: center;
-	height: 145px;
+	height: 72px;
 }
 
 header nav ul li {
 	text-align: center;
 }
 
+/*	common
+============================================*/
+
 .woodFrame {
 	background: url(../img/bg_timeline_head.png) top no-repeat, url(../img/bg_timeline_footer.png) bottom no-repeat;
-	padding: 60px 0 61px;
+	background-size: 320px 30px;
+	padding: 30px 0;
 }
 
 .woodFrame .woodWrapper {
 	background: url(../img/bg_timeline_body.png) repeat-y;
+	background-size: 320px;
 }
 
 .woodFrame li {
-	padding: 30px 40px 5px;
+	padding: 30px 20px 5px;
 	overflow: hidden;
-	background: url(../img/border_timeline.png) top center no-repeat, url(../img/icon_arrow_timeline.png) 95% center no-repeat;
+	background: url(../img/border_timeline.png) top center no-repeat, url(../img/icon_arrow_timeline.png) 93% center no-repeat;
+	background-size: 298px 10px, 32px 32px;
 }
 .woodFrame li a{
 	text-decoration: none;
@@ -74,7 +84,8 @@ header nav ul li {
 }
 .woodFrame li:first-child {
 	padding-top: 0;
-	background: url(../img/icon_arrow_timeline.png) 95% center no-repeat;
+	background: url(../img/icon_arrow_timeline.png) 93% center no-repeat;
+	background-size: 32px 32px;
 }
 
 .woodFrame li:last-child {
@@ -82,32 +93,33 @@ header nav ul li {
 }
 
 .woodFrame li p.comment span{
-	font-size: 20px;
 	font-weight: bold;
-	text-shadow: 1px 1px 1px rgba(255,255,255,0.6);
+	font-size: 1.2;
 }
 
 .woodFrame li p.times {
 	color:#978a85;
 }
 .woodFrame li p.icon span {
-	font-size: 24px;
 	font-weight: bold;
+	font-size: 1.2;
 	font-family: Arial, Helvetica, sans-serif;
 	text-shadow: 1px 1px 1px rgba(255,255,255,0.6);
-	padding: 10px 0 10px 50px;
+	padding: 5px 0 5px 26px;
 }
 .woodFrame li p.icon span.comment {
 	background: url(../img/icon_comment.png) no-repeat;
-	margin-right: 20px;
+	background-size: 24px 24px;
+	margin-right: 10px;
 }
 .woodFrame li p.icon span.otsu {
 	background: url(../img/icon_otukare.png) no-repeat;
-	padding-left: 40px;
+	background-size: 17px 24px;
+	padding-left: 20px;
 }
 .woodFrame li .activity {
 	float: left;
-	width: 330px;
+	width: 165px;
 }
 .woodFrame li .activity .footer{
 	display: box;
@@ -118,27 +130,31 @@ header nav ul li {
 	-moz-box-pack: justify;
 }
 .woodFrame li .avatarIcon {
-	width: 140px;
+	width: 70px;
 	float: left;
-	margin-right: 20px;
+	margin-right: 10px;
 }
-
+.woodFrame li .avatarIcon img{
+	width: 70px;
+	height: 70px;
+}
 .woodFrame li .likes {
 	text-align: right;
 	position: relative;
 	float: right;
 }
 
-.woodFrame li .comment {
+.woodFrame li p.comment {
 	margin-bottom: 1em;
+	text-shadow: 1px 1px 1px rgba(255,255,255,0.8);
 }
 
 #topics {
 	padding: 30px 0 0;
-	height: 400px;
+	height: 200px;
 	overflow: hidden;
 	background: url(../img/bg_cloud.png) bottom right no-repeat;
-	
+	background-size: 203px 85px;
 }
 
 #topics .cloud {
@@ -148,8 +164,9 @@ header nav ul li {
 
 .checkInWrapper {
 	width: 100%;
-	height: 153px;
+	height: 76px;
 	background: url(../img/bg_checkin.png) no-repeat;
+	background-size: 320px 76px;
 }
 
 .checkInWrapperUp {
@@ -161,14 +178,17 @@ header nav ul li {
 	height: 109px;
 	margin-top: 20px;
 	background: url(../img/checkin_hundle.png) no-repeat;
+	background-size: 109px 54px;
 }
 
 .working .checkInWrapper {
 	background: url(../img/bg_checkout.png) no-repeat;
+	background-size: 320px 76px;
 }
 
 .working .checkInWrapper .hundle {
 	background: url(../img/checkout_hundle.png) no-repeat;
+	background-size: 109px 54px;
 }
 
 .commentArea {
