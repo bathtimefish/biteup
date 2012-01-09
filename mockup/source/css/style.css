@@ -45,6 +45,24 @@ header {
 	
 header .profileBtn {
 	float: right;
+	position: relative;
+	text-align: center;
+}
+header .profileBtn a{
+	text-decoration: none;
+}
+header .profileBtn .alert{
+	background-color: #f00;
+	color: #fff;
+	font-weight: bold;
+	font-size: 10px;
+	position: absolute;
+	right: 1px;
+	top: 3px;
+	padding: 3px 0 0;
+	border-radius: 20px;
+	width: 18px;
+	height: 15px;
 }
 
 header nav ul {
