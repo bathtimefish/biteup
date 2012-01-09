@@ -49,6 +49,7 @@
 	background-size: 271px 49px;
 	padding: 10px 0 10px 20px;
 	margin-bottom: 10px;
+	font-size: 1.2em;
 }
 .woodFrame.registFrame dd.calender em{
 	font-size: 1.4em;
@@ -94,6 +95,69 @@
 	-webkit-box-pack: justify;
 	-moz-box-pack: justify;
 	margin: 10px 6px 0;
+}
+
+/*	calendarUI  */
+#controler {
+display: -webkit-box;
+-webkit-box-pack: justify;
+}
+
+#controler a {
+display: block;
+padding: 15px;
+}
+
+.clipArea {
+width: 100%;
+overflow-x: hidden;
+}
+
+.calbox {
+float: left;
+}
+
+.calbox header {
+text-align: center;
+font-family: Arial, Helvetica, sans-serif;
+font-weight: bold;
+}
+
+.calbox table {
+border-collapse: collapse;
+width: 100%;
+margin: 0 0 15px;
+}
+.calbox table td {
+text-align: center;
+padding: 5px 0;
+font-family: Arial, Helvetica, sans-serif;
+font-weight: bold;
+border: 1px solid #CCC;
+}
+.calbox table .today {
+background: #69C;
+}
+
+.calbox table td:hover {
+background: #6CC;
+}
+
+#calConfirm {
+display: none;
+}
+
+#calConfirm a {
+display: block;
+width: 80%;
+margin: 10px auto;
+border-radius: 3px;
+border: 1px solid #999;
+text-align: center;
+text-decoration: none;
+font-weight: bold;
+font-size: 18px;
+padding: 15px 0;
 }
 
 /*	4_yotei_ichiran

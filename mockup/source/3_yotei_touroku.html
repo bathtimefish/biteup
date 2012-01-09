@@ -14,14 +14,20 @@
 
 		<script src="js/global.js"></script>
 		<script src="js/checkin_ui.js"></script>
+		<script src="js/cal_ui.js"></script>
 		<script>
-		
-			$(function (){
-					var sl = new checkInUI();
-					sl.isWorking = true; //勤務中はtrue,つまりチェックアウトが出る
-					sl.init("checkInSlider");
-				});
-				
+		window.onload = function (){
+		var ev = "touchstart"; //touchstart
+		$("#biteCalCall").bind(ev, showCalendar);
+
+		function showCalendar(){
+		$("#biteCalCall").unbind(ev);
+		var cal = new dhCalUI("biteCalCall","biteCalendar");
+		$(cal).bind("complete", function (e){
+		$("#biteCalCall").bind(ev, showCalendar);
+		});
+		};
+		}
 		</script>
 		
 		<link rel="stylesheet" type="text/css" href="css/style.css">
@@ -81,7 +87,9 @@
 					<div class="woodWrapper">
 					<dl>
 						<dt>カレンダーから日付を選ぶ</dt>
-						<dd class="calender"><em>10</em>月<em>11</em>日<em>金</em>曜日</dd>
+						<!--<dd class="calender"><em>10</em>月<em>11</em>日<em>金</em>曜日</dd>-->
+						<dd id="biteCalCall" class="calender">2月10日</dd>
+						<dd id="biteCalendar"></dd>
 						<dt>バイトの開始時刻と時間を選ぶ</dt>
 						<dd>
 							<div class="time start"><em>10</em><em>00</em></div>から
