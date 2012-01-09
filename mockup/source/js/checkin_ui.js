@@ -20,10 +20,12 @@ function checkInUI () {
 		maxLength = 320-109;
 	}
 	
+	var hundleTouchX = 0;
 	function touchStart (e) {
 		
 		e.preventDefault();
 		e.stopPropagation();
+		hundleTouchX = (event.clientX || event.touches[0].clientX);
 		//touchMove();//指タップでも移動処理を1度行う
 		$(window).bind("mousemove touchmove",touchMove);
 		$(hundle).unbind("mousedown touchstart",touchStart);
@@ -31,7 +33,7 @@ function checkInUI () {
 	}
 	
 	function touchMove (e) {
-		x = (event.clientX || event.touches[0].clientX);
+		x = (event.clientX || event.touches[0].clientX) -hundleTouchX;
 		//console.log(event.touches[0].clientX)
 		if ( maxLength < parseInt(x) ) {
 			x = maxLength;
