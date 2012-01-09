@@ -63,10 +63,11 @@ header .profileBtn .alert{
 	position: absolute;
 	right: 1px;
 	top: 3px;
-	padding: 2px;
+	padding: 1px;
 	border-radius: 20px;
 	width: 18px;
 	height: 15px;
+	-webkit-box-shadow:0 0 2px rgba(255,0,0,1);
 }
 
 header nav ul {
