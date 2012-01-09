@@ -15,7 +15,7 @@ function checkInUI () {
 		$(container).addClass((_this.isWorking) ? "working" : null);
 		$(container).css({"position":"relative"});
 		hundle = $(container).append(code).find(".hundle").css({"position":"absolute"});
-		$(container).bind("mousedown touchstart",touchStart);
+		$(hundle).bind("mousedown touchstart",touchStart);
 		//maxLength = parseInt($(container).width()) - parseInt($(hundle).innerWidth());
 		maxLength = 320-109;
 	}
@@ -24,9 +24,9 @@ function checkInUI () {
 		
 		e.preventDefault();
 		e.stopPropagation();
-		touchMove();//指タップでも移動処理を1度行う
+		//touchMove();//指タップでも移動処理を1度行う
 		$(window).bind("mousemove touchmove",touchMove);
-		$(container).unbind("mousedown touchstart",touchStart);
+		$(hundle).unbind("mousedown touchstart",touchStart);
 		$(window).bind("mouseup touchend",touchEnd);
 	}
 	
@@ -51,7 +51,7 @@ function checkInUI () {
 			
 		}else{
 			$(hundle).animate({"left": 0}, 200, function (){
-				$(container).bind("mousedown touchstart",touchStart);
+				$(hundle).bind("mousedown touchstart",touchStart);
 			});
 		}
 	}
