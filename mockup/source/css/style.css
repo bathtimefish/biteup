@@ -19,11 +19,12 @@ html {
 }
 
 body {
+	font-family: sans-serif;
 	background: url(../img/bg_header.png) top no-repeat, url(../img/bg_footer.png) bottom no-repeat, url(../img/bg_blue.gif) center repeat-y;
 	background-size: 320px 202px, 320px 248px;
 	padding-bottom: 150px;
 	text-align: center;
-	font-size: 14px;
+	font-size: 14px;;
 }
 
 #container {
@@ -55,7 +56,7 @@ header .profileBtn .alert{
 	background-color: #f00;
 	color: #fff;
 	font-weight: bold;
-	font-size: 10px;
+	font-size: 12px;
 	position: absolute;
 	right: 1px;
 	top: 3px;
