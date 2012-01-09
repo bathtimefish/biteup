@@ -258,13 +258,90 @@ header nav ul li {
 }
 
 
+/*======================================================
+	login
+======================================================*/
 
+body.login{
+	background: none;
+}
 
+/*	0_junction
+-----------------------------------------------*/
+body.login ul#junction{
+	display: box;
+	display: -webkit-box;
+	display: -moz-box;
+	text-align: center;
+}
+body.login ul#junction li a{
+	border-radius: 10px;
+	display: block;
+	color: #fff;
+	padding: 10px 0;
+	text-decoration: none;
+	width: 150px;
+}
+body.login ul#junction li:first-child a{
+	background: -webkit-linear-gradient(top, #ba5f7f 0%, #a20e42 65%, #ba5e7e 100%);
+	background: -moz-linear-gradient(top, #ba5f7f 0%, #a20e42 65%, #ba5e7e 100%);
+	background: -ms-linear-gradient(top, #ba5f7f 0%, #a20e42 65%, #ba5e7e 100%);
+	background: -o-linear-gradient(top, #ba5f7f 0%, #a20e42 65%, #ba5e7e 100%);
+	background: linear-gradient(top, #ba5f7f 0%, #a20e42 65%, #ba5e7e 100%);
+	background: -webkit-gradient(linear, left top, left bottom,color-stop(0, #ba5f7f), color-stop(0.65, #a20e42), color-stop(1, #ba5e7e));
+}
+body.login ul#junction li:nth-child(2) a{
+	background: -webkit-linear-gradient(top, #6c8eae 0%, #28508b 62%, #6a8ca7 100%);
+	background: -moz-linear-gradient(top, #6c8eae 0%, #28508b 62%, #6a8ca7 100%);
+	background: -ms-linear-gradient(top, #6c8eae 0%, #28508b 62%, #6a8ca7 100%);
+	background: -o-linear-gradient(top, #6c8eae 0%, #28508b 62%, #6a8ca7 100%);
+	background: linear-gradient(top, #6c8eae 0%, #28508b 62%, #6a8ca7 100%);
+	background: -webkit-gradient(linear, left top, left bottom,color-stop(0, #6c8eae), color-stop(0.62, #28508b), color-stop(1, #6a8ca7));
+}
 
+/*	1_login
+-----------------------------------------------*/
+body.login p.loginBtn a{
+	border-radius: 10px;
+	display: block;
+	color: #fff;
+	padding: 10px 0;
+	text-align: center;
+	text-decoration: none;
+	margin: 20px;
+	background: -webkit-linear-gradient(top, #ba5f7f 0%, #a20e42 65%, #ba5e7e 100%);
+	background: -moz-linear-gradient(top, #ba5f7f 0%, #a20e42 65%, #ba5e7e 100%);
+	background: -ms-linear-gradient(top, #ba5f7f 0%, #a20e42 65%, #ba5e7e 100%);
+	background: -o-linear-gradient(top, #ba5f7f 0%, #a20e42 65%, #ba5e7e 100%);
+	background: linear-gradient(top, #ba5f7f 0%, #a20e42 65%, #ba5e7e 100%);
+	background: -webkit-gradient(linear, left top, left bottom,color-stop(0, #ba5f7f), color-stop(0.65, #a20e42), color-stop(1, #ba5e7e));
+}
+body.login p.registBtn a{
+	border-radius: 10px;
+	display: block;
+	color: #fff;
+	padding: 10px 0;
+	text-align: center;
+	text-decoration: none;
+	margin: 20px;
+	background: -webkit-linear-gradient(top, #6c8eae 0%, #28508b 62%, #6a8ca7 100%);
+	background: -moz-linear-gradient(top, #6c8eae 0%, #28508b 62%, #6a8ca7 100%);
+	background: -ms-linear-gradient(top, #6c8eae 0%, #28508b 62%, #6a8ca7 100%);
+	background: -o-linear-gradient(top, #6c8eae 0%, #28508b 62%, #6a8ca7 100%);
+	background: linear-gradient(top, #6c8eae 0%, #28508b 62%, #6a8ca7 100%);
+	background: -webkit-gradient(linear, left top, left bottom,color-stop(0, #6c8eae), color-stop(0.62, #28508b), color-stop(1, #6a8ca7));
+}
 
+body.login div.inputItem{
+	border-bottom: 1px dotted #999;
+	padding: 10px 20px;
+}
+body.login div.inputItem:first-of-type{
+	border-top: 1px dotted #999;
+}
 
-
-
-
+body.login div.inputItem p.error{
+	color: #f00;
+}
 
 
