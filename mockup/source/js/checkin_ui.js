@@ -4,9 +4,11 @@ function checkInUI () {
 	// チェックインのスライド用 UI
 	//
 	
-	var container = null, hundle = null, x = 0, timer = null, maxLength = 0, _this = this;
+	var container = null, hundle = null, x = 0, timer = null, maxLength = 0, _this = this, sound = null;
 	this.isWorking = false;
 	
+	(function loadSource(){
+			console.dir(sound.load);
 	// isWorking trueだと勤務中なのでcheckoutを表示、falseの場合はcheckInを表示
 	
 	this.init = function (target) {

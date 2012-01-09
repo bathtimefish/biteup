@@ -19,10 +19,14 @@
 		
 			$(function (){
 					var sl = new checkInUI();
-					sl.isWorking = true; //勤務中はtrue,つまりチェックアウトが出る
-					sl.init("checkInSlider");
 					
-					$.fn.subwindow.open("alert/sending.html", {"filter":"#target"}, 200,200);
+					//sl.isWorking = false; //勤務中はtrue,つまりチェックアウトが出る
+					var gTimer = setInterval(function (){
+							sl.init("checkInSlider", false);
+						}, 10000);
+					
+					
+					//$.fn.subwindow.open("alert/sending.html", {"filter":"#target"}, 200,200);
 					/*$(".profileBtn").click(function (e){
 						e.preventDefault();
 							
