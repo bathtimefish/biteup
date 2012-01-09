@@ -14,10 +14,11 @@ function checkInUI () {
 		var code = "<div class='checkInWrapper'><div class='hundle'></div></div>";
 		$(container).addClass((_this.isWorking) ? "working" : null);
 		$(container).css({"position":"relative"});
-		hundle = $(container).append(code).find(".hundle").css({"position":"absolute"});
+		hundle = $(container).append(code).find(".hundle").css({"position":"absolute"})[0];
 		$(hundle).bind("mousedown touchstart",touchStart);
 		//maxLength = parseInt($(container).width()) - parseInt($(hundle).innerWidth());
 		maxLength = 320-109;
+		//alert(hundle);
 	}
 	
 	var hundleTouchX = 0;
@@ -38,7 +39,8 @@ function checkInUI () {
 		if ( maxLength < parseInt(x) ) {
 			x = maxLength;
 		}
-		$(hundle).css({"left": x});
+		//$(hundle).css({"left": x});
+		hundle.style.left = x + "px";
 	}
 	
 	function touchEnd (e) {
