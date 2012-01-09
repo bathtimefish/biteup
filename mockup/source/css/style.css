@@ -182,8 +182,9 @@ header nav ul li {
 	padding: 30px 0 0;
 	height: 200px;
 	overflow: hidden;
-	background: url(../img/bg_cloud.png) bottom right no-repeat;
+	/*background: url(../img/bg_cloud.png) bottom right no-repeat;*/
 	background-size: 203px 85px;
+	-webkit-transition: 1s;
 }
 
 #topics .cloud {
