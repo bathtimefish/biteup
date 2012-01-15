@@ -345,4 +345,79 @@ body.login div.inputItem p.error{
 	color: #f00;
 }
 
+/*	2_registration (akiba)
+-----------------------------------------------*/
 
+body.nickname {
+	background: #fff4df;
+	padding-bottom: 10px;
+}
+
+#bookArea {
+	background: url(../img/regist_book_bg.jpg) no-repeat;
+	width: 100%;
+	height: 220px;
+	background-size: contain;
+	display: -webkit-box;
+	-webkit-box-align: center;
+	-webkit-box-pack: center;
+}
+
+#yourname {
+	color: #3f1c08;
+	font-weight: bold;
+	font-size: 20px;
+	text-shadow: 0 1px 1px rgba(255,255,255,0.5), 0 -1px 3px rgba(0,0,0,0.9);
+	-webkit-transform: skewY(10deg) translate(-10px, 25px);
+	font-family: serif;
+}
+
+#resistration {
+	padding-left: 25px;
+}
+
+#resistration input {
+	background: url(../img/regist_name_mail.jpg) no-repeat;
+	/*background-size: contain;*/
+	background-size: 269px 44px;
+	width: 258px;
+	padding: 0 5px;
+	height: 43px;
+	display: block;
+	border: none;
+	-webkit-appearance: none;
+	font-size: 18px;
+	font-weight: bold;
+	text-shadow: 0 1px 1px rgba(255,255,255,0.8);
+	color: #930;
+	margin-bottom: 10px;
+}
+
+#resistration label span {
+	background: url(../img/regist_icon_subtitle.png) no-repeat;
+	background-size: 13px 16px;
+	padding: 5px 0 7px 20px;
+	display: inline-block;
+	font-size: 16px;
+	font-weight: bold;
+	line-height: .4;
+	color: #3d0404;
+}
+
+#resistration input[type="password"] {
+	background: url(../img/regist_password.jpg) no-repeat;
+	background-size: 161px 42px;
+	width: 161px;
+}
+
+#resistration label[for="_pass"] {
+	float: left;
+}
+
+#resistration input[type="image"] {
+	width: 79px;
+	height: auto;
+	float: left;
+	margin: 17px 0 0 20px;
+	padding: 0;
+}
