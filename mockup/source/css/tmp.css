@@ -296,3 +296,101 @@ padding: 15px 0;
 	float: left;
 }
 
+/*	08_friend_profile
+============================================*/
+.profile h1{
+	background: url(../img/friend_detail_titlebg.png) no-repeat 0 0;
+	background-size: 320px 55px;
+	text-align: center;
+	padding: 13px 0;
+	font-weight: bold;
+	font-size: 20px;
+	text-shadow: 1px 1px 1px rgba(255,255,255,0.8);
+}
+
+p.profileAvatar{
+	height: 175px;
+}
+
+.profileBg{
+	background: url(../img/friend_detail_bg.png) no-repeat 0 -1px;
+	background-size: 320px 126px;
+	padding: 22px 20px 30px;
+
+}
+.profileDetail{
+	display: box;
+	display: -webkit-box;
+	display: -moz-box;
+	box-pack: justify;
+	-webkit-box-pack: justify;
+	-moz-box-pack: justify;
+}
+.profileLevel h2{
+	font-weight: bold;
+	margin-bottom: 3px;
+}
+.profileLevel p img{
+	vertical-align: middle;
+}
+.profileCount ul{
+	font-weight: bold;
+}
+ul.profileCount li{
+	padding: 3px 0 2px;
+	font-family: Helvetica;
+	font-weight: bold;
+}
+ul.profileCount li.otsukare{
+	background: url(../img/friend_detail_otsukare.png) no-repeat 0 0;
+	background-size: 57px 25px;
+	padding-left: 60px;
+}
+ul.profileCount li.checkout{
+	background: url(../img/friend_detail_checkout.png) no-repeat 0 0;
+	background-size: 67px 25px;
+	padding-left: 70px;
+}
+
+.profile .pointGage{
+	display: box;
+	display: -webkit-box;
+	display: -moz-box;
+	box-pack: justify;
+	-webkit-box-pack: justify;
+	-moz-box-pack: justify;
+	margin-top: 5px;
+}
+.profile .pointGage .gage{
+	background: url(../img/friend_detail_gage_bg.png) no-repeat 0 0;
+	background-size: 202px 21px;
+	width: 202px;
+	height: 21px;
+	position: relative;
+}
+.profile .pointGage .gage p.meter{
+	position: absolute;
+	background: url(../img/friend_detail_gage.png) no-repeat 5px 5px;
+	background-size: 192px 12px;
+	height: 20px;
+	width: 50px;
+}
+.profile .pointGage .gage p.text{
+	font-size: 10px;
+	color: #333;
+	padding: 18px 0 0 8px;
+}
+.profile .pointGage .gage p.text strong{
+	font-weight: bold;
+}
+
+.profile .pointGage .point{
+	font-family: Helvetica;
+	font-weight: bold;
+	text-shadow: -1px -1px 1px rgba(255,255,255,0.8);
+	color: #18502d; 
+}
+
+
+
+
