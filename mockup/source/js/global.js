@@ -46,10 +46,11 @@ Global = {
 
 	//フォローボタンが押された ----------------------------------------------------------------------
 	var Follow = {
-			follow: function (){
+			follow: function (o){
 					
 				},
-			unfollow: function (){
+			unfollow: function (o){
+				
 				}
 		}
 
