@@ -15,17 +15,15 @@ input,button,textarea,select{*font-size:100%;}
 select,input,button,textarea,button{font:99% arial,helvetica,clean,sans-serif;}
 table{font-size:inherit;font:100%;}
 
-html {
-}
-
 body {
 	font-family: sans-serif;
 	background: url(../img/bg_header.png) top no-repeat, url(../img/bg_footer.png) bottom no-repeat, url(../img/bg_blue.gif) center repeat-y;
 	background-size: 320px 202px, 320px 248px;
 	padding-bottom: 150px;
 	text-align: center;
-	font-size: 14px;;
+	font-size: 14px;
 }
+
 a{
 	-webkit-tap-highlight-color: rgba(0,0,0,0);
 }
