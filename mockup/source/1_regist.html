@@ -1,0 +1,124 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<title>新規登録</title>
+		<script src="js/jquery-1.7.min.js"></script>
+		<script src="js/global.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<style>
+			body.nickname {
+				background: #fff4df;
+				padding-bottom: 10px;
+			}
+			
+			#bookArea {
+				background: url(img/regist_book_bg.jpg) no-repeat;
+				width: 100%;
+				height: 220px;
+				background-size: contain;
+				display: -webkit-box;
+				-webkit-box-align: center;
+				-webkit-box-pack: center;
+			}
+			
+			#yourname {
+				color: #3f1c08;
+				font-weight: bold;
+				font-size: 20px;
+				text-shadow: 0 1px 1px rgba(255,255,255,0.5), 0 -1px 3px rgba(0,0,0,0.9);
+				-webkit-transform: skewY(10deg) translate(-10px, 25px);
+				font-family: serif;
+			}
+			
+			#resistration {
+				padding-left: 25px;
+			}
+			
+			#resistration input {
+				background: url(img/regist_name_mail.jpg) no-repeat;
+				/*background-size: contain;*/
+				background-size: 269px 44px;
+				width: 258px;
+				padding: 0 5px;
+				height: 43px;
+				display: block;
+				border: none;
+				-webkit-appearance: none;
+				font-size: 18px;
+				font-weight: bold;
+				text-shadow: 0 1px 1px rgba(255,255,255,0.8);
+				color: #930;
+				margin-bottom: 10px;
+			}
+			
+			#resistration label span {
+				background: url(img/regist_icon_subtitle.png) no-repeat;
+				background-size: 13px 16px;
+				padding: 5px 0 7px 20px;
+				display: inline-block;
+				font-size: 16px;
+				font-weight: bold;
+				line-height: .4;
+				color: #3d0404;
+			}
+			
+			#resistration input[type="password"] {
+				background: url(img/regist_password.jpg) no-repeat;
+				background-size: 161px 42px;
+				width: 161px;
+			}
+			
+			#resistration label[for="_pass"] {
+				float: left;
+			}
+			
+			#resistration input[type="image"] {
+				width: 79px;
+				height: auto;
+				float: left;
+				margin: 17px 0 0 20px;
+				padding: 0;
+			}
+			
+		</style>
+		
+		<script>
+			$(function (){
+					(function registBook(){
+							var inp = $("#resistration #_name");
+							inp.bind("change", function (){
+									$(".nickname #yourname").text($(this).val());
+								$("#bookArea").css({"background":"none"});
+								var timers = setTimeout(function (){
+										$("#bookArea").css({"background":"url(img/regist_book_bg.jpg) no-repeat"});
+									}, 30);
+								});
+						})();
+				});
+		</script>
+		
+	</head>
+	
+	<body class="nickname">
+	
+		<div id="container">
+			
+			<div id="bookArea">
+				<p id="yourname">tommmmy</p>
+			</div>
+			
+			<div id="resistration">
+				<form action="#" method="post">
+					<label for="_name"><span>ニックネーム</span><input type="text" name="name" id="_name" maxlength="10"></label>
+					<label for="_mail"><span>メールアドレス</span><input type="text" name="_mail" id="_mail"></label>
+					<label for="_pass"><span>パスワード</span><input type="password" name="_pass" id="_pass"></label>
+					<input type="image" src="img/btn_regist.jpg" alt="送信" value="新規登録送信" width="79">
+				</form>
+			</div>
+		</div><!--/container-->
+	
+	
+	</body>
+</html>
