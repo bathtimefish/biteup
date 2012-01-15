@@ -8,7 +8,7 @@
 
 		<!-- ここから、サーバに吐き出してもらいたいscript -->
 		<script>
-			var data = { rows: [ {userName:"nakashizu",userID:123456}] };
+			var userData = { rows: [ {userName:"nakashizu",userID:123456}] };
 		</script>
 		<!-- / ここから、サーバに吐き出してもらいたいscript -->
 
@@ -67,8 +67,11 @@
 				
 				<div class="commentForm">
 					<h1>おつかれコメントを入れてあげましょう</h1>
-					<input type="text">
-					<input type="submit" value="オツカレ！">
+					<form onSubmit="Otsukare.said(this); return false;">
+						<input type="text">
+						<input type="submit" value="オツカレ！">
+						<img src="img/icon_otsukare_load.png" id="otsukareLoadIcon" style="display: none">
+					</form>
 				</div>
 				
 				<div class="commentList">

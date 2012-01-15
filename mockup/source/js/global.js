@@ -44,7 +44,47 @@ Global = {
 
 	//新規登録 ----------------------------------------------------------------------
 
+	//フォローボタンが押された ----------------------------------------------------------------------
+	var Follow = {
+			follow: function (){
+					
+				},
+			unfollow: function (){
+				}
+		}
 
+	//フォローボタンが押された ----------------------------------------------------------------------
+	
+	//オツカレと言ってくれた ----------------------------------------------------------------------
+	var Otsukare = {
+			said: function (o){
+				$("#otsukareLoadIcon").fadeIn(300);
+				var ms = $(o).find("input[type='text']").val();
+				userData.rows[0].message = ms;
+				var msgs = userData;
+				var timer = setTimeout(sendData, 1000);
+					function sendData() {
+						$.ajax({
+							type: "POST",
+							url: "/test2.php",
+							data: msgs,
+							success: function(res){
+								if(res != "") {
+										clearTimeout(timer);
+										$("#otsukareLoadIcon").hide();
+										$(".commentForm").fadeOut(300, function () {
+										$(res).prependTo(".commentList ul").hide().slideDown(1000);
+									});
+								}
+							}
+						});
+					}//sendData
+				}
+		}
+
+	//オツカレと言ってくれた ----------------------------------------------------------------------
+	
+	
 	
 	//アクティベート（実行） ----------------------------------------------------------------------
 	window.onload = function (){
@@ -56,3 +96,22 @@ Global = {
 		Resist.check();
 		
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
