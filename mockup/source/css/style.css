@@ -38,9 +38,14 @@ a{
 }
 
 .containerInner {
-	background: url(../img/bg_rails_chara.png) 0 70px no-repeat;
+	background: url(../img/bg_rails_chara.png) 0 -70px no-repeat;
+	/*background: url(../img/bg_rails_chara.png) 0 70px no-repeat;*/
 	-webkit-transition: 1s;
 	background-size: 320px 306px;
+}
+
+.checkInWrapperDown {
+	background-position: 0 70px;
 }
 
 header {
@@ -180,7 +185,7 @@ header nav ul li {
 
 #topics {
 	padding: 30px 0 0;
-	height: 200px;
+	/*height: 200px;*/
 	overflow: hidden;
 	/*background: url(../img/bg_cloud.png) bottom right no-repeat;*/
 	background-size: 203px 85px;
@@ -188,8 +193,14 @@ header nav ul li {
 }
 
 #topics .cloud {
+	font-size: 16px;
+	font-weight: bold;
+	background: url(../img/bg_cloud.png) no-repeat;
+	background-size: 100% 100%;
+	padding: 10px;
+	width: 60%;
 	float: right;
-	margin-right: 10px;
+	text-align: center;
 }
 
 .checkInWrapper {
@@ -197,10 +208,6 @@ header nav ul li {
 	height: 76px;
 	background: url(../img/bg_checkin.png) no-repeat;
 	background-size: 320px 76px;
-}
-
-.checkInWrapperUp {
-	background-position: 0 -50px;
 }
 
 .checkInWrapper .hundle {
@@ -229,18 +236,27 @@ header nav ul li {
 
 .commentArea textarea {
 	width: 90%;
-	height: 6em;
+	height: 4em;
 	display: block;
-	margin: auto;
+	margin: 0 auto 5px;
+	border-radius: 4px;
 }
 
 .commentArea a {
+	border-radius: 4px;
+	padding: 8px 20px;
+	color: #FFFFFF;
+	text-decoration: none;
+	font-weight: bold;
+	text-align: center;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(1.00, #ff7400), color-stop(0.00, #ffa443));
+	background: -webkit-linear-gradient(top, #ffa443 0%, #ff7400 100%);
 	display: inline-block;
 }
 
 .sendingIcon {
 	text-align: center;
-	font-size: 26px;
+	font-size: 16px;
 }
 
 @-webkit-keyframes loadingIcon {

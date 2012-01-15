@@ -4,26 +4,19 @@ function checkInUI () {
 	// チェックインのスライド用 UI
 	//
 	
-	var container = null, hundle = null, x = 0, timer = null, maxLength = 0, _this = this, sound = null;
+	var container = null, hundle = null, x = 0, timer = null, maxLength = 0, _this = this, cloud =null;
 	this.isWorking = false;
-	
-	(function loadSource(){
-			sound = new Audio();
-			sound.src = "sound/checkinout.mp3";
-			console.dir(sound.load);
-			sound.load = function (){
-				sound.play();
-				}
-			
-		})();
 	
 	// isWorking trueだと勤務中なのでcheckoutを表示、falseの場合はcheckInを表示
 	
 	this.init = function (target, _workingFlg) {
 		x = 0;
 		container = document.getElementById(target);
+		cloud = $(".cloud")[0];
 		if ($(".checkInWrapper")[0] != undefined) return false; //もしもスライダが存在してたら中断
 		else this.isWorking = _workingFlg; //スライダが存在してなかったら、isWorkingを設定
+		$("#topics").animate({"height": 200}, 200);
+		$(".containerInner").addClass("checkInWrapperDown");
 		var code = "<div class='checkInWrapper'><div class='hundle'></div></div>";
 		$(container).removeClass("working").show(0).addClass((_this.isWorking) ? "working" : null);
 		$(container).css({"position":"relative"});
@@ -130,15 +123,16 @@ function checkInUI () {
 				 success: function(res){
 					 var timer = setTimeout(function (){
 						 clearTimeout(timer);
-					 		alert( "Saved: " + _this.isWorking );
+					 		//alert( "Saved: " + _this.isWorking );
 						 	$(container).find(".sendingIcon").text("送信完了しました！");
 							$(container).delay(1500).fadeOut(500, function (){
 								if(!_this.isWorking) {
 									//チェックアウト完了、消す、バイト終わりでおつかれさま
 									$(this).children().remove();
-									$("#topics").animate({"height": 100}, 500);
-									$(".containerInner").addClass("checkInWrapperUp");
+									$("#topics").animate({"height": 0}, 500);
+									$(".containerInner").removeClass("checkInWrapperDown");
 									$("html,body").animate({"scrollTop": 0}, 300);
+									//$(cloud).html("");
 									_this.isWorking = false;
 
 								}else{
@@ -147,6 +141,7 @@ function checkInUI () {
 									$(hundle).bind("mousedown touchstart",touchStart);
 									$(hundle).css({"left": 0});
 									$(container).addClass("working").fadeIn(300);
+									$(cloud).html("バイトなう！<br>がんばるぽ！");
 									_this.isWorking = true;
 								}
 								
@@ -158,6 +153,8 @@ function checkInUI () {
 				 }
 			 });/**/
 		}//postSend
+		
+		
 		
 	}
 	
