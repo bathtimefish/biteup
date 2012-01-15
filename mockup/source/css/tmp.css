@@ -174,39 +174,44 @@ padding: 15px 0;
 /*	4_yotei_ichiran
 ============================================*/
 .woodFrame.listWrap ul{
-	margin-top: -10px;
+	margin-top: -5px;
 }
 .woodFrame.listWrap ul li{
-	padding: 30px 40px 0;
+	padding: 20px 20px 10px;
 }
 .woodFrame.listWrap ul li:first-child{
 	background: url(../img/icon_arrow_timeline.png) 95% center no-repeat;
 	padding-top: 0;
-}
-.woodFrame.listWrap ul li img{
-	margin-right: 10px;
-	float: left;
 }
 .woodFrame.listWrap ul li a{
 	text-decoration: none;
 	color: #3c220c;
 }
 .woodFrame.listWrap ul li h3{
-	font-size: 120%;
 	font-weight: bold;
 }
+.woodFrame.listWrap ul li h3 img{
+	vertical-align: middle;
+	margin-right: 3px;
+}
+.woodFrame.listWrap ul li span{
+	font-size: 12px;
+}
 .woodFrame.listWrap ul li span em{
-	font-size: 140%;
+	font-size: 16px;
 	font-weight: bold;
 }
 .woodFrame.listWrap ul li span.date{
 	background: url(../img/icon_calender.png) no-repeat 0 0;
-	padding: 8px 0 0 35px;
-	margin-right: 10px;
+	background-size: 20px 17px;
+	padding: 2px 0 0 23px;
+	margin-right: 2px;
+	margin-bottom: 5px;
 }
 .woodFrame.listWrap ul li span.time{
 	background: url(../img/icon_date.png) no-repeat 0 0;
-	padding: 8px 0 2px 35px;
+	background-size: 18px 17px;
+	padding: 2px 0 0 21px;
 }
 
 /*	06_friend_timeline
@@ -299,6 +304,10 @@ padding: 15px 0;
 	margin-right: 7px;
 	margin-bottom: 5px;
 	display: block;
+	padding: 5px 0 5px 28px;
+	background-repeat: no-repeat;
+	background-position: 0 3px;
+	background-size: 25px 25px;
 }
 
 
@@ -345,6 +354,40 @@ p.profileAvatar{
 .profileLevel p img{
 	vertical-align: middle;
 }
+.profileLevel p span.job{
+	font-size: 10px;
+	padding: 5px 0 5px 23px;
+	background-repeat: no-repeat;
+	background-position: 0 0;
+	background-size: 20px 20px;
+}
+.job.power{
+	background-image: url(../img/icon_job_power.jpg);
+}
+.job.event{
+	background-image: url(../img/icon_job_event.jpg);
+}
+.job.sampling{
+	background-image: url(../img/icon_job_sampling.jpg);
+}
+.job.shop{
+	background-image: url(../img/icon_job_shop.jpg);
+}
+.job.office{
+	background-image: url(../img/icon_job_office.jpg);
+}
+.job.teacher{
+	background-image: url(../img/icon_job_teacher.jpg);
+}
+.job.free{
+	background-image: url(../img/icon_job_free.jpg);
+}
+.job.season{
+	background-image: url(../img/icon_job_season.jpg);
+}
+
+
+
 .profileCount ul{
 	font-weight: bold;
 }
