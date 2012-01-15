@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+.alC{
+	text-align: center;
+}
+
 /*	3_yotei_touroku
 ============================================*/
 .woodFrame.registFrame{
@@ -13,6 +17,9 @@
 .woodFrame.registFrame dl{
 	margin:0 0 0 22px;
 	padding-top: 35px;
+}
+.woodFrame.registFrame.noTitle dl{
+	padding-top: 0;
 }
 .woodFrame.registFrame dt{
 	background: url(../img/regist_icon_subtitle.png) no-repeat 0 0;
@@ -96,6 +103,10 @@
 	-moz-box-pack: justify;
 	margin: 10px 6px 0;
 }
+.registBtn.in{
+	margin: 10px 20px 0;
+}
+
 
 /*	calendarUI  */
 #controler {
@@ -275,10 +286,9 @@ padding: 15px 0;
 	padding-top: 0;
 }
 .woodFrame.friendList li .activity{
-	width:227px;
 }
 .friendList .activity p.name{
-	color: #0b278b;
+	color: #452506;
 	font-weight: bold;
 }
 .friendList .activity p.detail img{
@@ -287,6 +297,8 @@ padding: 15px 0;
 }
 .friendList .activity p.detail span.job{
 	margin-right: 7px;
+	margin-bottom: 5px;
+	display: block;
 }
 
 
