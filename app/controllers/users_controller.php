@@ -4,10 +4,11 @@ class UsersController extends AppController {
 	var $name = 'Users';
     var $helpers = array('Javascript');
     var $components = array('Auth', 'WebApi');
-    var $uses = array('User', 'Friend');
+    var $uses = array('User', 'Friend', 'Feed');
 
     function beforeFilter(){
         $this->Auth->userModel = 'User';
+        $this->Auth->fields = array('username' => 'email', 'password' => 'password');
         $this->Auth->loginAction = array('action' => 'login');
         $this->Auth->loginRedirect = array('action' => 'index');
         $this->Auth->logoutRedirect = array('action' => 'login');
@@ -16,17 +17,33 @@ class UsersController extends AppController {
         $this->Auth->authError = 'Please try logon as admin.';
     }
 
-    function toptest() {
-            $this->set('async_json_data', json_encode(array('rows'=>array('name'=>'nakashizu', 'userid'=>'1234'))));
-            $this->set('userid', $this->Auth->user('id'));
-            $this->set('nickname', $this->Auth->user('username'));
+    function index() {
+        $this->Friend->recursive = 0;
+        $this->set('async_json_data', json_encode(array('rows'=>array('name'=>'nakashizu', 'userid'=>'1234'))));  //仮のasyncデータ
+        $friends = $this->Friend->find('list', array('conditions'=> array('Friend.user_id'=>$this->Auth->user('id'))));
+        if(!empty($friends)) {
+            $arybuf = array();
+            foreach($friends as $friend) {
+                array_push($arybuf, $friend);
+            }
+            array_push($arybuf, $this->Auth->user('id'));
+            $this->paginate = array(
+                'order' => 'Feed.created DESC',
+                'conditions'=> array('Feed.user_id IN ('.implode(',', $arybuf).')'),
+                'limit' => 4
+            );
+            $this->set('feeds', $this->paginate('Feed'));
+        }
+        $this->set('userid', $this->Auth->user('id'));
+        $this->set('nickname', $this->Auth->user('username'));
     }
-
+    /*
     function index() {
         $this->layout = '';
         $this->User->recursive = 0;
         $this->set('user', $this->User->read(null, $this->Auth->user('id')));
     }
+     */
 
     // search friend
     function searchfriend() {

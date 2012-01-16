@@ -7,61 +7,52 @@
 		<script src="js/jquery-1.7.min.js"></script>
 		<script src="js/global.js"></script>
 		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link rel="stylesheet" type="text/css" href="css/tmp.css">
 	</head>
 	
 	<body>
 	
 		<div id="container">
 			<header>
-				<span class="pageBack"><a href="#">Back</a></span>
-				<h1><img src="#" alt="Logo"></h1>
-				<h2>アカウント</h2>
-				<span class="profileBtn"><a href="/9_account_page.html">MyProfile</a></span>
-				<nav>
-					<ul>
-						<li><a href="4_yotei_ichiran.html" title="バイト予定一覧">バイト予定</a></li>
-						<li><a href="3_yotei_touroku.html" title="バイト登録">＋</a></li>
-						<li><a href="6_friend_timeline.html" title="SNSタイムライン">友だち</a></li>
-					</ul>
-				</nav>
+					<!--<span class="pageBack"><a href="#">Back</a></span>
+					<h1><img src="#" alt="Logo"></h1>
+					<h2>kazumissimi</h2>-->
+					<p class="pageBack"><a href="#"><img src="img/header_btn_back.png" alt="戻る" width="43" height="34"></a></p>
+					<span class="profileBtn"><a href="/9_account_page.html"><img src="img/header_btn_profile.png" alt="MyProfile" width="47" height="48"></a></span>
+					<nav>
+						<ul>
+							<li><a href="4_yotei_ichiran.html" title="バイト予定一覧"><img src="img/header_btn_list.png" alt="予定リスト" width="127" height="46"></a></li>
+							<li><a href="3_yotei_touroku.html" title="バイト登録"><img src="img/header_btn_regist.png" alt="バイト予定" width="71" height="72"></a></li>
+							<li><a href="6_friend_timeline.html" title="SNSタイムライン"><img src="img/header_btn_supporter.png" alt="マイサポーター" width="117" height="46"></a></li>
+						</ul>
+					</nav>
 			</header>
 
 			<div id="account">
-			
+				
 				<form action="#" method="post">
-					<div>
-						<label for="nickName">あなたのニックネーム
-							<input type="text" name="nickName" id="nickName" placeholder="ニックネーム">
-						</label>
+				<div class="woodFrame registFrame noTitle">
+					<div class="woodWrapper">
+					<dl>
+						<dt>あなたのニックネーム</dt>
+						<dd><input type="text" value="tommmmy" class="newRegist"></dd>
+						<dt>メールアドレス</dt>
+						<dd><input type="text" value="tommmmmmmmy@gmail.com" class="newRegist"></dd>
+						<dt>パスワード</dt>
+						<dd><input type="password" value="tommmmy" class="newRegist"></dd>
+					</dl>
+					<p class="alC"><a href="#"><img src="img/btn_edit.png" alt="編集する" width="206" height="60"></a></p>
 					</div>
-					
-					<div>
-						<label for="nickName">メールアドレス
-							<input type="text" name="mailAddress" id="mailAddress" placeholder="メールアドレス">
-						</label>
-					</div>
-					
-					<div>
-						<label for="nickName">パスワード
-							<input type="password" name="passWord" id="passWord" placeholder="パスワード">
-						</label>
-					</div>
-					
-					<p id="submitBtn">
-						<a href="#">変更する</a>
-					</p>
-					
-					<p id="logoutBtn">
-						<a href="#">ログアウト</a>
-					</p>
-					
-					<p id="death">
-						<a href="#">人生投げ出す</a>
-					</p>
+				</div>
+				
+				<div class="registBtn">
+					<p><a href="#"><img src="img/btn_logout.png" alt="ログアウト" width="113" height="33"></a></p>
+					<p><a href="#"><img src="img/btn_quit.png" alt="人生投げ出す" width="129" height="33"></a></p>
+				</div>
 				
 				</form>
 				
-			</div><!-- /#registration -->
+			</div><!-- /#account -->
 	
 		</div><!-- /#container -->
 	
