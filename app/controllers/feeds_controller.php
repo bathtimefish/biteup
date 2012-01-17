@@ -3,7 +3,7 @@ class FeedsController extends AppController {
 
  var $name = 'Feeds';
  var $helpers = array('Javascript');
- var $components = array('Auth', 'WebApi');
+ var $components = array('Auth', 'WebApi', 'Timeline');
  var $uses = array('Feed', 'Friend', 'Like', 'Job');
 
  function index() {
@@ -136,14 +136,7 @@ class FeedsController extends AppController {
    $this->redirect(array('action' => 'index'));
   }
   $this->set('feeds', $this->paginate());
-  $friends = $this->Friend->find('all', array('conditions'=> array('user_id'=>$id)));
-
-  $feed_id = '';
-  foreach ($friends as $val) {
-   $feed_id .= $val['Friend']['friend_id'].',';
-  }
-  $feed_id = $feed_id.$id;
-  $timeline = $this->Feed->find('all', array('order' => 'Feed.created DESC','conditions'=> array("Feed.user_id IN ($feed_id)")));
+  $timeline = $this->Timeline->getTimeline($id);
   $this->set(compact('timeline'));
  }
  
@@ -153,6 +146,8 @@ class FeedsController extends AppController {
 			$this->redirect(array('action' => 'index'));
 		}
 		$detail = $this->Feed->read('', $feed_id);
+		$detail['Feed']['action_time'] = $this->Timeline->getActionTime($detail['Feed']['created']);
+
 		$like_flg = $this->Like->find('first', array('conditions'=> array("Like.feed_id" => $feed_id, "Like.friend_id" => $this->Auth->user('id')))) ? false : true ;
 		if (!empty($this->data) && $like_flg === true) {
 			$jobs = $this->Job->read('', $detail['Feed']['job_id']);
@@ -169,8 +164,10 @@ class FeedsController extends AppController {
 		}
 		$this->set('feeds', $this->paginate());
 
-		$likes  = $this->Like->find('all', array('conditions'=> array("Like.feed_id" => $feed_id)));
-
+		$likes  = $this->Like->find('all', array('order' => 'Like.created DESC','conditions'=> array("Like.feed_id" => $feed_id)));
+		foreach ($likes as $key => $val){
+			$likes[$key]['Like']['action_time'] = $this->Timeline->getActionTime($val['Like']['created']);
+		}
 		$this->set(compact('detail', 'likes', 'like_flg'));
 	}
 }

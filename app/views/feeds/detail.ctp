@@ -1,62 +1,72 @@
-<div class="feeds index">
-	<h2><?php __('Feeds');?></h2>
-	<table cellpadding="0" cellspacing="0">
-	<tr>
-			<th>つぶやき</th>
-	</tr>
-	<tr>
-		<td><?php echo $detail['Feed']['message']; ?><br />
-		<?php
-		echo 'いいね'.count($likes).'個';
+<?php
 		$comment_cnt = 0;
 		foreach ($likes as $like) {
-			if ($like['Like']['message']!='') {
-				echo $like['Like']['message'].$like['User']['username'].'<br />';
+			if ($like['Like']['message']!='')
 				$comment_cnt++;
-			}
-			
 		} 
-		echo 'コメント'.$comment_cnt.'個';
 		?>
-		</td>
-	</tr>
-	<tr>
-		<td>
+<?php echo $this->Javascript->link('global', false);?>
+<?php echo $this->Javascript->link('checkin_ui', false);?>
+<script>
+		
+			$(function (){
+					var sl = new checkInUI();
+					sl.isWorking = true; //勤務中はtrue,つまりチェックアウトが出る
+					sl.init("checkInSlider");
+				});
+				
+		</script>
+<?php echo $this->Html->css('tmp', 'stylesheet', array('inline'=>false)); ?>
+<div class="woodFrame friendTimelineDetail">
+					<div class="woodWrapper">
+						<ul>
+						<li>
+							<img src="img/dummy/dummy_avatar.png" alt="#" class="avatarIcon">
+							<div class="activity">
+								<p class="comment">
+									<span><?php echo $detail['User']['username'] ?>さん</span>がバイトにチェックインしました。
+								</p>
+								<div class="footer">
+									<p class="icon"><span class="comment"><?php echo $comment_cnt; ?></span><span class="otsu"><?php echo count($likes) ?></span></p>
+									<p class="times"><?php echo $detail['Feed']['action_time'] ?></p>
+								</div>
+							</div>
+						</li>
+						
+					</ul>
+					</div>
+				</div><!-- /#friendTimeline -->
 <?php
 		if($like_flg) {
+?>
+				<div class="commentForm">
+					<h1>おつかれコメントを入れてあげましょう</h1>
+<?php
 			echo $this->Form->create('Feed',array('controller' => 'feed', 'action' => 'detail','url'=>array($detail['Feed']['id'])));
 			echo $this->Form->input('message');
-			echo $this->Form->submit('Submit');
+			echo $this->Form->submit('オツカレ！');
 			echo $this->Form->end($options=null); 
 		}
 ?>
-
-</td>
-	</tr>
-	</table>
-	<p>
-	<?php
-	echo $this->Paginator->counter(array(
-	'format' => __('Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%', true)
-	));
-	?>	</p>
-
-	<div class="paging">
-		<?php echo $this->Paginator->prev('<< ' . __('previous', true), array(), null, array('class'=>'disabled'));?>
-	 | 	<?php echo $this->Paginator->numbers();?>
- |
-		<?php echo $this->Paginator->next(__('next', true) . ' >>', array(), null, array('class' => 'disabled'));?>
-	</div>
-</div>
-<div class="actions">
-	<h3><?php __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('New Feed', true), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Users', true), array('controller' => 'users', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New User', true), array('controller' => 'users', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Jobs', true), array('controller' => 'jobs', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Job', true), array('controller' => 'jobs', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Likes', true), array('controller' => 'likes', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Like', true), array('controller' => 'likes', 'action' => 'add')); ?> </li>
-	</ul>
-</div>
+				</div>
+				
+				<div class="commentList">
+					<ul>
+	<?php				foreach ($likes as $like) {
+			if ($like['Like']['message']!='') {
+?>
+					<li>
+						<a href="#">
+						<p class="commentAvatar"><?php echo $this->Html->image('dummy/dummy_avatar.png', array('alt'=>'#')); ?></p>
+						<div class="detail">
+							<h2><?php echo $like['User']['username']; ?></h2>
+							<p class="text"><?php echo $like['Like']['message']; ?></p>
+							<p class="times"><?php echo $like['Like']['action_time']; ?></p>
+						</div>
+						</a>
+					</li>
+<?php }
+} ?>
+					</ul>
+				</div>
+				

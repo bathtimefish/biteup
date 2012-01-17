@@ -1,1 +1,4 @@
-var Sync = {};
+var Sync = {
+	hoge: "hoge",
+	moge: "moge"
+	};
