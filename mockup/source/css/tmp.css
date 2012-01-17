@@ -31,6 +31,14 @@
 }
 .woodFrame.registFrame dd{
 	padding-bottom: 10px;
+	padding-left: 20px;
+	font-weight: bold;
+	text-shadow: 0 1px 1px rgba(255,255,255,0.8);
+	color: #3d0404;
+}
+
+.woodFrame.registFrame dd:last-child {
+	padding-left: 0;
 }
 
 .woodFrame.registFrame .selectWorks{
