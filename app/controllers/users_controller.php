@@ -171,6 +171,11 @@ class UsersController extends AppController {
 
     /*** API Contollers ***/
 
+    // async data what toppage neeeds.
+    function api_index() {
+
+    }
+
     // user follow a friend
     function api_follow($id = null) {
         $this->autoRender = false;
