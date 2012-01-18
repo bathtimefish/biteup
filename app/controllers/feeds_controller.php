@@ -6,6 +6,7 @@ class FeedsController extends AppController {
  var $components = array('Auth', 'WebApi', 'Timeline');
  var $uses = array('Feed', 'Friend', 'Like', 'Job');
 
+
  function index() {
   $this->Feed->recursive = 0;
   $this->set('feeds', $this->paginate());
