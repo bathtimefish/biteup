@@ -13,6 +13,8 @@
 		<!-- / ここから、サーバに吐き出してもらいたいscript -->
 
 		<script src="js/global.js"></script>
+		<script src="js/sync.js"></script>
+		<script src="js/charactor.js"></script>
 		
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 		<link rel="stylesheet" type="text/css" href="css/tmp.css">
@@ -49,8 +51,8 @@
 				<div class="woodFrame friendTimelineDetail">
 					<div class="woodWrapper">
 						<ul>
-						<li>
-							<img src="img/dummy/dummy_avatar.png" alt="#" class="avatarIcon">
+						<li data-friend-jobkind="2" data-friend-level="1">
+							<canvas width="80" height="80" class="avatarIcon"></canvas>
 							<div class="activity">
 								<p class="comment">
 									<span>nakashizuさん</span>がバイトにチェックインしました。
@@ -68,7 +70,7 @@
 				
 				<div class="commentForm">
 					<h1>おつかれコメントを入れてあげましょう</h1>
-					<form onSubmit="Otsukare.said(this); return false;">
+					<form onSubmit="Sync.otsukare.said(this); return false;">
 						<input type="text">
 						<input type="submit" value="オツカレ！">
 						<img src="img/icon_otsukare_load.png" id="otsukareLoadIcon" style="display: none">
@@ -79,7 +81,7 @@
 					<ul>
 					<li>
 						<a href="#">
-						<p class="commentAvatar"><img src="img/dummy/dummy_avatar.png"></p>
+						<p class="commentAvatar"><canvas width="80" height="80"></canvas></p>
 						<div class="detail">
 							<h2>kazumissimi</h2>
 							<p class="text">おつかりんご。</p>
@@ -89,7 +91,7 @@
 					</li>
 					<li>
 						<a href="#">
-						<p class="commentAvatar"><img src="img/dummy/dummy_avatar.png"></p>
+						<p class="commentAvatar"><canvas width="80" height="80"></canvas></p>
 						<div class="detail">
 							<h2>kazumissimi</h2>
 							<p class="text">おつかりんご。</p>
@@ -99,7 +101,7 @@
 					</li>
 					<li>
 						<a href="#">
-						<p class="commentAvatar"><img src="img/dummy/dummy_avatar.png"></p>
+						<p class="commentAvatar"><canvas width="80" height="80"></canvas></p>
 						<div class="detail">
 							<h2>kazumissimi</h2>
 							<p class="text">おつかりんご。</p>

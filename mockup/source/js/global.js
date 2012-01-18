@@ -54,37 +54,29 @@ Global = {
 				}
 		}
 
-	//フォローボタンが押された ----------------------------------------------------------------------
+	//タイムラインのcanvasを検索してサムネイル変換関数を呼ぶ ----------------------------------------------------------------------
 	
-	//オツカレと言ってくれた ----------------------------------------------------------------------
-	var Otsukare = {
-			said: function (o){
-				$("#otsukareLoadIcon").fadeIn(300);
-				var ms = $(o).find("input[type='text']").val();
-				userData.rows[0].message = ms;
-				var msgs = userData;
-				var timer = setTimeout(sendData, 1000);
-					function sendData() {
-						$.ajax({
-							type: "POST",
-							url: "/test2.php",
-							data: msgs,
-							success: function(res){
-								if(res != "") {
-										clearTimeout(timer);
-										$("#otsukareLoadIcon").hide();
-										$(".commentForm").fadeOut(300, function () {
-										$(res).prependTo(".commentList ul").hide().slideDown(1000);
-									});
-								}
-							}
-						});
-					}//sendData
-				}
+	var Thumbnail2Canvas = function () {
+		if($(".woodWrapper")) { // && !$(".friendTimelineDetail")
+			$(".avatarIcon").each(function(index, element) {
+					var kind = $(this).closest("li").data("friend-jobkind");
+					var level = $(this).closest("li").data("friend-level");
+					Charactor.getThumbnail(kind,level,this);
+				});
+			}
 		}
-
-	//オツカレと言ってくれた ----------------------------------------------------------------------
 	
+	// 6_friend_timeline2.html用、その人だけのタイムラインのサムネイル作成----------------------------------------------------------------------
+	
+	var Search2Canvas = function () {
+		if($(".commentList")) {
+			$(".commentList .commentAvatar").each(function(index, element) {
+					var kind = $(".woodWrapper ul li:first-child").data("friend-jobkind");
+					var level = $(".woodWrapper ul li:first-child").data("friend-level");
+					Charactor.getThumbnail(kind,level,$(this).find("canvas")[0]);
+				});
+			}
+		}
 	
 	
 	//アクティベート（実行） ----------------------------------------------------------------------
@@ -96,6 +88,9 @@ Global = {
 		//新規登録アクティベート
 		Resist.check();
 		
+		//サムネイルをcanvasに生成
+		Thumbnail2Canvas();
+		Search2Canvas();
 	}
 	
 	

@@ -13,6 +13,7 @@
 		<!-- / ここから、サーバに吐き出してもらいたいscript -->
 
 		<script src="js/global.js"></script>
+		<script src="js/charactor.js"></script>
 		<script src="js/checkin_ui.js"></script>
 		<script>
 		
@@ -58,54 +59,67 @@
 				<div class="woodFrame friendList">
 					<div class="woodWrapper">
 						<ul>
-							<li>
+						<li data-friend-jobkind="0" data-friend-level="3">
 							<a href="#">
-								<img src="img/dummy/dummy_avatar.png" alt="#" class="avatarIcon">
-								<div class="activity">
-									<p class="name">nakashizu</p>
-									<p class="detail">
-										<span class="job power">力仕事・労働者</span>
-										<img src="img/img_level.png" alt="level" width="50" height="15"><img src="img/img_level_8.png" alt="8" width="24" height="24">
-									</p>	
+							<!--<img src="img/dummy/dummy_avatar.png" alt="#" class="avatarIcon">-->
+							<canvas width="80" height="80" class="avatarIcon"></canvas>
+							<div class="activity">
+								<p class="comment">
+									<span>nakashizuさん</span>がバイトにチェックインしました。
+								</p>
+								<div class="footer">
+									<p class="icon"><span class="comment">2</span><span class="otsu">50</span></p>
+									<p class="times">5分前</p>
 								</div>
+							</div>
 							</a>
-							</li>
-							<li>
+						</li>
+						<li data-friend-jobkind="2" data-friend-level="1">
 							<a href="#">
-								<img src="img/dummy/dummy_avatar.png" alt="#" class="avatarIcon">
-								<div class="activity">
-									<p class="name">horike</p>
-									<p class="detail">
-										<span class="job event">イベントスタッフ</span>
-										<img src="img/img_level.png" alt="level" width="50" height="15"><img src="img/img_level_8.png" alt="8" width="24" height="24">
-									</p>	
+							<!--<img src="img/dummy/dummy_avatar.png" alt="#" class="avatarIcon">-->
+							<canvas width="80" height="80" class="avatarIcon"></canvas>
+							<div class="activity">
+								<p class="comment">
+									<span>nakashizuさん</span>がバイトにチェックインしました。
+								</p>
+								<div class="footer">
+									<p class="icon"><span class="comment">2</span><span class="otsu">50</span></p>
+									<p class="times">5分前</p>
 								</div>
+							</div>
 							</a>
-							</li>
-							<li>
+						</li>
+						<li data-friend-jobkind="3" data-friend-level="0">
 							<a href="#">
-								<img src="img/dummy/dummy_avatar.png" alt="#" class="avatarIcon">
-								<div class="activity">
-									<p class="name">hidetaro</p>
-									<p class="detail">
-										<span class="job free">遊び人</span>
-										<img src="img/img_level.png" alt="level" width="50" height="15"><img src="img/img_level_8.png" alt="8" width="24" height="24">
-									</p>	
+							<!--<img src="img/dummy/dummy_avatar.png" alt="#" class="avatarIcon">-->
+							<canvas width="80" height="80" class="avatarIcon"></canvas>
+							<div class="activity">
+								<p class="comment">
+									<span>nakashizuさん</span>がバイトにチェックインしました。
+								</p>
+								<div class="footer">
+									<p class="icon"><span class="comment">2</span><span class="otsu">50</span></p>
+									<p class="times">5分前</p>
 								</div>
+							</div>
 							</a>
-							</li>
-							<li>
+						</li>
+						<li data-friend-jobkind="4" data-friend-level="1">
 							<a href="#">
-								<img src="img/dummy/dummy_avatar.png" alt="#" class="avatarIcon">
-								<div class="activity">
-									<p class="name">kazumissimi</p>
-									<p class="detail">
-										<span class="job season">季節もの</span>
-										<img src="img/img_level.png" alt="level" width="50" height="15"><img src="img/img_level_8.png" alt="8" width="24" height="24">
-									</p>	
+							<!--<img src="img/dummy/dummy_avatar.png" alt="#" class="avatarIcon">-->
+							<canvas width="80" height="80" class="avatarIcon"></canvas>
+							<div class="activity">
+								<p class="comment">
+									<span>nakashizuさん</span>がバイトにチェックインしました。
+								</p>
+								<div class="footer">
+									<p class="icon"><span class="comment">2</span><span class="otsu">50</span></p>
+									<p class="times">5分前</p>
 								</div>
+							</div>
 							</a>
-							</li>
+						</li>
+						
 					</ul>
 					</div>
 				</div><!-- /#friendTimeline -->
