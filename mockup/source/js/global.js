@@ -71,8 +71,8 @@ Global = {
 	var Search2Canvas = function () {
 		if($(".commentList")) {
 			$(".commentList .commentAvatar").each(function(index, element) {
-					var kind = $(".woodWrapper ul li:first-child").data("friend-jobkind");
-					var level = $(".woodWrapper ul li:first-child").data("friend-level");
+					var kind = $(this).closest("li").data("friend-jobkind");
+					var level = $(this).closest("li").data("friend-level");
 					Charactor.getThumbnail(kind,level,$(this).find("canvas")[0]);
 				});
 			}
