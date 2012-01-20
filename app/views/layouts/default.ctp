@@ -12,7 +12,7 @@
           </script>
         <?php } ?>
         <?php echo $scripts_for_layout; ?>
-        <?php echo $this->Html->css('style', 'stylesheet', array('inline'=>true)); ?>
+        // <?php echo $this->Html->css('style', 'stylesheet', array('inline'=>true)); ?>
     </head>
         <body>
             <div id="container">

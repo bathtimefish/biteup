@@ -13,7 +13,7 @@ class UsersController extends AppController {
         $this->Auth->loginRedirect = array('action' => 'index');
         $this->Auth->logoutRedirect = array('action' => 'login');
         $this->Auth->allow('login', 'logout', 'add');
-        $this->Auth->loginError = 'username or password is invalid.';
+        $this->Auth->loginError = 'email or password is invalid.';
         $this->Auth->authError = 'Please try logon as admin.';
     }
 
@@ -27,12 +27,18 @@ class UsersController extends AppController {
                 array_push($arybuf, $friend);
             }
             array_push($arybuf, $this->Auth->user('id'));
+            /*
             $this->paginate = array(
                 'order' => 'Feed.created DESC',
                 'conditions'=> array('Feed.user_id IN ('.implode(',', $arybuf).')'),
-                'limit' => 4
+                'limit' => 10
             );
             $this->set('feeds', $this->paginate('Feed'));
+             */
+            $conditions = array('Feed.user_id IN ('.implode(',', $arybuf).')');
+            $order = array('Feed.created DESC');
+            $limit = 10;
+            $this->set('feeds', $this->Feed->find('all', array('conditions'=>$conditions, 'order'=>$order, 'limit'=>$limit)));
         }
         $this->set('userid', $this->Auth->user('id'));
         $this->set('nickname', $this->Auth->user('username'));

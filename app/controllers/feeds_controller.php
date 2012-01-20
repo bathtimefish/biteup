@@ -70,10 +70,12 @@ class FeedsController extends AppController {
  }
  function admin_index() {
   $this->Feed->recursive = 0;
+  $this->layout = 'admin';
   $this->set('feeds', $this->paginate());
  }
 
  function admin_view($id = null) {
+  $this->layout = 'admin';
   if (!$id) {
    $this->Session->setFlash(__('Invalid feed', true));
    $this->redirect(array('action' => 'index'));
@@ -82,6 +84,7 @@ class FeedsController extends AppController {
  }
 
  function admin_add() {
+  $this->layout = 'admin';
   if (!empty($this->data)) {
    $this->Feed->create();
    if ($this->Feed->save($this->data)) {
@@ -97,6 +100,7 @@ class FeedsController extends AppController {
  }
 
  function admin_edit($id = null) {
+  $this->layout = 'admin';
   if (!$id && empty($this->data)) {
    $this->Session->setFlash(__('Invalid feed', true));
    $this->redirect(array('action' => 'index'));

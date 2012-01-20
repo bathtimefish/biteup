@@ -1,0 +1,2 @@
+msgid "Login to World"
+msgstr "ワールドに入る"
