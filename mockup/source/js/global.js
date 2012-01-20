@@ -91,6 +91,11 @@ Global = {
 		//サムネイルをcanvasに生成
 		Thumbnail2Canvas();
 		Search2Canvas();
+		
+		
+		Sync.apiID[8]= "/test2.php"; //テスト用に上書き、本番では外す
+		Sync.apiID[2]= "/test3.php";
+
 	}
 	
 	

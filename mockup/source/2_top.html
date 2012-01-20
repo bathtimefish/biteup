@@ -16,15 +16,16 @@
 		<!--<script src="js/jquery.subwindow.js"></script>-->
 		<script src="js/checkin_ui.js"></script>
 		<script src="js/charactor.js"></script>
+		<script src="js/sync.js"></script>
 		<script>
 		
 			$(function (){
 					var sl = new checkInUI();
 					
 					//sl.isWorking = false; //勤務中はtrue,つまりチェックアウトが出る
-					var gTimer = setInterval(function (){
+					/*var gTimer = setInterval(function (){
 							sl.init("checkInSlider", false);
-						}, 10000);
+						}, 10000);*/
 					
 					
 					//$.fn.subwindow.open("alert/sending.html", {"filter":"#target"}, 200,200);
@@ -32,6 +33,31 @@
 						e.preventDefault();
 							
 						})*/
+						
+					Sync.start(2,function (obj){
+							if(obj.isCheckin) {
+								sl.init("checkInSlider", false);
+							}
+						});
+						
+					$("#moreFeed").bind("click", function (){
+						Sync.once(2, function (res){
+								if(res.feeds) {
+									//console.log(res.feeds);
+									var dom = "";
+									for (var i = 0; i<res.feeds.length; i++) {
+										
+										//本来ここで1フィードごとに時間を計算する
+											
+										dom += '<li data-friend-jobkind="'+res.feeds[i].jobKind+'" data-friend-level="'+res.feeds[i].level+'"><a href="#"><canvas width="80" height="80" class="avatarIcon"></canvas><div class="activity"><p class="comment">'+res.feeds[i].body+'</p><div class="footer"><p class="icon"><span class="comment">'+res.feeds[i].likesCount+'</span><span class="otsu">'+res.feeds[i].commentCount+'</span></p><p class="times">'+res.feeds[i].created+'</p></div></div></a></li>';
+									}
+									console.log(dom)
+									$(dom).appendTo(".woodWrapper ul").hide().slideDown(1000);
+									Thumbnail2Canvas();
+								}
+							});
+						
+						});
 					
 				});
 				
@@ -49,7 +75,7 @@
 					<!--<span class="pageBack"><a href="#">Back</a></span>
 					<h1><img src="#" alt="Logo"></h1>
 					<h2>kazumissimi</h2>-->
-					<p class="profileBtn"><a href="/9_account_page.html"><img src="img/header_btn_profile.png" alt="MyProfile" width="47" height="48"><span class="alert">33</span></a></p>
+					<p class="profileBtn"><a href="/9_account_page.html"><img src="img/header_btn_profile.png" alt="MyProfile" width="47" height="48"><span class="alert"></span></a></p>
 					<nav>
 						<ul>
 							<li><a href="4_yotei_ichiran.html" title="バイト予定一覧"><img src="img/header_btn_list.png" alt="予定リスト" width="127" height="46"></a></li>
@@ -114,7 +140,6 @@
 						</li>
 						<li data-friend-jobkind="4" data-friend-level="1">
 							<a href="#">
-							<!--<img src="img/dummy/dummy_avatar.png" alt="#" class="avatarIcon">-->
 							<canvas width="80" height="80" class="avatarIcon"></canvas>
 							<div class="activity">
 								<p class="comment">
@@ -129,6 +154,7 @@
 						</li>
 						
 					</ul>
+					<p id="moreFeed">もっと読む…</p>
 					</div>
 				</div><!-- /#friendTimeline -->
 			</div>

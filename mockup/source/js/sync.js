@@ -1,15 +1,76 @@
 var Sync = {
 	
+		// userName 書式　userData.rows[0].userName , userData.rows[0].userID
+		
+		interval: 5000, // 10秒おきにポーリング
+		timer: null,
+	
 		//　ポーリング用
+		apiID : [
+		"",
+		"",
+		"/biteup/api/users/index", //2 トップページ用
+		"",
+		"",
+		"",
+		"/biteup/api/feeds/latest", // 6 フレンドタイムライン
+		"/biteup/api/feeds/past/",// 7 このスラッシュの後に[min_feed_id:Number]がくっつく
+		"/biteup/api/likes/setlike", // 8 オツカレコメントあんどボタンを押した時通信
+		"/biteup/api/users/getlevel" // 9 キャラクター構成のためのレベル、職業
+		],
 		
-		top_api : "/biteup/api/users/index",
-		friendTimeline_new_api : "/biteup/api/feeds/latest",
-		friendTimeline_old_api : "/biteup/api/feeds/past/",//このスラッシュの後に[min_feed_id:Number]がくっつく
-		otsukareComment_api : "/biteup/api/likes/setlike", //オツカレコメントあんどボタンを押した時通信
-		
-		otsukareComment_api : "/test2.php", //テスト用に上書き、本番では外す
 		
 		
+	//ポーリングスタート ----------------------------------------------------------------------
+		start: function (nm, fn){
+			Sync.timer = setInterval(poll, Sync.interval);
+				
+			//共通ポーリング実行部分 ----------------------------------------------------------------------
+				function poll () {
+					if(Sync.isOnline()) {
+						$.ajax({
+							type: "POST",
+							url: Sync.apiID[nm],
+							data: userData,
+							success: function(res){
+								if(res) {
+									var obj = (new Function("return " + res))();
+									if(parseInt(obj.infoCount) != 0) { $("header span.alert").css("display","block").text(obj.infoCount); } else {$("header span.alert").css("display","none")} // 新着カウント表示
+									fn(obj); // 共通以外は引数で送られてきた関数を実行
+								}
+							}
+						});
+					}
+				}
+			//共通ポーリング実行部分 ----------------------------------------------------------------------
+
+
+			},
+	
+		//1回だけリクエスト
+		once: function (nm, fn){
+			if(Sync.isOnline()) {
+				$.ajax({
+					type: "POST",
+					url: Sync.apiID[nm],
+					data: userData,
+					success: function(res){
+						if(res) {
+							var obj = (new Function("return " + res))();
+							fn(obj); // 共通以外は引数で送られてきた関数を実行
+						}
+					}
+				});
+			}
+			
+		},
+		
+
+	isOnline: function () {
+		if(!navigator.onLine) return false;
+		else return true;
+	},
+
 	//オツカレと言ってくれた ----------------------------------------------------------------------
 		otsukare : {
 				said: function (o){

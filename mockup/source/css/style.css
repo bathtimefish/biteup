@@ -77,6 +77,10 @@ header .profileBtn .alert{
 	-webkit-box-shadow:0 0 2px rgba(255,0,0,1);
 }
 
+header .profileBtn .alert:empty {
+	display: none;
+}
+
 header nav ul {
 	clear: both;
 	display: -webkit-box;
