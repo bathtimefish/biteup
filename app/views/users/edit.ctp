@@ -1,5 +1,5 @@
 <?php echo $this->Html->css('tmp', 'stylesheet', array('inline'=>false)); ?>
-
+<?php echo $this->Session->flash(); ?>
    <div id="account">
     <form action="#" method="post">
     <div class="woodFrame registFrame noTitle">

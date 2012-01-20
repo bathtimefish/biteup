@@ -199,25 +199,15 @@ class UsersController extends AppController {
     //Facebook認証へのリダイレクト
     function fbauth() {
         $this->autoRender = false;
-        if($this->Facebook->getUser()) {
-            $this->redirect('edit');
-        }
-        $this->redirect($this->Facebook->getLoginUrl());
-    }
-
-    //Facebook AccessTokenを保存
-    function fbcallback($redirect_action = null) {
-        $this->autoRender = false;
-        if(!empty($redirect_action)) {
+        if($this->Facebook->getUser()) { //認証OK後 save&redirect
             if($this->Facebook->saveUser($this->Cookie->read('user.id'))) {
-                $this->Session->setFlash(__('Facebook Authorized', true));
+                $this->Session->setFlash('Facebook Authorized');
             } else {
                 $this->Session->setFlash(__('Error: cannot Authorized to Facebook', true));
             }
-        } else {
-            $this->Session->setFlash(__('Error: Bad request', true));
+            $this->redirect('edit');
         }
-        $this->redirect('edit');
+        $this->redirect($this->Facebook->getLoginUrl());
     }
 
     function login() {
