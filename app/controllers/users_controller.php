@@ -200,7 +200,7 @@ class UsersController extends AppController {
     function fbauth() {
         $this->autoRender = false;
         if($this->Facebook->getUser()) { //認証OK後 save&redirect
-            if($this->Facebook->saveUser($this->Cookie->read('user.id'))) {
+            if($this->Facebook->saveUser($this->Auth->user('id'))) {
                 $this->Session->setFlash('Facebook Authorized');
             } else {
                 $this->Session->setFlash(__('Error: cannot Authorized to Facebook', true));
