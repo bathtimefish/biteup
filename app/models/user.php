@@ -5,7 +5,7 @@ class User extends AppModel {
 		'username' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
+				'message' => 'Please input username here.',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
@@ -18,13 +18,17 @@ class User extends AppModel {
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
+            ),
+            'unique' => array(
+                'rule' => 'isUnique',
+                'message' => 'This username is already use.'
+            ),
 		),
 		'password' => array(
 			'notempty' => array(
 				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
-				//'allowEmpty' => false,
+				'message' => 'Please input password here.',
+				'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
@@ -37,7 +41,7 @@ class User extends AppModel {
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
-			),
+            ),
 			'maxlength' => array(
 				'rule' => array('maxlength', '100'),
 				'message' => 'Usernames must be no larger than 20 characters long.',
@@ -48,10 +52,28 @@ class User extends AppModel {
             ),
              */
 		),
+		'join_password' => array(
+			'notempty' => array(
+				'rule' => array('notempty'),
+				'message' => 'Please input password here.',
+				'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+            ),
+			'between' => array(
+				'rule' => array('between', 6, 20),
+				'message' => 'Usernames must be at 6-20 characters long.',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+            ),
+		),
 		'email' => array(
 			'email' => array(
 				'rule' => array('email'),
-				//'message' => 'Your custom message here',
+				'message' => 'Invalid Email address.',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
@@ -59,12 +81,16 @@ class User extends AppModel {
 			),
 			'notempty' => array(
 				'rule' => array('notempty'),
-				//'message' => 'Your custom message here',
+				'message' => 'Please input email address here.',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
+            'unique' => array(
+                'rule' => 'isUnique',
+                'message' => 'This username is already use.'
+            ),
 		),
 		'point' => array(
 			'numeric' => array(

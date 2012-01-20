@@ -1,30 +1,36 @@
-<div class="users form">
-<?php echo $this->Form->create('User');?>
-	<fieldset>
-		<legend><?php __('Edit User'); ?></legend>
-	<?php
-		echo $this->Form->input('id');
-		echo $this->Form->input('username');
-		echo $this->Form->input('password');
-		echo $this->Form->input('email');
-		echo $this->Form->input('point');
-	?>
-	</fieldset>
-<?php echo $this->Form->end(__('Submit', true));?>
-</div>
-<div class="actions">
-	<h3><?php __('Actions'); ?></h3>
-	<ul>
+<?php echo $this->Html->css('tmp', 'stylesheet', array('inline'=>false)); ?>
 
-		<li><?php echo $this->Html->link(__('Delete', true), array('action' => 'delete', $this->Form->value('User.id')), null, sprintf(__('Are you sure you want to delete # %s?', true), $this->Form->value('User.id'))); ?></li>
-		<li><?php echo $this->Html->link(__('List Users', true), array('action' => 'index'));?></li>
-		<li><?php echo $this->Html->link(__('List Feeds', true), array('controller' => 'feeds', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Feed', true), array('controller' => 'feeds', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Friends', true), array('controller' => 'friends', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Friend', true), array('controller' => 'friends', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Jobs', true), array('controller' => 'jobs', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Job', true), array('controller' => 'jobs', 'action' => 'add')); ?> </li>
-		<li><?php echo $this->Html->link(__('List Likes', true), array('controller' => 'likes', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Like', true), array('controller' => 'likes', 'action' => 'add')); ?> </li>
-	</ul>
-</div>
+			<div id="account">
+				<form action="#" method="post">
+				<div class="woodFrame registFrame noTitle">
+					<div class="woodWrapper">
+					<dl>
+						<dt>あなたのニックネーム</dt>
+                        <dd><?php if(!empty($user['User']['username'])) echo $user['User']['username']; ?></dd>
+						<dt>メールアドレス</dt>
+                        <dd><?php if(!empty($user['User']['email'])) echo $user['User']['email']; ?></dd>
+						<dt>パスワード</dt>
+		                <dd><?php echo $this->Html->link(__('Change Password', true), array('action' => 'chpwd'));?></dd>
+                        <dt>Facebook</dt>
+                        <?php if(!$fb_uid) { ?>
+		                  <dd><?php echo $this->Html->link(__('Facebook Authorization', true), array('action' => 'fbauth'));?></dd>
+                        <?php } else { ?>
+                          <dd><?php echo $html->Html->link(__('My Facebook Account', true), 'http://m.facebook.com/home.php?__user='.$fb_uid); ?></dd>
+                        <?php } ?>
+					</dl>
+					</div>
+				</div>
+				
+				<div class="registBtn">
+                    <p><?php echo $this->Html->link($this->Html->image('btn_logout.png', array('alt'=>'Logout', 'width'=>'113', 'height'=>'33')), array('action' => 'logout'), array('escape' => false));?></p>
+                    <p><?php echo $this->Html->link($this->Html->image('btn_quit.png', array('alt'=>'Retire', 'width'=>'129', 'height'=>'33')), array('action' => 'retire'), array('escape' => false));?></p>
+				</div>
+				
+				</form>
+				
+			</div><!-- /#account -->
+	
+		</div><!-- /#container -->
+	
+	</body>
+</html>

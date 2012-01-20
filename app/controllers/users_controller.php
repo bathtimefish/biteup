@@ -3,7 +3,7 @@ class UsersController extends AppController {
 
 	var $name = 'Users';
     var $helpers = array('Javascript');
-    var $components = array('Auth', 'WebApi');
+    var $components = array('Auth', 'WebApi', 'Facebook');
     var $uses = array('User', 'Friend', 'Feed');
 
     function beforeFilter(){
@@ -12,9 +12,9 @@ class UsersController extends AppController {
         $this->Auth->loginAction = array('action' => 'login');
         $this->Auth->loginRedirect = array('action' => 'index');
         $this->Auth->logoutRedirect = array('action' => 'login');
-        $this->Auth->allow('login', 'logout', 'add');
+        $this->Auth->allow('login', 'logout', 'join');
         $this->Auth->loginError = 'email or password is invalid.';
-        $this->Auth->authError = 'Please try logon as admin.';
+        //$this->Auth->authError = 'Please try logon as admin.';
     }
 
     function index() {
@@ -120,10 +120,16 @@ class UsersController extends AppController {
 		$this->set('user', $this->User->read(null, $id));
 	}
 
-    function add() {
+    function join() {
         $this->layout = '';
         if (!empty($this->data)) {
+            // 1.join_passwordがある場合、passwordをハッシュ化して格納
+            if(!empty($this->data['User']['join_password'])) {
+                $this->data["User"]["password"] = $this->Auth->password($this->data['User']['join_password']);
+            }
             $this->data['User']['point'] = 0; //アカウント登録時の初期ポイントを設定
+            $this->data['User']['current_jobkind_id'] = 0; //アカウント登録時の職業IDを設定
+            $this->data['User']['current_level'] = 0; //アカウント登録時のレベルを設定
 			$this->User->create();
 			if ($this->User->save($this->data)) {
 				$this->Session->setFlash(__('The user has been saved', true));
@@ -135,7 +141,7 @@ class UsersController extends AppController {
 	}
 
     function edit($id = null) {
-        if(!$id) $id = $this->Auth->user('id'); //セッションからユーザIDを取得
+        if(!$id) $id = $this->Auth->user('id'); // get User.id for Auth Session
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash(__('Invalid user', true));
 			$this->redirect(array('action' => 'index'));
@@ -148,10 +154,34 @@ class UsersController extends AppController {
 				$this->Session->setFlash(__('The user could not be saved. Please, try again.', true));
 			}
 		}
-		if (empty($this->data)) {
-			$this->data = $this->User->read(null, $id);
+		if ($id) {
+			$this->set('user', $this->User->read(null, $id));
 		}
-	}
+        // Facebook 連携
+        $fb_uid = null;
+        $fb_uid = $this->Facebook->getUser();
+        if($fb_uid == 0) {
+            $me = $this->Facebook->getMe($this->Auth->user('id'));
+            $fb_uid = $me['id'];
+        }
+        $this->set('fb_uid', $fb_uid);
+    }
+
+    function retire($id = null) {
+        if(!$id) $id = $this->Auth->user('id');
+		if (!$id) {
+			$this->Session->setFlash(__('Invalid id for user', true));
+			$this->redirect(array('action'=>'index'));
+        }
+        // リタイヤ処理用画面のリダイレクトが未決定
+        /*
+		if ($this->User->delete($id)) {
+			$this->Session->setFlash(__('User deleted', true));
+			$this->redirect(array('action'=>'index'));
+        }
+         */
+        /* impl not yet... */
+    }
 
 	function delete($id = null) {
 		if (!$id) {
@@ -166,6 +196,29 @@ class UsersController extends AppController {
 		$this->redirect(array('action' => 'index'));
     }
 
+    //Facebook認証へのリダイレクト
+    function fbauth() {
+        $this->autoRender = false;
+        if($this->Facebook->getUser()) {
+            $this->redirect('edit');
+        }
+        $this->redirect($this->Facebook->getLoginUrl());
+    }
+
+    //Facebook AccessTokenを保存
+    function fbcallback($redirect_action = null) {
+        $this->autoRender = false;
+        if(!empty($redirect_action)) {
+            if($this->Facebook->saveUser($this->Cookie->read('user.id'))) {
+                $this->Session->setFlash(__('Facebook Authorized', true));
+            } else {
+                $this->Session->setFlash(__('Error: cannot Authorized to Facebook', true));
+            }
+        } else {
+            $this->Session->setFlash(__('Error: Bad request', true));
+        }
+        $this->redirect('edit');
+    }
 
     function login() {
         $this->layout = '';

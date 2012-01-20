@@ -15,6 +15,7 @@
 		<div id="container">
 			<h1><img src="#" alt="Logo"></h1>
             <?php if ($session->check('Message.auth')) echo $session->flash('auth'); ?>
+            <?php echo $this->Session->flash(); ?>
 			
 			<h2>あなたのワールドに入りましょう</h2>
             <?php echo $this->Form->create('User', array('class'=>'loginForm'));?>
@@ -31,7 +32,7 @@
 				<p class="loginBtn"><a href="2_top.html">ワールドに入る</a></p>
             <?php echo $this->Form->end(__('Login to World', true));?>
 			
-			<p><a href="1_regist.html">ニックネームを登録する</a></p>
+		    <p><?php echo $this->Html->link(__('Join to World', true), array('action' => 'join'));?></p>
 
 		</div><!--/container-->
 	

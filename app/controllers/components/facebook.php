@@ -6,7 +6,7 @@ class FacebookComponent extends Object
 
     /* component statup */
     function startup(&$controller) {
-        App::import('Vendor', 'facebook/src/facebook');
+        App::import('Vendor', 'facebook/php-sdk/src/facebook');
         $this->Facebook = new Facebook(array(
             /*** GuruguKobe App ID & Secret ***/
             'appId'  => '206177822805264',
