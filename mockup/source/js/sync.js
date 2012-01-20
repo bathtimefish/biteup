@@ -6,19 +6,34 @@ var Sync = {
 		timer: null,
 	
 		//　ポーリング用
-		apiID : [
-		"",
-		"",
-		"/biteup/api/users/index", //2 トップページ用
-		"",
-		"",
-		"",
-		"/biteup/api/feeds/latest", // 6 フレンドタイムライン
-		"/biteup/api/feeds/past/",// 7 このスラッシュの後に[min_feed_id:Number]がくっつく
-		"/biteup/api/likes/setlike", // 8 オツカレコメントあんどボタンを押した時通信
-		"/biteup/api/users/getlevel" // 9 キャラクター構成のためのレベル、職業
-		],
+		/*		apiID : [
+				"",
+				"",
+				"/biteup/api/users/index", //2 トップページ用
+				"",
+				"",
+				"",
+				"/biteup/api/feeds/latest", // 6 フレンドタイムライン
+				"/biteup/api/feeds/past/",// 7 このスラッシュの後に[min_feed_id:Number]がくっつく
+				"/biteup/api/likes/setlike", // 8 オツカレコメントあんどボタンを押した時通信
+				"/biteup/api/users/getlevel" // 9 キャラクター構成のためのレベル、職業
+				],
+		*/
 		
+		//テストAPI 実装後外す
+		apiID : [
+			"",
+			"",
+			"/test2.php", //2 トップページ用
+			"",
+			"",
+			"",
+			"/biteup/api/feeds/latest", // 6 フレンドタイムライン
+			"/biteup/api/feeds/past/",// 7 このスラッシュの後に[min_feed_id:Number]がくっつく
+			"/test8.php", // 8 オツカレコメントあんどボタンを押した時通信
+			"/biteup/api/users/getlevel" // 9 キャラクター構成のためのレベル、職業
+		],
+		//テストAPI 実装後外す
 		
 		
 	//ポーリングスタート ----------------------------------------------------------------------
@@ -82,23 +97,25 @@ var Sync = {
 						function sendData() {
 							$.ajax({
 								type: "POST",
-								url: Sync.otsukareComment_api,
+								url: Sync.apiID[8],
 								data: msgs,
 								success: function(res){
 									if(res) {
-											var dom = Sync.otsukare.dom(ms);
+											var obj = (new Function("return " + res))();
+											var dom = Sync.otsukare.dom(ms,obj.level,obj.jobkind);
 											clearTimeout(timer);
 											$("#otsukareLoadIcon").hide();
 											$(".commentForm").fadeOut(300, function () {
 											$(dom).prependTo(".commentList ul").hide().slideDown(1000);
+											Global.search2Canvas();
 										});
 									}
 								}
 							});
 						}//sendData
 					}, //said
-					dom: function (msg) {
-						var data = '<li><a href="#"><p class="commentAvatar"><canvas width="80" height="80"></canvas></p><div class="detail"><h2>'+userData.rows[0].userName+'</h2><p class="text">'+msg+'</p><p class="times">さきほど</p></div></a></li>';
+					dom: function (msg, l, k) {
+						var data = '<li data-friend-jobkind="'+k+'" data-friend-level="'+l+'"><a href="#"><p class="commentAvatar"><canvas width="80" height="80"></canvas></p><div class="detail"><h2>'+userData.rows[0].userName+'</h2><p class="text">'+msg+'</p><p class="times">さきほど</p></div></a></li>';
 						return data;
 					} // dom
 			}

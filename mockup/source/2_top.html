@@ -22,42 +22,49 @@
 			$(function (){
 					var sl = new checkInUI();
 					
-					//sl.isWorking = false; //勤務中はtrue,つまりチェックアウトが出る
-					/*var gTimer = setInterval(function (){
-							sl.init("checkInSlider", false);
-						}, 10000);*/
-					
-					
 					//$.fn.subwindow.open("alert/sending.html", {"filter":"#target"}, 200,200);
 					/*$(".profileBtn").click(function (e){
 						e.preventDefault();
 							
 						})*/
 						
-					Sync.start(2,function (obj){
-							if(obj.isCheckin) {
-								sl.init("checkInSlider", false);
-							}
-						});
-						
+					//初回1度だけ、通信をかける
+					Sync.once(2, function (res){
+						//バイト予定が入っていたら
+						if(res.jobs[0].date) {
+							var date = res.jobs[0].date.split("-");
+							var times = res.jobs[0].startTime.split("-");
+							var comments = date[1]+"月"+date[2]+"日 "+times[0]+"時"+times[1]+"分から"+res.jobs[0].name+"でバイトが入ってるぽ！";
+							//バイト先とか、どうする？
+							$(".cloud").text(comments);
+						}
+					});
+					//
+					
+					//ポーリングスタート、間隔の時間設定はSync内で
+					Sync.start(2,function (res){
+						if(res.isCheckin) {
+							sl.init("checkInSlider", false);
+						}
+					});
+					//
+					
+					//もっと読むのタップ時に一度だけポーリング
 					$("#moreFeed").bind("click", function (){
 						Sync.once(2, function (res){
 								if(res.feeds) {
-									//console.log(res.feeds);
 									var dom = "";
 									for (var i = 0; i<res.feeds.length; i++) {
-										
-										//本来ここで1フィードごとに時間を計算する
-											
-										dom += '<li data-friend-jobkind="'+res.feeds[i].jobKind+'" data-friend-level="'+res.feeds[i].level+'"><a href="#"><canvas width="80" height="80" class="avatarIcon"></canvas><div class="activity"><p class="comment">'+res.feeds[i].body+'</p><div class="footer"><p class="icon"><span class="comment">'+res.feeds[i].likesCount+'</span><span class="otsu">'+res.feeds[i].commentCount+'</span></p><p class="times">'+res.feeds[i].created+'</p></div></div></a></li>';
+										//1フィードごとに時間を計算する
+										var times = Global.compareTime(res.feeds[i].created);
+										dom += '<li data-friend-jobkind="'+res.feeds[i].jobKind+'" data-friend-level="'+res.feeds[i].level+'"><a href="#"><canvas width="80" height="80" class="avatarIcon"></canvas><div class="activity"><p class="comment">'+res.feeds[i].body+'</p><div class="footer"><p class="icon"><span class="comment">'+res.feeds[i].likesCount+'</span><span class="otsu">'+res.feeds[i].commentCount+'</span></p><p class="times">'+times+'</p></div></div></a></li>';
 									}
-									console.log(dom)
-									$(dom).appendTo(".woodWrapper ul").hide().slideDown(1000);
-									Thumbnail2Canvas();
-								}
-							});
-						
+								$(dom).appendTo(".woodWrapper ul").hide().slideDown(1000);
+								Global.thumbnail2Canvas();
+							}
 						});
+					});
+					//
 					
 				});
 				
@@ -87,7 +94,7 @@
 				
 				<div id="topics">
 					<div id="checkInSlider"></div>
-					<div class="cloud">○月○日、18:00からバイトが入っています！</div>
+					<div class="cloud">バイトは入ってないぽ。<!--○月○日、18:00からバイトが入っています！--></div>
 				</div>
 				
 				<div id="timeline" class="woodFrame">
@@ -154,7 +161,7 @@
 						</li>
 						
 					</ul>
-					<p id="moreFeed">もっと読む…</p>
+					<p id="moreFeed">もっと読む…<span><img src="img/icon_otsukare_load.png" alt="loading"></span></p>
 					</div>
 				</div><!-- /#friendTimeline -->
 			</div>

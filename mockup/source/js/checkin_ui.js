@@ -108,7 +108,7 @@ function checkInUI () {
 					e.preventDefault();
 					//コメントエリアを消す
 					$(container).find(".commentArea").fadeOut(300, function (){
-							$(container).append("<p class='sendingIcon'><span><img src='common/img/icon_date.png' alt='sync'></span>送信中</p>");
+							$(container).append("<p class='sendingIcon'><span><img src='img/icon_otsukare_load.png' alt='loading'></span>送信中</p>");
 							sendData.comment = $(".commentArea textarea").val();
 							postSend (sendData);
 						});
