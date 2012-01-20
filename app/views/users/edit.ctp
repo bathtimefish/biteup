@@ -6,17 +6,17 @@
      <div class="woodWrapper">
      <dl>
       <dt>あなたのニックネーム</dt>
-                        <dd><?php if(!empty($user['User']['username'])) echo $user['User']['username']; ?></dd>
+        <dd><?php if(!empty($user['User']['username'])) echo $user['User']['username']; ?></dd>
       <dt>メールアドレス</dt>
-                        <dd><?php if(!empty($user['User']['email'])) echo $user['User']['email']; ?></dd>
+        <dd><?php if(!empty($user['User']['email'])) echo $user['User']['email']; ?></dd>
       <dt>パスワード</dt>
-                  <dd><?php echo $this->Html->link(__('Change Password', true), array('action' => 'chpwd'));?></dd>
-                        <dt>Facebook</dt>
-                        <?php if(!$fb_uid) { ?>
-                    <dd><?php echo $this->Html->link(__('Facebook Authorization', true), array('action' => 'fbauth'));?></dd>
-                        <?php } else { ?>
-                          <dd><?php echo $html->Html->link(__('My Facebook Account', true), 'http://m.facebook.com/home.php?__user='.$fb_uid)); ?></dd>
-                        <?php } ?>
+        <dd><?php echo $this->Html->link(__('Change Password', true), array('action' => 'chpwd'));?></dd>
+      <dt>Facebook</dt>
+        <?php if(!$fb_uid) { ?>
+          <dd><?php echo $this->Html->link(__('Facebook Authorization', true), array('action' => 'fbauth'));?></dd>
+        <?php } else { ?>
+          <dd><?php echo $this->Html->link(__('My Facebook Account', true), 'http://m.facebook.com/home.php?__user='.$fb_uid); ?></dd>
+        <?php } ?>
      </dl>
      </div>
     </div>
