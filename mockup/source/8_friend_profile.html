@@ -14,6 +14,21 @@
 
 		<script src="js/global.js"></script>
 		<script src="js/charactor.js"></script>
+		<script src="js/sync.js"></script>
+		
+		<script>
+		$(function (){
+				
+				Sync.once( 9, function (res){
+						var total = res.totalPoint;
+						var level = res.level;
+						var jobKind = res.jobkind;
+						//もしかしたら要らないかも、、、
+						//console.log(total);
+					});
+				
+			});
+		</script>
 		
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 		<link rel="stylesheet" type="text/css" href="css/tmp.css">

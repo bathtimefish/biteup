@@ -29,9 +29,9 @@ var Sync = {
 			"",
 			"",
 			"/biteup/api/feeds/latest", // 6 フレンドタイムライン
-			"/biteup/api/feeds/past/",// 7 このスラッシュの後に[min_feed_id:Number]がくっつく
+			"/test7.php",// 7 このスラッシュの後に[min_feed_id:Number]がくっつく
 			"/test8.php", // 8 オツカレコメントあんどボタンを押した時通信
-			"/biteup/api/users/getlevel" // 9 キャラクター構成のためのレベル、職業
+			"/test9.php" // 9 キャラクター構成のためのレベル、職業
 		],
 		//テストAPI 実装後外す
 		
@@ -63,12 +63,12 @@ var Sync = {
 			},
 	
 		//1回だけリクエスト
-		once: function (nm, fn){
+		once: function (nm, fn, sentParam){
 			if(Sync.isOnline()) {
 				$.ajax({
 					type: "POST",
 					url: Sync.apiID[nm],
-					data: userData,
+					data: (sentParam) ?sentParam :userData,
 					success: function(res){
 						if(res) {
 							var obj = (new Function("return " + res))();

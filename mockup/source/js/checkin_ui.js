@@ -4,12 +4,13 @@ function checkInUI () {
 	// チェックインのスライド用 UI
 	//
 	
-	var container = null, hundle = null, x = 0, timer = null, maxLength = 0, _this = this, cloud =null;
+	var container = null, hundle = null, x = 0, timer = null, maxLength = 0, _this = this, cloud =null, jobID = null;
 	this.isWorking = false;
 	
 	// isWorking trueだと勤務中なのでcheckoutを表示、falseの場合はcheckInを表示
 	
-	this.init = function (target, _workingFlg) {
+	this.init = function (target, jobId, _workingFlg) {
+		jobID = jobId;
 		x = 0;
 		container = document.getElementById(target);
 		cloud = $(".cloud")[0];
@@ -88,7 +89,7 @@ function checkInUI () {
 	function post (msg) {
 		var sendData = null, codes = null;
 		if(msg === "checkIn") { // まあまあ楽
-			sendData = {"isWorking": true, "workID": "バイトのID", "userID": userData.rows[0].userName};
+			sendData = {"isWorking": true, "workID": jobID, "userID": userData.rows[0].userName};
 			codes = "<div class='commentArea' style='display:none; top: 40px;'><p class='sendingIcon'>送信中</p></div>";
 			$(container).append(codes);
 			$(container).find(".commentArea").slideDown(400,function (){

@@ -14,15 +14,37 @@
 
 		<script src="js/global.js"></script>
 		<script src="js/checkin_ui.js"></script>
-		
 		<script src="js/charactor.js"></script>
+		<script src="js/sync.js"></script>
 		
 		<script>
 		
 			$(function (){
-					var sl = new checkInUI();
-					sl.isWorking = true; //勤務中はtrue,つまりチェックアウトが出る
-					sl.init("checkInSlider");
+					
+					var pasts = 123; // これ、最後のjobIDをどう取得してくる！？
+				
+					//もっと読むのタップ時に一度だけポーリング
+					$("#moreFeed").bind("click", function (){
+						$(this).find("span").show();
+						var Itimers = setInterval(function () {
+							clearInterval(Itimers);
+							Sync.once(7, function (res){
+									if(res.feeds) {
+										var dom = "";
+										for (var i = 0; i<res.feeds.length; i++) {
+											var times = Global.compareTime(res.feeds[i].created);
+											dom += '<li data-friend-jobkind="'+res.feeds[i].jobKind+'" data-friend-level="'+res.feeds[i].level+'"><a href="#"><canvas width="80" height="80" class="avatarIcon"></canvas><div class="activity"><p class="comment">'+res.feeds[i].body+'</p><div class="footer"><p class="icon"><span class="comment">'+res.feeds[i].likesCount+'</span><span class="otsu">'+res.feeds[i].commentCount+'</span></p><p class="times">'+times+'</p></div></div></a></li>';
+										}
+									$(dom).appendTo(".woodWrapper ul").hide().slideDown(1000, function (){
+										$("#moreFeed span").hide();
+										});
+									Global.thumbnail2Canvas();
+								}
+							}, pasts);
+						}, 1000);
+					});
+					//
+				
 				});
 				
 		</script>
@@ -123,6 +145,8 @@
 						</li>
 						
 					</ul>
+					<p id="moreFeed">もっと読む…<span><img src="img/icon_otsukare_load.png" alt="loading"></span></p>
+
 					</div>
 				</div><!-- /#friendTimeline -->
 				
