@@ -339,6 +339,12 @@ padding: 15px 0;
 
 p.profileAvatar{
 	height: 175px;
+	position: relative;
+}
+
+p.profileAvatar img {
+	position: absolute;
+	width: 100%;
 }
 
 .profileBg{
