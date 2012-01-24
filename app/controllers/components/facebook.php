@@ -19,7 +19,7 @@ class FacebookComponent extends Object
     // get Facebook Login URL
     function getLoginUrl() {
         return $this->Facebook->getLoginUrl(array(
-            'scope' => 'email,publish_stream,user_checkins,publish_checkins',
+            'scope' => 'email,publish_stream,user_checkins,publish_checkins,offline_access',
             'display' => 'touch',
 	));
         /*

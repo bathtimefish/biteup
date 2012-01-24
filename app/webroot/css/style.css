@@ -274,10 +274,13 @@ header nav ul li {
 	}
 }
 
-.sendingIcon span img {
+.sendingIcon span img,
+#moreFeed span img {
 	-webkit-animation-name: loadingIcon;
 	-webkit-animation-duration: 1s;
 	-webkit-animation-timing-function: linear;
+	-webkit-animation-iteration-count: infinite;
+	margin: 0 5px;
 }
 
 
@@ -442,4 +445,19 @@ body.nickname {
 	float: left;
 	margin: 17px 0 0 20px;
 	padding: 0;
+}
+
+/*	2_top (akiba)
+-----------------------------------------------*/
+
+#moreFeed {
+	text-align: center;
+	margin: 15px 0 0;
+	padding: 10px 0;
+	background: #999;
+	cursor: pointer;
+}
+
+#moreFeed span {
+	display: none;
 }

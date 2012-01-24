@@ -16,7 +16,56 @@ Global = {
 					window.history.back();
 				});
 			return this;
+		},
+		
+	compareTime : function (tm) {
+			var ds = Date.parse( tm.replace( /-/g, '/') );
+			var interval = (new Date().getTime() - ds) / 60000; //(差を分刻みで出す)
+			// 1分は60000ミリ秒
+			// 1時間は60分 = 3,600,000ミリ秒			
+			// 1日は1440分
+			// 6時間は360分
+			// 3時間は180分
+			// 1時間は60分
+			var time = 0;
+			if		(interval > 1440)  time= "1日前";
+			else	if (interval > 1440)  time= "1日前";
+			else	if (interval > 360)  time= "6時間以上前";
+			else	if (interval > 180)  time= "3時間以上前";
+			else	if (interval > 60)  time= "1時間以上前";
+			else	if (interval >= 30)  time= "30分以上前";
+			else	if (interval < 30)  {
+				time = parseInt(interval) + "分前"
+			}
+			return time;
+		},
+		
+		
+	//タイムラインのcanvasを検索してサムネイル変換関数を呼ぶ ----------------------------------------------------------------------
+	
+	thumbnail2Canvas : function () {
+		if($(".woodWrapper")) { // && !$(".friendTimelineDetail")
+			$(".avatarIcon").each(function(index, element) {
+					var kind = $(this).closest("li").data("friend-jobkind");
+					var level = $(this).closest("li").data("friend-level");
+					Charactor.getThumbnail(kind,level,this);
+				});
+			}
+		},
+	
+	// 6_friend_timeline2.html用、その人だけのタイムラインのサムネイル作成----------------------------------------------------------------------
+	
+	search2Canvas : function () {
+		if($(".commentList")) {
+			$(".commentList .commentAvatar").each(function(index, element) {
+					var kind = $(this).closest("li").data("friend-jobkind");
+					var level = $(this).closest("li").data("friend-level");
+					Charactor.getThumbnail(kind,level,$(this).find("canvas")[0]);
+				});
+			}
 		}
+
+		
 	
 	}; // Grobal end
 
@@ -43,40 +92,6 @@ Global = {
 		}//Resist end
 
 	//新規登録 ----------------------------------------------------------------------
-
-	//フォローボタンが押された ----------------------------------------------------------------------
-	var Follow = {
-			follow: function (o){
-					
-				},
-			unfollow: function (o){
-				
-				}
-		}
-
-	//タイムラインのcanvasを検索してサムネイル変換関数を呼ぶ ----------------------------------------------------------------------
-	
-	var Thumbnail2Canvas = function () {
-		if($(".woodWrapper")) { // && !$(".friendTimelineDetail")
-			$(".avatarIcon").each(function(index, element) {
-					var kind = $(this).closest("li").data("friend-jobkind");
-					var level = $(this).closest("li").data("friend-level");
-					Charactor.getThumbnail(kind,level,this);
-				});
-			}
-		}
-	
-	// 6_friend_timeline2.html用、その人だけのタイムラインのサムネイル作成----------------------------------------------------------------------
-	
-	var Search2Canvas = function () {
-		if($(".commentList")) {
-			$(".commentList .commentAvatar").each(function(index, element) {
-					var kind = $(this).closest("li").data("friend-jobkind");
-					var level = $(this).closest("li").data("friend-level");
-					Charactor.getThumbnail(kind,level,$(this).find("canvas")[0]);
-				});
-			}
-		}
 	
 	
 	//アクティベート（実行） ----------------------------------------------------------------------
@@ -89,12 +104,10 @@ Global = {
 		Resist.check();
 		
 		//サムネイルをcanvasに生成
-		Thumbnail2Canvas();
-		Search2Canvas();
+		Global.thumbnail2Canvas();
+		Global.search2Canvas();
 		
 		
-		Sync.apiID[8]= "/test2.php"; //テスト用に上書き、本番では外す
-		Sync.apiID[2]= "/test3.php";
 
 	}
 	
