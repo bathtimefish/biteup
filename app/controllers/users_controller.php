@@ -4,7 +4,7 @@ class UsersController extends AppController {
 	var $name = 'Users';
     var $helpers = array('Javascript');
     var $components = array('Auth', 'WebApi', 'Facebook');
-    var $uses = array('User', 'Friend', 'Feed');
+    var $uses = array('User', 'Friend', 'Feed', 'Like');
 
     function beforeFilter(){
         $this->Auth->userModel = 'User';
@@ -222,7 +222,70 @@ class UsersController extends AppController {
 
     // async data what toppage neeeds.
     function api_index() {
+        $this->autoRender = false;
+        // set jobs get near checkin
 
+        // set information count for badge
+        
+        // set now timelines
+        $conditions = array('Feed.user_id'=>$this->Auth->user('id'));
+        $order = array('Feed.id DESC');
+        $limit = 10;
+        $feeds = $this->Feed->find('all', array('conditions'=>$conditions, 'order'=>$order, 'limit'=>$limit));
+        if(!empty($feeds)) {
+            $data = array('feeds'=>array());
+            foreach($feeds as $feed) {
+                $likesCount = $this->Like->find('count', array('conditions'=>array('Like.feed_id'=>$feed['Feed']['id'])));
+                $commentCount = $this->Like->find('count', array('conditions'=>array('Like.feed_id'=>$feed['Feed']['id'], 'Like.message IS NOT NULL')));
+                $message = $feed['Feed']['message'];
+                $row = array(
+                    'id' => $feed['Feed']['id'],
+                    'jobkind' => $feed['Job']['jobkind_id'],
+                    'level' => $feed['User']['current_level'],
+                    'userId' => $feed['User']['id'],
+                    'body' => $message,
+                    'likesCount' => $likesCount,
+                    'commentCount' => $commentCount,
+                    'created' => $feed['Feed']['created']
+                );
+                array_push($data['feeds'], $row);
+            }
+            $this->WebApi->sendApiResult($data);
+        }
+
+    }
+
+    // async data what past feeds
+    function api_tl($last_feed_id = null) {
+        $this->autoRender = false;
+        if($last_feed_id) {
+            $conditions = array('Feed.id <'=>intval($last_feed_id), 'Feed.user_id'=>$this->Auth->user('id'));
+        } else {
+            $conditions = array('Feed.user_id'=>$this->Auth->user('id'));
+        }
+        $order = array('Feed.id DESC');
+        $limit = 10;
+        $feeds = $this->Feed->find('all', array('conditions'=>$conditions, 'order'=>$order, 'limit'=>$limit));
+        if(!empty($feeds)) {
+            $data = array('feeds'=>array());
+            foreach($feeds as $feed) {
+                $likesCount = $this->Like->find('count', array('conditions'=>array('Like.feed_id'=>$feed['Feed']['id'])));
+                $commentCount = $this->Like->find('count', array('conditions'=>array('Like.feed_id'=>$feed['Feed']['id'], 'Like.message IS NOT NULL')));
+                $message = $feed['Feed']['message'];
+                $row = array(
+                    'id' => $feed['Feed']['id'],
+                    'jobkind' => $feed['Job']['jobkind_id'],
+                    'level' => $feed['User']['current_level'],
+                    'userId' => $feed['User']['id'],
+                    'body' => $message,
+                    'likesCount' => $likesCount,
+                    'commentCount' => $commentCount,
+                    'created' => $feed['Feed']['created']
+                );
+                array_push($data['feeds'], $row);
+            }
+            $this->WebApi->sendApiResult($data);
+        }
     }
 
     // user follow a friend
