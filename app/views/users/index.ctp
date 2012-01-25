@@ -58,99 +58,37 @@
 <?php echo $this->Html->css('jquery.subwindow', 'stylesheet', array('inline'=>false)); ?>
 	
 				
-				<div id="topics">
-					<div id="checkInSlider"></div>
-					<div class="cloud">○月○日、18:00からバイトが入っています！</div>
-				</div>
-				
-				<div id="timeline" class="woodFrame">
-                    <div class="woodWrapper">
-        <?php if(!empty($feeds)) { // Friend Timeline Loop ?>
-            <ul>
-            <?php foreach($feeds as $feed) { ?>
-                <li data-friend-jobkind="<?php echo $feed['User']['current_jobkind_id']; ?>" data-friend-level="<?php echo $feed['User']['current_jobkind_id']; ?>">
-                <a href="#">
-                <canvas width="80" height="80" class="avatarIcon"></canvas>
-                <div class="activity">
-                    <p class="comment">
-                    <span><?php echo $feed['User']['username']; ?>さん</span>がバイトにチェックインしました。
-                    </p><!-- **** 実装が途中まで。これもJSで出力したほうがいいかも？ *** -->
-                    <div class="footer">
-                        <p class="icon"><span class="comment">2</span><span class="otsu">50</span></p>
-                        <p class="times">5分前</p>
-                    </div>
-                </div>
-                </a>
-                </li>
-            <? } ?>
-            </ul>
-        <?php } ?>
-        <!-- 以下は原本 -->
-						<ul>
-						<li data-friend-jobkind="0" data-friend-level="3">
-							<a href="#">
-							<canvas width="80" height="80" class="avatarIcon"></canvas>
-							<div class="activity">
-								<p class="comment">
-									<span>nakashizuさん</span>がバイトにチェックインしました。
-								</p>
-								<div class="footer">
-									<p class="icon"><span class="comment">2</span><span class="otsu">50</span></p>
-									<p class="times">5分前</p>
-								</div>
-							</div>
-							</a>
-						</li>
-						<li data-friend-jobkind="2" data-friend-level="1">
-							<a href="#">
-							<canvas width="80" height="80" class="avatarIcon"></canvas>
-							<div class="activity">
-								<p class="comment">
-									<span>nakashizuさん</span>がバイトにチェックインしました。
-								</p>
-								<div class="footer">
-									<p class="icon"><span class="comment">2</span><span class="otsu">50</span></p>
-									<p class="times">5分前</p>
-								</div>
-							</div>
-							</a>
-						</li>
-						<li data-friend-jobkind="3" data-friend-level="0">
-							<a href="#">
-							<!--<img src="img/dummy/dummy_avatar.png" alt="#" class="avatarIcon">-->
-							<canvas width="80" height="80" class="avatarIcon"></canvas>
-							<div class="activity">
-								<p class="comment">
-									<span>nakashizuさん</span>がバイトにチェックインしました。
-								</p>
-								<div class="footer">
-									<p class="icon"><span class="comment">2</span><span class="otsu">50</span></p>
-									<p class="times">5分前</p>
-								</div>
-							</div>
-							</a>
-						</li>
-						<li data-friend-jobkind="4" data-friend-level="1">
-							<a href="#">
-							<canvas width="80" height="80" class="avatarIcon"></canvas>
-							<div class="activity">
-								<p class="comment">
-									<span>nakashizuさん</span>がバイトにチェックインしました。
-								</p>
-								<div class="footer">
-									<p class="icon"><span class="comment">2</span><span class="otsu">50</span></p>
-									<p class="times">5分前</p>
-								</div>
-							</div>
-							</a>
-						</li>
-						
-					</ul>
-					<p id="moreFeed">もっと読む…</p>
-					</div>
-				</div><!-- /#friendTimeline -->
-			</div>
-		</div><!-- /#container -->
-	
-	</body>
-</html>
+<div id="topics">
+    <div id="checkInSlider"></div>
+    <div class="cloud">○月○日、18:00からバイトが入っています！</div>
+</div>
+
+<div id="timeline" class="woodFrame">
+    <div class="woodWrapper">
+    <?php if(!empty($feeds)) { // Friend Timeline Loop ?>
+     <ul>
+      <?php foreach($feeds as $feed) { ?>
+      <li data-friend-jobkind="<?php echo $feed['User']['current_jobkind_id']; ?>" data-friend-level="<?php echo $feed['User']['current_jobkind_id']; ?>">
+      <a href="/biteup/feeds/view/<?php echo $feed['Feed']['id']; ?>">
+           <canvas width="80" height="80" class="avatarIcon"></canvas>
+           <div class="activity">
+             <p class="comment">
+               <span><?php echo $feed['User']['username']; ?>さん</span>
+               <?php echo $feed['Feed']['message']; ?>
+             </p><!-- **** 実装が途中まで。これもJSで出力したほうがいいかも？ *** -->
+             <div class="footer">
+               <p class="icon">
+                 <span class="comment"><?php echo $feed['Like']['comments']; ?></span><!--コメント数-->
+                 <span class="otsu"><?php echo $feed['Like']['likes']; ?></span><!--オツカレ数-->
+               </p>
+               <p class="times"><?php echo $feed['Feed']['created']; ?></p>
+             </div>
+           </div>
+         </a>
+      </li>
+      <? } ?>
+     </ul>
+    <?php } ?>
+    <p id="moreFeed">もっと読む…</p>
+    </div>
+</div><!-- /#friendTimeline -->

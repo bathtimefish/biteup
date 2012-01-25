@@ -4,7 +4,7 @@
 		<legend><?php __('Admin Add Like'); ?></legend>
 	<?php
 		echo $this->Form->input('user_id');
-		echo $this->Form->input('friend_id');
+		echo $this->Form->input('friend_id', array('type'=>'text'));
 		echo $this->Form->input('job_id');
 		echo $this->Form->input('jobkind_id');
 		echo $this->Form->input('feed_id');

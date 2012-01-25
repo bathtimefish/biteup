@@ -17,8 +17,13 @@ class JobsController extends AppController {
     }
 
     function index() {
-        $this->Job->recursive = 0;
-        $this->set('jobs', $this->paginate());
+        $this->Job->recursive = -1;
+        $this->paginate = array(
+            'limit' => 5,
+            'order' => array('Job.created DESC')
+        );
+        $pagination = $this->paginate();
+        $this->set('jobs', $pagination);
     }
 
     // user check in a job.
@@ -152,11 +157,13 @@ class JobsController extends AppController {
  /*** Admin Controllers ***/
 
  function admin_index() {
+  $this->layout = 'admin';
   $this->Job->recursive = 0;
   $this->set('jobs', $this->paginate());
  }
 
  function admin_view($id = null) {
+  $this->layout = 'admin';
   if (!$id) {
    $this->Session->setFlash(__('Invalid job', true));
    $this->redirect(array('action' => 'index'));
@@ -165,6 +172,7 @@ class JobsController extends AppController {
  }
 
  function admin_add() {
+  $this->layout = 'admin';
   if (!empty($this->data)) {
    $this->Job->create();
    if ($this->Job->save($this->data)) {
@@ -180,6 +188,7 @@ class JobsController extends AppController {
  }
 
  function admin_edit($id = null) {
+  $this->layout = 'admin';
   if (!$id && empty($this->data)) {
    $this->Session->setFlash(__('Invalid job', true));
    $this->redirect(array('action' => 'index'));

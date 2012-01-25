@@ -35,10 +35,19 @@ class UsersController extends AppController {
             );
             $this->set('feeds', $this->paginate('Feed'));
              */
+            $this->Feed->recursive = 1;
             $conditions = array('Feed.user_id IN ('.implode(',', $arybuf).')');
             $order = array('Feed.created DESC');
             $limit = 10;
-            $this->set('feeds', $this->Feed->find('all', array('conditions'=>$conditions, 'order'=>$order, 'limit'=>$limit)));
+            $feeds = $this->Feed->find('all', array('conditions'=>$conditions, 'order'=>$order, 'limit'=>$limit));
+            $timelines = array();
+            $this->Like->recursive = -1;
+            foreach($feeds as $feed) {
+                $feed['Like']['likes'] = $this->Like->find('count', array('conditions'=>array('Like.feed_id'=>$feed['Feed']['id'])));
+                $feed['Like']['comments'] = $this->Like->find('count', array('conditions'=>array('Like.feed_id'=>$feed['Feed']['id'], 'Like.message IS NOT NULL')));
+                array_push($timelines, $feed);
+            }
+            $this->set('feeds', $timelines);
         }
         $this->set('userid', $this->Auth->user('id'));
         $this->set('nickname', $this->Auth->user('username'));
@@ -228,10 +237,13 @@ class UsersController extends AppController {
         // set information count for badge
         
         // set now timelines
+        $this->Feed->recursive = 1;
+        $this->Like->recursive = -1;
+        $fields = array('Feed.id', 'Job.jobkind_id', 'User.current_level', 'User.id', 'Feed.message', 'Feed.created');
         $conditions = array('Feed.user_id'=>$this->Auth->user('id'));
         $order = array('Feed.id DESC');
         $limit = 10;
-        $feeds = $this->Feed->find('all', array('conditions'=>$conditions, 'order'=>$order, 'limit'=>$limit));
+        $feeds = $this->Feed->find('all', array('fields'=>$fields, 'conditions'=>$conditions, 'order'=>$order, 'limit'=>$limit));
         if(!empty($feeds)) {
             $data = array('feeds'=>array());
             foreach($feeds as $feed) {

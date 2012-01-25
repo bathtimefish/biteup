@@ -69,12 +69,14 @@ class LikesController extends AppController {
 		$this->Session->setFlash(__('Like was not deleted', true));
 		$this->redirect(array('action' => 'index'));
 	}
-	function admin_index() {
+    function admin_index() {
+        $this->layout = 'admin';
 		$this->Like->recursive = 0;
 		$this->set('likes', $this->paginate());
 	}
 
 	function admin_view($id = null) {
+        $this->layout = 'admin';
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid like', true));
 			$this->redirect(array('action' => 'index'));
@@ -83,6 +85,7 @@ class LikesController extends AppController {
 	}
 
 	function admin_add() {
+        $this->layout = 'admin';
 		if (!empty($this->data)) {
 			$this->Like->create();
 			if ($this->Like->save($this->data)) {
@@ -100,6 +103,7 @@ class LikesController extends AppController {
 	}
 
 	function admin_edit($id = null) {
+        $this->layout = 'admin';
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash(__('Invalid like', true));
 			$this->redirect(array('action' => 'index'));
