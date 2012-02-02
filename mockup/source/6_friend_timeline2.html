@@ -23,31 +23,19 @@
 	<body>
 	
 		<div id="container">
-			<div class="containerInner">
 				<header>
-					<!--<span class="pageBack"><a href="#">Back</a></span>
-					<h1><img src="#" alt="Logo"></h1>
-					<h2>kazumissimi</h2>-->
-					<p class="pageBack"><a href="#"><img src="img/header_btn_back.png" alt="戻る" width="43" height="34"></a></p>
-					<span class="profileBtn"><a href="/9_account_page.html"><img src="img/header_btn_profile.png" alt="MyProfile" width="47" height="48"></a></span>
+					<h1>nakashizuさん</h1>
+					<p class="pageBack tapping"><a href="#"><img src="img/header_btn_back.png" alt="戻る" width="43" height="34"></a></p>
+					<p class="profileBtn tapping"><a href="#"><img src="img/header_btn_logout.png" alt="ログアウト" width="68" height="36"></a></p>
 					<nav>
 						<ul>
-							<li><a href="4_yotei_ichiran.html" title="バイト予定一覧"><img src="img/header_btn_list.png" alt="予定リスト" width="127" height="46"></a></li>
-							<li><a href="3_yotei_touroku.html" title="バイト登録"><img src="img/header_btn_regist.png" alt="バイト予定" width="71" height="72"></a></li>
-							<li><a href="6_friend_timeline.html" title="SNSタイムライン"><img src="img/header_btn_supporter.png" alt="マイサポーター" width="117" height="46"></a></li>
+							<li class="tapping"><a href="#" title="タイムライン"><img src="img/header_btn_timeline.png" alt="タイムライン" width="117" height="49"></a></li>
+							<li class="tapping"><a href="3_yotei_touroku.html" title="バイト登録"><img src="img/header_btn_regist.png" alt="バイト予定登録" width="71" height="72"></a></li>
+							<li class="tapping"><a href="#" title="マイページ"><img src="img/header_btn_mypage.png" alt="マイページ" width="117" height="52"><span class="alert"></span></a></li>
 						</ul>
 					</nav>
 				</header>
 			
-				<!--<div class="registrationBtn">
-					<a href="3_yotei_touroku.html">バイト予定登録</a>
-				</div>-->
-
-				<!--<div class="searchBox">
-					<input type="text" name="search" placeholder="名前を入れてください" class="searchTxt">
-					<input type="submit" value="検索" class="searchBtn">
-				</div>-->
-				
 				<div class="woodFrame friendTimelineDetail">
 					<div class="woodWrapper">
 						<ul>
@@ -62,12 +50,55 @@
 									<p class="times">5分前</p>
 								</div>
 							</div>
+							<div class="commentForm">
+								<form onSubmit="Sync.otsukare.said(this); return false;">
+								<p><input type="text" class="newRegist" placeholder="コメントをいれてあげるぽよ"></p>
+								<p class="alC"><input type="image" src="img/comment_btn_otsukare.png" alt="オツカレ！" value="オツカレ" width="70"></p>
+								</form>
+							</div>
+
+							<div class="commentList">
+								<ul>
+								<li data-friend-jobkind="5" data-friend-level="3">
+									<a href="#">
+									<p class="commentAvatar"><canvas width="80" height="80"></canvas></p>
+									<div class="detail">
+										<h2>kazumissimi</h2>
+										<p class="text">おつかりんご。</p>
+										<p class="times">5分前</p>
+									</div>
+									</a>
+								</li>
+								<li data-friend-jobkind="4" data-friend-level="2">
+									<a href="#">
+									<p class="commentAvatar"><canvas width="80" height="80"></canvas></p>
+									<div class="detail">
+										<h2>kazumissimi</h2>
+										<p class="text">おつかりんご。</p>
+										<p class="times">5分前</p>
+									</div>
+									</a>
+								</li>
+								<li data-friend-jobkind="3" data-friend-level="1">
+									<a href="#">
+									<p class="commentAvatar"><canvas width="80" height="80"></canvas></p>
+									<div class="detail">
+										<h2>kazumissimi</h2>
+										<p class="text">おつかりんご。</p>
+										<p class="times">5分前</p>
+									</div>
+									</a>
+								</li>
+								</ul>
+							</div>
+
 						</li>
 						
 					</ul>
 					</div>
 				</div><!-- /#friendTimeline -->
 				
+				<!--
 				<div class="commentForm">
 					<h1>おつかれコメントを入れてあげましょう</h1>
 					<form onSubmit="Sync.otsukare.said(this); return false;">
@@ -110,11 +141,20 @@
 						</a>
 					</li>
 					</ul>
-				</div>
+				</div>-->
 				
 	
-			</div>
 		</div><!-- /#container -->
+		<footer>
+			<nav>
+				<ul>
+					<li class="tapping"><a href="#"><img src="img/footer_btn_info.png" alt="登録情報" width="68" height="38"></a></li>
+					<li class="tapping"><a href="#"><img src="img/footer_btn_guideline.png" alt="利用ガイドライン" width="107" height="38"></a></li>
+					<li class="tapping"><a href="#"><img src="img/footer_btn_about.png" alt="designers hackとは" width="127" height="38"></a></li>
+				</ul>
+			</nav>
+			<p class="copyright">Copyright &copy; designers hack All Rights Reserved.</p>
+		</footer>
 	
 	</body>
 </html>

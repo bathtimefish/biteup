@@ -3,7 +3,41 @@
 .alC{
 	text-align: center;
 }
+p.delete{
+	margin-top:20px;
+}
+#moreFeed{
+	background: url(../img/border_timeline.png) no-repeat top center, url(../img/btn_readmore.png) no-repeat center bottom;
+	background-size: 298px 10px, 271px 60px;
+	margin:0 auto;
+	padding-bottom:50px;
+	text-indent:-9999px;
+	position:relative;
+}
+#moreFeed span{
+	background: url(../img/btn_readmore_on.png) no-repeat center bottom;
+	margin:0 auto;
+	background-size: 271px 60px;
+	position:absolute;
+	width:271px;
+	height:60px;
+	top:21px;
+	left:25px;
+}
+#moreFeed span img{
+	position:absolute;
+	top:15px;
+	left:180px;
+	width:32px;
+	height:32px;
+}
 
+.woodFrame li .avatarIcon{
+	padding: 3px;
+	background: #fff;
+	box-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+	-webkit-box-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
 /*	3_yotei_touroku
 ============================================*/
 .woodFrame.registFrame{
@@ -15,8 +49,7 @@
 	top:7px;
 }
 .woodFrame.registFrame dl{
-	margin:0 0 0 22px;
-	padding-top: 35px;
+	margin:0 0 0 25px;
 }
 .woodFrame.registFrame.noTitle dl{
 	padding-top: 0;
@@ -26,19 +59,25 @@
 	background-size: 13px 19px;
 	color:#3d0404;
 	font-weight:bold;
+	font-size:16px;
 	padding:0 0 4px 20px;
 	text-shadow:-1px -1px 1px rgba(255,255,255,1);
 }
 .woodFrame.registFrame dd{
 	padding-bottom: 10px;
-	padding-left: 20px;
+	/*padding-left: 20px;*/
 	font-weight: bold;
 	text-shadow: 0 1px 1px rgba(255,255,255,0.8);
 	color: #3d0404;
 }
 
+.woodFrame.registFrame dt.hidden{
+	text-decoration: underline;
+	color: red;
+}
+
 .woodFrame.registFrame dd:last-child {
-	padding-left: 0;
+	/*padding-left: 0;*/
 }
 
 .woodFrame.registFrame .selectWorks{
@@ -50,7 +89,7 @@
 	height: 44px;
 	padding: 0 10px 0 15px;
 }
-.woodFrame.registFrame .newRegist{
+.woodFrame/*.registFrame*/ .newRegist{
 	background: url(../img/regist_bg_input.png) no-repeat 0 0;
 	background-size: 269px 44px;
 	-webkit-appearance:none;
@@ -62,7 +101,7 @@
 .woodFrame.registFrame dd.calender{
 	background: url(../img/regist_bg_calender.png) no-repeat 0 0;
 	background-size: 271px 49px;
-	padding: 10px 0 10px 20px;
+	padding: 10px 0 15px 20px;
 	margin-bottom: 10px;
 	font-size: 1.2em;
 }
@@ -101,6 +140,10 @@
 .woodFrame.registFrame div.time.while em{
 	padding: 0 10px;
 }
+.woodFrame.registFrame p.text{
+	padding:10px 25px;
+	color:#603f2f;
+}
 
 .registBtn{
 	display: box;
@@ -120,6 +163,7 @@
 #controler {
 display: -webkit-box;
 -webkit-box-pack: justify;
+width:276px;
 }
 
 #controler a {
@@ -128,12 +172,13 @@ padding: 15px;
 }
 
 .clipArea {
-width: 100%;
+width: 276px;
 overflow-x: hidden;
 }
 
 .calbox {
 float: left;
+width:276px !important;
 }
 
 .calbox header {
@@ -149,10 +194,13 @@ margin: 0 0 15px;
 }
 .calbox table td {
 text-align: center;
-padding: 5px 0;
+padding: 10px 0;
 font-family: Arial, Helvetica, sans-serif;
 font-weight: bold;
-border: 1px solid #CCC;
+border: 1px solid #6e2b0a;
+box-shadow:inset 0 1px 1px rgba(255,255,255,0.8);
+-webkit-box-shadow:inset 0 1px 1px rgba(255,255,255,0.8);
+background-color:#fff4df;
 }
 .calbox table .today {
 background: #69C;
@@ -179,47 +227,106 @@ font-size: 18px;
 padding: 15px 0;
 }
 
+.woodFrame.registFrame dd#biteCalendar{
+	position:relative;
+	padding-left:0;
+	background: url(../img/cal_head_bg.png) no-repeat 0 0, url(../img/cal_foot_bg.png) no-repeat 0 bottom;
+	background-size: 276px 87px, 276px 231px;
+	padding-bottom:47px;
+	display:none;
+}
+#biteCalendar #controler{
+	position:absolute;
+	padding:20px 0 0;
+}
+#biteCalendar #controler a{
+	background-position:0 0;
+	background-repeat:no-repeat;
+	background-size:42px 34px;
+	text-indent:-9999px;
+	position: relative;
+	z-index: 2;
+}
+#biteCalendar #controler a.prev{
+	background-image:url(../img/cal_arrow_prev.png);
+}
+#biteCalendar #controler a.next{
+	background-image:url(../img/cal_arrow_next.png);
+}
+#biteCalendar .calbox header{
+	height:36px;
+	color:#fff;
+	text-shadow:1px 1px 1px rgba(0,0,0,0.8);
+	font-size:18px;
+	padding-top:24px;
+}
+#biteCalendar .calbox .content{
+	background: url(../img/cal_border_bg.png) repeat-y 0 0;
+	background-size: 276px 12px;
+	padding:0 7px;
+}
+#biteCalendar .calbox .content th{
+	color:#fdeae0;
+	text-shadow:1px 1px 1px rgba(0,0,0,0.8);
+	text-align:center;
+	height:26px;
+}
+
 /*	4_yotei_ichiran
 ============================================*/
 .woodFrame.listWrap ul{
 	margin-top: -5px;
 }
 .woodFrame.listWrap ul li{
+	background: url(../img/border_timeline.png) top center no-repeat, url(../img/icon_arrow_edit.png) 93% center no-repeat;
+	background-size: 298px 10px, 34px 34px;
 	padding: 20px 20px 10px;
 }
 .woodFrame.listWrap ul li:first-child{
-	background: url(../img/icon_arrow_timeline.png) 95% center no-repeat;
+	background: url(../img/icon_arrow_edit.png) 93% center no-repeat;
+	background-size: 34px 34px;
 	padding-top: 0;
 }
 .woodFrame.listWrap ul li a{
 	text-decoration: none;
 	color: #3c220c;
 }
+.woodFrame.listWrap ul li img{
+	float:left;
+	padding: 3px;
+	background: white;
+	box-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+	-webkit-box-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+.woodFrame.listWrap ul li div.kind{
+	float:right;
+	width:215px;
+}
 .woodFrame.listWrap ul li h3{
 	font-weight: bold;
-}
-.woodFrame.listWrap ul li h3 img{
-	vertical-align: middle;
-	margin-right: 3px;
+	font-size:18px;
+	background: url(../img/regist_icon_subtitle.png) no-repeat 2px 2px;
+	background-size: 13px 19px;
+	padding: 0 0 4px 20px;
+	text-shadow: -1px -1px 1px rgba(255, 255, 255, 1);
 }
 .woodFrame.listWrap ul li span{
 	font-size: 12px;
+	display:block;
 }
 .woodFrame.listWrap ul li span em{
 	font-size: 16px;
 	font-weight: bold;
 }
 .woodFrame.listWrap ul li span.date{
-	background: url(../img/icon_calender.png) no-repeat 0 0;
-	background-size: 20px 17px;
-	padding: 2px 0 0 23px;
-	margin-right: 2px;
-	margin-bottom: 5px;
+	background: url(../img/icon_calender.png) no-repeat 0 2px;
+	background-size: 18px 15px;
+	padding: 0 0 0 20px;
 }
 .woodFrame.listWrap ul li span.time{
-	background: url(../img/icon_date.png) no-repeat 0 0;
-	background-size: 18px 17px;
-	padding: 2px 0 0 21px;
+	background: url(../img/icon_date.png) no-repeat 0 2px;
+	background-size: 18px 18px;
+	padding: 0 0 0 20px;
 }
 
 /*	06_friend_timeline
@@ -258,8 +365,49 @@ padding: 15px 0;
 }
 .woodFrame.friendTimelineDetail li .activity {
 	float: left;
-	width: 200px;
+	width: 175px;
+	margin-bottom:10px;
 }
+
+/*	.comment
+-----------------------------------------------*/
+.woodFrame li div.commentForm{
+	background: url(../img/comment_title_bg.png) no-repeat center 70px;
+	background-size: 297px 62px;
+	clear:both;
+}
+.woodFrame li div.commentForm input.newRegist{
+	margin-left:8px;
+	margin-bottom:5px;
+}
+.woodFrame li .commentList{
+	background-color:#f9deac;
+}
+.woodFrame li .commentList li{
+	border-bottom:1px solid #7d5929;
+	padding:8px;
+}
+.woodFrame li .commentList li p.commentAvatar{
+	width:80px;
+	float: left;
+	margin-right: 8px;
+	padding: 3px;
+	background: white;
+	box-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+	-webkit-box-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+.woodFrame li .commentList li p.commentAvatar img{
+}
+.woodFrame li .commentList li div.detail{
+	width:170px;
+	float: left;
+}
+.woodFrame li .commentList li div.detail h2{
+	font-weight:bold;
+	text-shadow:1px 1px 1px rgba(255,255,255,0.7);
+}
+
+/*
 .commentForm{
 	background-color: #e9c174;
 	padding: 5px;
@@ -287,7 +435,7 @@ padding: 15px 0;
 .commentList li div.detail{
 	width:115px;
 	float: left;
-}
+}*/
 
 
 /*	07_search_result
@@ -324,6 +472,8 @@ padding: 15px 0;
 	height: 80px;
 	float: left;
 }
+
+
 
 /*	08_friend_profile
 ============================================*/

@@ -3,22 +3,23 @@ var dhCalUISingle = false;
 function dhCalUI (_res, _id) {
 	if(dhCalUISingle) return false;
 	dhCalUISingle = true;
-	console.log("attention!");
 	var container = document.getElementById(_id);
 	var resourse = document.getElementById(_res);
-	var _this = this, prev, next, boxWidth = 0, wrap=null, eventName = "touchstart"; //touchstart
+	var _this = this, prev, next, boxWidth = 0, wrap=null, eventName = "touchstart click"; //touchstart
 	_this.currentMonth = new Date().getMonth()+1;
 	_this.currentPage = 0; // ページの位置
 	
 	$(container).hide().append(source()).find("#calContainer").append(boxSource());
 	$("#calContainer .calbox").width($("body").width());
 	boxWidth = $("#calContainer .calbox:first-child").width();
+	//console.log("attention!",boxWidth);
 	$("#calContainer").width(boxWidth * 6);
 	wrap = $("#calContainer");
-	prev = document.getElementById("controler").getElementsByClassName("prev")[0];
-	next = document.getElementById("controler").getElementsByClassName("next")[0];
-	prev.addEventListener(eventName, prevStart, false);
-	next.addEventListener(eventName, nextStart, false);
+
+	prev = $("#controler .prev");
+	next = $("#controler .next");
+	prev.bind(eventName, prevStart);
+	next.bind(eventName, nextStart);
 	
 	var dd = new Date();
 	for(var i=1; i<=6; i++) {
@@ -32,7 +33,6 @@ function dhCalUI (_res, _id) {
 	$(container).fadeIn(300);
 	return _this;
 	
-		
 	function prevStart (e) { // 先月へ
 		e.preventDefault();
 		(_this.currentPage-- <= 0) ? _this.currentPage = 0 : _this.currentPage;

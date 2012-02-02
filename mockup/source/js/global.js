@@ -11,7 +11,7 @@ Global = {
 		
 	setPageBackBtn: function (){
 			//ヘッダのバックボタンを設定する
-			$("header .pageBack a").bind("click", function (e){
+			$(".pageBack a").bind("click", function (e){
 					e.preventDefault();
 					window.history.back();
 				});
@@ -39,8 +39,7 @@ Global = {
 			}
 			return time;
 		},
-		
-		
+
 	//タイムラインのcanvasを検索してサムネイル変換関数を呼ぶ ----------------------------------------------------------------------
 	
 	thumbnail2Canvas : function () {
@@ -80,18 +79,36 @@ Global = {
 					if($("body").hasClass("nickname")) Resist.registBook();
 				},
 			registBook: function () {
-				var inp = $("#resistration #_name");
+				var inp = $(".newRegistration #_name");
 				inp.bind("change", function (){
 						$(".nickname #yourname").text($(this).val());
 					$("#bookArea").css({"background":"none"});
-					var timers = setTimeout(function (){
+					/*var timers = setTimeout(function (){
 							$("#bookArea").css({"background":"url(img/regist_book_bg.jpg) no-repeat"});
-						}, 30);
+						}, 30);*/
 					});
 				}
 		}//Resist end
 
 	//新規登録 ----------------------------------------------------------------------
+	
+	var RollOver = {
+		set : function () {
+			var classes = $(".tapping");
+			classes.each(function (){
+				var img = $(this).find("img");
+				var src = img.attr("src").replace(".png", "_on.png?")+new Date().getTime();
+				var i = new Image().src = src;
+				console.log(src)
+				$(this).bind("touchstart mousedown", function (){
+						img.attr("src",src);
+					});
+				});
+		return this;
+		}
+	}
+
+
 	
 	
 	//アクティベート（実行） ----------------------------------------------------------------------
@@ -107,7 +124,8 @@ Global = {
 		Global.thumbnail2Canvas();
 		Global.search2Canvas();
 		
-		
+		//アクティブボタンの指定
+		RollOver.set();
 
 	}
 	

@@ -1,0 +1,465 @@
+@charset "UTF-8";
+
+.alC{
+	text-align: center;
+}
+
+/*	3_yotei_touroku
+============================================*/
+.woodFrame.registFrame{
+	position: relative;
+}
+.woodFrame.registFrame h1{
+	margin:0 0 0 11px;
+	position: absolute;
+	top:7px;
+}
+.woodFrame.registFrame dl{
+	margin:0 0 0 22px;
+	padding-top: 35px;
+}
+.woodFrame.registFrame.noTitle dl{
+	padding-top: 0;
+}
+.woodFrame.registFrame dt{
+	background: url(../img/regist_icon_subtitle.png) no-repeat 0 0;
+	background-size: 13px 19px;
+	color:#3d0404;
+	font-weight:bold;
+	padding:0 0 4px 20px;
+	text-shadow:-1px -1px 1px rgba(255,255,255,1);
+}
+.woodFrame.registFrame dd{
+	padding-bottom: 10px;
+	padding-left: 20px;
+	font-weight: bold;
+	text-shadow: 0 1px 1px rgba(255,255,255,0.8);
+	color: #3d0404;
+}
+
+.woodFrame.registFrame dd:last-child {
+	padding-left: 0;
+}
+
+.woodFrame.registFrame .selectWorks{
+	background: url(../img/regist_bg_select.png) no-repeat 0 0;
+	background-size: 269px 44px;
+	-webkit-appearance:none;
+	border:none;
+	width: 269px;
+	height: 44px;
+	padding: 0 10px 0 15px;
+}
+.woodFrame.registFrame .newRegist{
+	background: url(../img/regist_bg_input.png) no-repeat 0 0;
+	background-size: 269px 44px;
+	-webkit-appearance:none;
+	border: none;
+	width: 229px;
+	height: 44px;
+	padding: 0 20px;
+}
+.woodFrame.registFrame dd.calender{
+	background: url(../img/regist_bg_calender.png) no-repeat 0 0;
+	background-size: 271px 49px;
+	padding: 10px 0 10px 20px;
+	margin-bottom: 10px;
+	font-size: 1.2em;
+}
+.woodFrame.registFrame dd.calender em{
+	font-size: 1.4em;
+	font-weight: bold;
+	margin: 0 5px 0 8px;
+}
+.woodFrame.registFrame div.time{
+	background: url(../img/regist_bg_time.png) no-repeat 0 0;
+	background-size: 238px 45px;
+	display: inline-block;
+	width:238px;
+	height: 37px;
+	padding: 8px 0 0;
+}
+.woodFrame.registFrame div.time em{
+	font-size: 1.4em;
+	font-weight: bold;
+}
+.woodFrame.registFrame div.time.start em:first-of-type{
+	padding: 0 55px;
+}
+.woodFrame.registFrame div.time.start{
+	background: url(../img/regist_bg_timecolon.png) no-repeat 100px 10px,
+				url(../img/regist_bg_time.png) no-repeat 0 0;
+	background-size: 12px 25px, 238px 45px;
+	display: inline-block;
+	width:238px;
+	height: 45px;
+	padding: 8px 0 0;	
+}
+.woodFrame.registFrame div.time.while{
+	padding-left: 50px;
+}
+.woodFrame.registFrame div.time.while em{
+	padding: 0 10px;
+}
+
+.registBtn{
+	display: box;
+	display: -webkit-box;
+	display: -moz-box;
+	box-pack: justify;
+	-webkit-box-pack: justify;
+	-moz-box-pack: justify;
+	margin: 10px 6px 0;
+}
+.registBtn.in{
+	margin: 10px 20px 0;
+}
+
+
+/*	calendarUI  */
+#controler {
+display: -webkit-box;
+-webkit-box-pack: justify;
+}
+
+#controler a {
+display: block;
+padding: 15px;
+}
+
+.clipArea {
+width: 100%;
+overflow-x: hidden;
+}
+
+.calbox {
+float: left;
+}
+
+.calbox header {
+text-align: center;
+font-family: Arial, Helvetica, sans-serif;
+font-weight: bold;
+}
+
+.calbox table {
+border-collapse: collapse;
+width: 100%;
+margin: 0 0 15px;
+}
+.calbox table td {
+text-align: center;
+padding: 5px 0;
+font-family: Arial, Helvetica, sans-serif;
+font-weight: bold;
+border: 1px solid #CCC;
+}
+.calbox table .today {
+background: #69C;
+}
+
+.calbox table td:hover {
+background: #6CC;
+}
+
+#calConfirm {
+display: none;
+}
+
+#calConfirm a {
+display: block;
+width: 80%;
+margin: 10px auto;
+border-radius: 3px;
+border: 1px solid #999;
+text-align: center;
+text-decoration: none;
+font-weight: bold;
+font-size: 18px;
+padding: 15px 0;
+}
+
+/*	4_yotei_ichiran
+============================================*/
+.woodFrame.listWrap ul{
+	margin-top: -5px;
+}
+.woodFrame.listWrap ul li{
+	padding: 20px 20px 10px;
+}
+.woodFrame.listWrap ul li:first-child{
+	background: url(../img/icon_arrow_timeline.png) 95% center no-repeat;
+	padding-top: 0;
+}
+.woodFrame.listWrap ul li a{
+	text-decoration: none;
+	color: #3c220c;
+}
+.woodFrame.listWrap ul li h3{
+	font-weight: bold;
+}
+.woodFrame.listWrap ul li h3 img{
+	vertical-align: middle;
+	margin-right: 3px;
+}
+.woodFrame.listWrap ul li span{
+	font-size: 12px;
+}
+.woodFrame.listWrap ul li span em{
+	font-size: 16px;
+	font-weight: bold;
+}
+.woodFrame.listWrap ul li span.date{
+	background: url(../img/icon_calender.png) no-repeat 0 0;
+	background-size: 20px 17px;
+	padding: 2px 0 0 23px;
+	margin-right: 2px;
+	margin-bottom: 5px;
+}
+.woodFrame.listWrap ul li span.time{
+	background: url(../img/icon_date.png) no-repeat 0 0;
+	background-size: 18px 17px;
+	padding: 2px 0 0 21px;
+}
+
+/*	06_friend_timeline
+============================================*/
+.searchBox{
+	background: url(../img/search_bg.png) no-repeat 0 0;
+	background-size: 320px 91px;
+	margin-top: -20px;
+	padding: 42px 10px 45px 15px;
+	position: relative;
+}
+
+.searchBox input.searchTxt{
+	-webkit-appearance: none;
+	border: none;
+	background: none;
+	text-shadow: -1px -1px 1px rgba(255,255,255,0.8);
+}
+.searchBox input.searchBtn{
+	-webkit-appearance: none;
+	border: none;
+	text-indent: -9999px;
+	background: url(../img/search_btn.png) no-repeat 0 0;
+	background-size: 75px 50px;
+	width:75px;
+	height: 50px;
+	position: absolute;
+	right:7px;
+	top:30px;
+}
+
+/*	06_friend_timeline2
+============================================*/
+.woodFrame.friendTimelineDetail li{
+	background: none;
+}
+.woodFrame.friendTimelineDetail li .activity {
+	float: left;
+	width: 200px;
+}
+.commentForm{
+	background-color: #e9c174;
+	padding: 5px;
+	margin: 5px;
+}
+.commentList li{
+	overflow: hidden;
+	background: #fff4df url(../img/icon_arrow_timeline.png) 93% center no-repeat;
+	padding: 5px;
+	margin: 5px;
+}
+.commentList li a{
+	text-decoration: none;
+	color:#333;
+}
+.commentList li p.commentAvatar{
+	width:80px;
+	float: left;
+	margin-right: 10px;
+}
+.commentList li p.commentAvatar img{
+	width:80px;
+	height: 80px;
+}
+.commentList li div.detail{
+	width:115px;
+	float: left;
+}
+
+
+/*	07_search_result
+============================================*/
+.woodFrame.friendList li{
+	padding: 15px 20px 5px;
+}
+.woodFrame.friendList li:first-child{
+	padding-top: 0;
+}
+.woodFrame.friendList li .activity{
+}
+.friendList .activity p.name{
+	color: #452506;
+	font-weight: bold;
+}
+.friendList .activity p.detail img{
+	vertical-align: middle;
+
+}
+.friendList .activity p.detail span.job{
+	margin-right: 7px;
+	margin-bottom: 5px;
+	display: block;
+	padding: 5px 0 5px 28px;
+	background-repeat: no-repeat;
+	background-position: 0 3px;
+	background-size: 25px 25px;
+}
+
+
+.woodFrame.friendList img.avatarIcon{
+	width:80px;
+	height: 80px;
+	float: left;
+}
+
+/*	08_friend_profile
+============================================*/
+.profile h1{
+	background: url(../img/friend_detail_titlebg.png) no-repeat 0 0;
+	background-size: 320px 55px;
+	text-align: center;
+	padding: 13px 0;
+	font-weight: bold;
+	font-size: 20px;
+	text-shadow: 1px 1px 1px rgba(255,255,255,0.8);
+}
+
+p.profileAvatar{
+	height: 175px;
+	position: relative;
+}
+
+p.profileAvatar img {
+	position: absolute;
+	width: 100%;
+}
+
+.profileBg{
+	background: url(../img/friend_detail_bg.png) no-repeat 0 -1px;
+	background-size: 320px 126px;
+	padding: 22px 20px 30px;
+
+}
+.profileDetail{
+	display: box;
+	display: -webkit-box;
+	display: -moz-box;
+	box-pack: justify;
+	-webkit-box-pack: justify;
+	-moz-box-pack: justify;
+}
+.profileLevel h2{
+	font-weight: bold;
+	margin-bottom: 3px;
+}
+.profileLevel p img{
+	vertical-align: middle;
+}
+.profileLevel p span.job{
+	font-size: 10px;
+	padding: 5px 0 5px 23px;
+	background-repeat: no-repeat;
+	background-position: 0 0;
+	background-size: 20px 20px;
+}
+.job.power{
+	background-image: url(../img/icon_job_power.jpg);
+}
+.job.event{
+	background-image: url(../img/icon_job_event.jpg);
+}
+.job.sampling{
+	background-image: url(../img/icon_job_sampling.jpg);
+}
+.job.shop{
+	background-image: url(../img/icon_job_shop.jpg);
+}
+.job.office{
+	background-image: url(../img/icon_job_office.jpg);
+}
+.job.teacher{
+	background-image: url(../img/icon_job_teacher.jpg);
+}
+.job.free{
+	background-image: url(../img/icon_job_free.jpg);
+}
+.job.season{
+	background-image: url(../img/icon_job_season.jpg);
+}
+
+
+
+.profileCount ul{
+	font-weight: bold;
+}
+ul.profileCount li{
+	padding: 3px 0 2px;
+	font-family: Helvetica;
+	font-weight: bold;
+}
+ul.profileCount li.otsukare{
+	background: url(../img/friend_detail_otsukare.png) no-repeat 0 0;
+	background-size: 57px 25px;
+	padding-left: 60px;
+}
+ul.profileCount li.checkout{
+	background: url(../img/friend_detail_checkout.png) no-repeat 0 0;
+	background-size: 67px 25px;
+	padding-left: 70px;
+}
+
+.profile .pointGage{
+	display: box;
+	display: -webkit-box;
+	display: -moz-box;
+	box-pack: justify;
+	-webkit-box-pack: justify;
+	-moz-box-pack: justify;
+	margin-top: 5px;
+}
+.profile .pointGage .gage{
+	background: url(../img/friend_detail_gage_bg.png) no-repeat 0 0;
+	background-size: 202px 21px;
+	width: 202px;
+	height: 21px;
+	position: relative;
+}
+.profile .pointGage .gage p.meter{
+	position: absolute;
+	background: url(../img/friend_detail_gage.png) no-repeat 5px 5px;
+	background-size: 192px 12px;
+	height: 20px;
+	width: 50px;
+}
+.profile .pointGage .gage p.text{
+	font-size: 10px;
+	color: #333;
+	padding: 18px 0 0 8px;
+}
+.profile .pointGage .gage p.text strong{
+	font-weight: bold;
+}
+
+.profile .pointGage .point{
+	font-family: Helvetica;
+	font-weight: bold;
+	text-shadow: -1px -1px 1px rgba(255,255,255,0.8);
+	color: #18502d; 
+}
+
+
+
+
