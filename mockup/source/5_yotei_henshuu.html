@@ -5,22 +5,14 @@
 		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 		<title>バイト予定編集</title>
 		<script src="js/jquery-1.7.min.js"></script>
+		<!-- ここから、サーバに吐き出してもらいたいscript -->
+		<script>
+			var userData = { rows: [ {userName:"nakashizu",userID:123456}] };
+		</script>
+		<!-- / ここから、サーバに吐き出してもらいたいscript -->
 		<script src="js/global.js"></script>
 		<script src="js/cal_ui.js"></script>
-		<script>
-		window.onload = function (){
-		var ev = "touchstart"; //touchstart
-		$("#biteCalCall").bind(ev, showCalendar);
-
-		function showCalendar(){
-		$("#biteCalCall").unbind(ev);
-		var cal = new dhCalUI("biteCalCall","biteCalendar");
-		$(cal).bind("complete", function (e){
-		$("#biteCalCall").bind(ev, showCalendar);
-		});
-		};
-		}
-		</script>
+		<script src="js/resistration.js"></script>
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 		<link rel="stylesheet" type="text/css" href="css/tmp.css">
 	</head>
@@ -41,28 +33,29 @@
 					</nav>
 			</header>
 			<div id="registration_edit">
-				<form action="#" method="post">
+				<form action="#" method="post" onSubmit="Biteup.checkResist(); return false;">
 				<div class="woodFrame registFrame">
 				<h1><img src="img/regist_title_select.png" alt="バイト先を選ぶ" width="298" height="54"></h1>
 					<div class="woodWrapper">
 					<dl>
-						<dt>今までのバイト先から選ぶ</dt>
+						<dt id="haveEver">今までのバイト先から選ぶ</dt>
 						<dd>
 							<select name="company" class="selectWorks">
-								<option value="-">▼えらんでぽ</option>
+								<!--<option value="-">▼えらんでぽ</option>-->
 								<option value="ヨドバシカメラ">ヨドバシカメラ</option>
 								<option value="ビックカメラ">ビックカメラ</option>
+								<option value="new">新しいバイト先を指定</option>
 							</select>
 							<!--<div class="newCompany">
 								<input type="text" name="newComp" placeholder="バイト先を入力してください">
 							</div>-->
 						</dd>
-						<dt>新しいバイト先を追加する</dt>
-						<dd><input type="text" placeholder="新しいバイト先を入れてぽ" class="newRegist"></dd>
+						<dt id="newEver">新しいバイト先を追加する</dt>
+						<dd style="display: none;"><input type="text" placeholder="新しいバイト先を入れてぽ" class="newRegist"></dd>
 						<dt>バイト先のジャンルを選ぶ</dt>
 						<dd>
 							<select name="job" class="selectWorks">
-								<option value="-">▼ジャンルをえらんでぽ</option>
+								<option value="">▼ジャンルをえらんでぽ</option>
 								<option value="力仕事・労働">力仕事・労働</option>
 								<option value="オフィスワーク">オフィスワーク</option>
 							</select>
@@ -77,18 +70,18 @@
 					<dl>
 						<dt>カレンダーから日付を選ぶ</dt>
 						<!--<dd class="calender"><em>10</em>月<em>11</em>日<em>金</em>曜日</dd>-->
-						<dd id="biteCalCall" class="calender">2月10日</dd>
+						<dd id="biteCalCall" class="calender">タップしてぽ！</dd>
 						<dd id="biteCalendar"></dd>
 						<dt>バイトの開始時刻と時間を選ぶ</dt>
 						<dd>
-							<div class="time start"><em>10</em><em>00</em></div>から
-							<div class="time while"><em>5</em>時間<em>00</em>分</div>
+							<div class="time start"><em></em><em></em></div>から
+							<div class="time while"><em></em>時間<em></em>分</div>
 						</dd>
 					</dl>
 					</div>
 				</div>
 				
-				<p class="alC"><a href="#"><img src="img/btn_bite_edit.png" alt="変更する" width="233" height="57"></a></p>
+				<p class="alC"><input type="image" src="img/btn_bite_edit.png" alt="変更する" width="233" height="57"></p>
 				<p class="alC delete"><a href="#"><img src="img/btn_bite_delete.png" alt="この予定を削除する" width="200" height="38"></a></p>
 					
 					<!--<div class="workStartTime">
