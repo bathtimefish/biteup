@@ -60,6 +60,10 @@ header {
 	overflow: hidden;
 	position:relative;
 }
+body.nickname header,
+body.junction header{
+	height:50px;
+}
 header h1{
 	position:absolute;
 	color:#fff;
@@ -69,16 +73,27 @@ header h1{
 	text-align:center;
 	width:320px;
 	top:10px;
+	z-index:3;
 }
 header .pageBack{
-	float: left;
-	margin: 5px 0 0 5px;
+	/*float: left;
+	margin: 5px 0 0 5px;*/
+	position:absolute;
+	left:5px;
+	top:5px;
+	z-index:5;
 }		
 header .profileBtn {
-	float: right;
-	padding:5px 5px 0 0;
+	/*float: right;
+	padding:5px 5px 0 0;*/
+	position:absolute;
+	right:5px;
+	top:5px;
+	z-index:5;
 }
-
+header nav{
+	padding-top:50px;
+}
 header nav ul {
 	clear: both;
 	display: -webkit-box;
@@ -148,7 +163,8 @@ header nav ul li .alert:empty {
 .woodFrame.listWrap .woodWrapper,
 .woodFrame.friendTimelineDetail .woodWrapper,
 .woodFrame.friendList .woodWrapper,
-#account .woodFrame .woodWrapper{
+#account .woodFrame .woodWrapper,
+#guideline .woodFrame .woodWrapper{
 	padding-top:0;
 }
 .woodFrame li {
@@ -330,6 +346,9 @@ header nav ul li .alert:empty {
 	junction
 ======================================================*/
 
+/*	0_junction
+-----------------------------------------------*/
+
 body.junction{
 	background: url(../img/junction_header_bg.png) top no-repeat, url(../img/regist_book_bg_footer.jpg) bottom no-repeat, url(../img/junction_bg.jpg) center repeat-y;
 	background-size: 320px 48px, 320px 83px, 320px 122px;
@@ -351,38 +370,6 @@ body.junction .woodFrame.prologue p.btnArea{
 
 
 
-/*	0_junction
------------------------------------------------*/
-body.login ul#junction{
-	display: box;
-	display: -webkit-box;
-	display: -moz-box;
-	text-align: center;
-}
-body.login ul#junction li a{
-	border-radius: 10px;
-	display: block;
-	color: #fff;
-	padding: 10px 0;
-	text-decoration: none;
-	width: 150px;
-}
-body.login ul#junction li:first-child a{
-	background: -webkit-linear-gradient(top, #ba5f7f 0%, #a20e42 65%, #ba5e7e 100%);
-	background: -moz-linear-gradient(top, #ba5f7f 0%, #a20e42 65%, #ba5e7e 100%);
-	background: -ms-linear-gradient(top, #ba5f7f 0%, #a20e42 65%, #ba5e7e 100%);
-	background: -o-linear-gradient(top, #ba5f7f 0%, #a20e42 65%, #ba5e7e 100%);
-	background: linear-gradient(top, #ba5f7f 0%, #a20e42 65%, #ba5e7e 100%);
-	background: -webkit-gradient(linear, left top, left bottom,color-stop(0, #ba5f7f), color-stop(0.65, #a20e42), color-stop(1, #ba5e7e));
-}
-body.login ul#junction li:nth-child(2) a{
-	background: -webkit-linear-gradient(top, #6c8eae 0%, #28508b 62%, #6a8ca7 100%);
-	background: -moz-linear-gradient(top, #6c8eae 0%, #28508b 62%, #6a8ca7 100%);
-	background: -ms-linear-gradient(top, #6c8eae 0%, #28508b 62%, #6a8ca7 100%);
-	background: -o-linear-gradient(top, #6c8eae 0%, #28508b 62%, #6a8ca7 100%);
-	background: linear-gradient(top, #6c8eae 0%, #28508b 62%, #6a8ca7 100%);
-	background: -webkit-gradient(linear, left top, left bottom,color-stop(0, #6c8eae), color-stop(0.62, #28508b), color-stop(1, #6a8ca7));
-}
 
 /*	1_login
 -----------------------------------------------*/
@@ -454,59 +441,8 @@ body.nickname {
 	-webkit-transform: skewY(10deg) translate(-10px, 25px);
 	font-family: serif;
 }
-/*
-#resistration {
-	padding-left: 25px;
-}
-
-#resistration input {
-	background: url(../img/regist_name_mail.jpg) no-repeat;
-	background-size: contain;
-	background-size: 269px 44px;
-	width: 258px;
-	padding: 0 5px;
-	height: 43px;
-	display: block;
-	border: none;
-	-webkit-appearance: none;
-	font-size: 18px;
-	font-weight: bold;
-	text-shadow: 0 1px 1px rgba(255,255,255,0.8);
-	color: #930;
-	margin-bottom: 10px;
-}
-
-#resistration label span {
-	background: url(../img/regist_icon_subtitle.png) no-repeat;
-	background-size: 13px 16px;
-	padding: 5px 0 7px 20px;
-	display: inline-block;
-	font-size: 16px;
-	font-weight: bold;
-	line-height: .4;
-	color: #3d0404;
-}
-
-#resistration input[type="password"] {
-	background: url(../img/regist_password.jpg) no-repeat;
-	background-size: 161px 42px;
-	width: 161px;
-}
-
-#resistration label[for="_pass"] {
-	float: left;
-}
-
-#resistration input[type="image"] {
-	width: 79px;
-	height: auto;
-	float: left;
-	margin: 17px 0 0 20px;
-	padding: 0;
-}*/
 
 .woodFrame.registFrame dd small{
-	font-weight:normal;
 	color:#807069;
 }
 .woodFrame.registFrame input.loginRegist{

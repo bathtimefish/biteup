@@ -66,10 +66,11 @@ p.delete{
 }
 .woodFrame.registFrame dd{
 	padding-bottom: 10px;
-	/*padding-left: 20px;*/
-	font-weight: bold;
+	/*padding-left: 20px;
+	font-weight: bold;*/
 	text-shadow: 0 1px 1px rgba(255,255,255,0.8);
 	color: #3d0404;
+	margin-right:18px;
 }
 
 .woodFrame.registFrame dt.hidden{
@@ -696,4 +697,10 @@ ul.profileCount li.checkout{
 	text-align:center;
 	background: url(../img/header_btn_list_bg.png) no-repeat 0 0;
 	background-size: 320px 45px;
+}
+
+/*	11_guideline
+============================================*/
+#guideline{
+	margin-top:-50px;
 }
