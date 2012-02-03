@@ -53,11 +53,13 @@
 							<div class="commentForm">
 								<form onSubmit="Sync.otsukare.said(this); return false;">
 								<p><input type="text" class="newRegist" placeholder="コメントをいれてあげるぽよ"></p>
-								<p class="alC"><input type="image" src="img/comment_btn_otsukare.png" alt="オツカレ！" value="オツカレ" width="70"></p>
+								<p class="otsukareBtn"><input type="image" src="img/comment_btn_otsukare.png" alt="オツカレ！" value="オツカレ" width="70"></p>
+								<img src="img/icon_otsukare_load.png" id="otsukareLoadIcon" style="display: none">
 								</form>
 							</div>
 
 							<div class="commentList">
+								<p class="otsukareBtnSumi"><img src="img/comment_btn_otsukare_sumi.png" alt="オツカレ済！" value="オツカレ済" width="280"></p>
 								<ul>
 								<li data-friend-jobkind="5" data-friend-level="3">
 									<a href="#">
@@ -95,6 +97,7 @@
 						</li>
 						
 					</ul>
+					<p id="moreFeed">もっと読む…<span><img src="img/icon_otsukare_load.png" alt="loading"></span></p>
 					</div>
 				</div><!-- /#friendTimeline -->
 				

@@ -126,7 +126,7 @@ header nav ul li .alert:empty {
 */
 
 #timeline{
-	margin-top: 30px;
+	/*margin-top: 30px;*/
 }
 
 /*	common
@@ -144,8 +144,15 @@ header nav ul li .alert:empty {
 	padding-top: 35px;
 }
 
+.woodFrame#timeline .woodWrapper,
+.woodFrame.listWrap .woodWrapper,
+.woodFrame.friendTimelineDetail .woodWrapper,
+.woodFrame.friendList .woodWrapper,
+#account .woodFrame .woodWrapper{
+	padding-top:0;
+}
 .woodFrame li {
-	padding: 30px 20px 5px;
+	padding: 20px 20px 5px;
 	overflow: hidden;
 	background: url(../img/border_timeline.png) top center no-repeat, url(../img/icon_arrow_timeline.png) 93% center no-repeat;
 	background-size: 298px 10px, 32px 32px;
@@ -309,7 +316,8 @@ header nav ul li .alert:empty {
 }
 
 .sendingIcon span img,
-#moreFeed span img {
+#moreFeed span img,
+#otsukareLoadIcon {
 	-webkit-animation-name: loadingIcon;
 	-webkit-animation-duration: 1s;
 	-webkit-animation-timing-function: linear;
@@ -514,7 +522,7 @@ body.nickname {
 	background: url(../img/regist_bg_input_login.jpg) no-repeat 0 0;
 	background-size: 270px 44px;
 }
-.woodFrame.registFrame dd.error input.loginRegist{
+.woodFrame.registFrame dd.error input{
 	background: url(../img/regist_bg_input_login_error.jpg) no-repeat 0 0;
 	background-size: 270px 44px;
 }
@@ -574,32 +582,6 @@ p.loginAttention a{
 	display: none;
 }*/
 
-#moreFeed{
-	background: url(../img/border_timeline.png) no-repeat top center, url(../img/btn_readmore.png) no-repeat center bottom;
-	background-size: 298px 10px, 271px 60px;
-	margin:0 auto;
-	padding-bottom:60px;
-	text-indent:-9999px;
-	position:relative;
-}
-#moreFeed span{
-	background: url(../img/btn_readmore_on.png) no-repeat center bottom;
-	margin:0 auto;
-	background-size: 271px 60px;
-	position:absolute;
-	width:271px;
-	height:60px;
-	top:21px;
-	left:25px;
-	display: none;
-}
-#moreFeed span img{
-	position:absolute;
-	top:15px;
-	left:180px;
-	width:32px;
-	height:32px;
-}
 
 /*======================================================
 	footer

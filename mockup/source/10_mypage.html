@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no"><!---->
-		<title>マイサポーターのプロフィール</title>
+		<title>マイページ</title>
 		<script src="js/jquery-1.7.min.js"></script>
 
 		<!-- ここから、サーバに吐き出してもらいたいscript -->
@@ -36,9 +36,9 @@
 	
 	<body>
 	
-		<div id="container">
+	<div id="container">
 				<header>
-					<h1>マイサポーター</h1>
+					<h1>マイページ</h1>
 					<p class="pageBack tapping"><a href="#"><img src="img/header_btn_back.png" alt="戻る" width="43" height="34"></a></p>
 					<p class="profileBtn tapping"><a href="#"><img src="img/header_btn_logout.png" alt="ログアウト" width="68" height="36"></a></p>
 					<nav>
@@ -53,13 +53,15 @@
 				<!--<div class="registrationBtn">
 					<a href="3_yotei_touroku.html">バイト予定登録</a>
 				</div>-->
-
+				<div class="mypageBtn">
+					<p><a href="#" title="予定リスト"><img src="img/header_btn_list.png" alt="予定リスト" width="117"></a></p>
+				</div>
 				<div class="profile">
-					<h1>nakashizu</h1>
+					<h1>tommmmy</h1>
 					<p class="profileAvatar"><!--<img src="img/dummy/dummy_profile.jpg" alt width="320" height="175">-->
 					
 					<script>
-						var s = Charactor.getImage("free", 2);
+						var s = Charactor.getImage("free", 1);
 						document.write(s);
 					</script>
 					
@@ -67,19 +69,19 @@
 					<div class="profileBg">
 						<div class="profileDetail">
 							<div class="profileLevel">
-								<h2>ワイン試飲のほろ酔いドワーフ<span>力仕事・労働者</span></h2>
-								<p class="level">3</p>
+								<h2>カエルのピクシー<span>遊び人</span></h2>
+								<p class="level">1</p>
 							</div>
 							<ul class="profileCount">
-								<li class="otsukare">25</li>
-								<li class="checkout">10</li>
+								<li class="otsukare">5</li>
+								<li class="checkout">1</li>
 							</ul>
 						</div><!-- /.profileDetail -->
 						<div class="pointGage">
 							<p class="meter"><span></span></p>
 							<div class="gage">
-								<p class="text">LEVEL9まであと<strong>4015pt</strong></p>
-								<p class="point">19546 pt</p>
+								<p class="text">LEVEL2まであと<strong>35 pt</strong></p>
+								<p class="point">20 pt</p>
 							</div>						
 						</div><!-- /.gage -->
 
@@ -87,24 +89,16 @@
 					
 				</div><!-- /.profile -->
 				
-				<div class="followBtn">
-					<p><input type="image" src="img/btn_follow.png" alt="フォローする" width="234"></p>
-					<!-- フォローしているときはこちらを表示
-					<p><small>あなたはnakashizuさんをフォローしているぽ</small></p>
-					<p><input type="image" src="img/btn_unfollow.png" alt="フォロー解除する" width="234"></p>
-					-->
-				</div>
-
-				<div id="timeline"  class="woodFrame">
+				<div id="timeline" class="woodFrame">
 					<div class="woodWrapper">
 						<ul>
-						<li data-friend-jobkind="0" data-friend-level="3">
+						<li data-friend-jobkind="6" data-friend-level="1">
 							<a href="#">
 							<!--<img src="img/dummy/dummy_avatar.png" alt="#" class="avatarIcon">-->
 							<canvas width="80" height="80" class="avatarIcon"></canvas>
 							<div class="activity">
 								<p class="comment">
-									<span>nakashizuさん</span>がバイトにチェックインしました。
+									バイトにチェックインしました。
 								</p>
 								<div class="footer">
 									<p class="icon"><span class="comment">2</span><span class="otsu">50</span></p>
@@ -113,13 +107,13 @@
 							</div>
 							</a>
 						</li>
-						<li data-friend-jobkind="2" data-friend-level="1">
+						<li data-friend-jobkind="6" data-friend-level="1">
 							<a href="#">
 							<!--<img src="img/dummy/dummy_avatar.png" alt="#" class="avatarIcon">-->
 							<canvas width="80" height="80" class="avatarIcon"></canvas>
 							<div class="activity">
 								<p class="comment">
-									<span>nakashizuさん</span>がバイトにチェックインしました。
+									バイトにチェックインしました。
 								</p>
 								<div class="footer">
 									<p class="icon"><span class="comment">2</span><span class="otsu">50</span></p>
@@ -128,13 +122,13 @@
 							</div>
 							</a>
 						</li>
-						<li data-friend-jobkind="3" data-friend-level="0">
+						<li data-friend-jobkind="6" data-friend-level="1">
 							<a href="#">
 							<!--<img src="img/dummy/dummy_avatar.png" alt="#" class="avatarIcon">-->
 							<canvas width="80" height="80" class="avatarIcon"></canvas>
 							<div class="activity">
 								<p class="comment">
-									<span>nakashizuさん</span>がバイトにチェックインしました。
+									バイトにチェックインしました。
 								</p>
 								<div class="footer">
 									<p class="icon"><span class="comment">2</span><span class="otsu">50</span></p>
@@ -143,13 +137,13 @@
 							</div>
 							</a>
 						</li>
-						<li data-friend-jobkind="4" data-friend-level="1">
+						<li data-friend-jobkind="6" data-friend-level="1">
 							<a href="#">
 							<!--<img src="img/dummy/dummy_avatar.png" alt="#" class="avatarIcon">-->
 							<canvas width="80" height="80" class="avatarIcon"></canvas>
 							<div class="activity">
 								<p class="comment">
-									<span>nakashizuさん</span>がバイトにチェックインしました。
+									バイトにチェックインしました。
 								</p>
 								<div class="footer">
 									<p class="icon"><span class="comment">2</span><span class="otsu">50</span></p>
