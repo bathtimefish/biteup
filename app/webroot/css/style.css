@@ -18,14 +18,14 @@ table{font-size:inherit;font:100%;}
 body {
 	font-family: sans-serif;
 	background: url(../img/bg_header.png) top no-repeat, url(../img/bg_footer.png) bottom no-repeat, url(../img/bg_blue.gif) center repeat-y;
-	background-size: 320px 202px, 320px 248px;
-	padding-bottom: 150px;
+	background-size: 320px 202px, 320px 330px;
 	text-align: center;
 	font-size: 14px;
 }
 
 a{
 	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	color:#cf4c05;
 }
 
 #container {
@@ -45,42 +45,55 @@ a{
 .checkInWrapperDown {
 	background-position: 0 70px;
 }
+.btnArea{
+	display:box;
+	display:-webkit-box;
+	display:-moz-box;
+	box-pack:justify;
+	-webkit-box-pack:justify;
+	-moz-box-pack:justify;
+	margin:5px;
+	text-align:center;
+}
 
 header {
 	overflow: hidden;
-	}
-
+	position:relative;
+}
+body.nickname header,
+body.junction header{
+	height:50px;
+}
+header h1{
+	position:absolute;
+	color:#fff;
+	font-size:18px;
+	font-weight:bold;
+	text-shadow:0 -1px 1px rgba(0,0,0,0.8);
+	text-align:center;
+	width:320px;
+	top:10px;
+	z-index:3;
+}
 header .pageBack{
-	float: left;
-	margin: 5px 0 0 5px;
+	/*float: left;
+	margin: 5px 0 0 5px;*/
+	position:absolute;
+	left:5px;
+	top:5px;
+	z-index:5;
 }		
 header .profileBtn {
-	float: right;
-	position: relative;
-	text-align: center;
+	/*float: right;
+	padding:5px 5px 0 0;*/
+	position:absolute;
+	right:5px;
+	top:5px;
+	z-index:5;
 }
-header .profileBtn a{
-	text-decoration: none;
+header nav{
+	padding-top:50px;
 }
-header .profileBtn .alert{
-	background-color: #f00;
-	color: #fff;
-	font-weight: bold;
-	font-size: 12px;
-	position: absolute;
-	right: 1px;
-	top: 3px;
-	padding: 1px;
-	border-radius: 20px;
-	width: 18px;
-	height: 15px;
-	-webkit-box-shadow:0 0 2px rgba(255,0,0,1);
-}
-
-header .profileBtn .alert:empty {
-	display: none;
-}
-
 header nav ul {
 	clear: both;
 	display: -webkit-box;
@@ -88,13 +101,47 @@ header nav ul {
 	-webkit-box-align: center;
 	height: 72px;
 }
-
 header nav ul li {
+	text-align: center;
+	position: relative;
 	text-align: center;
 }
 
+header nav ul li a{
+	text-decoration: none;
+}
+header nav ul li .alert{
+	background-color: #e1201a;
+	color: #fff;
+	font-weight: bold;
+	font-size: 12px;
+	position: absolute;
+	right: 1px;
+	top: -6px;
+	padding: 4px;
+	border-radius: 20px;
+	width: 18px;
+	height: 15px;
+	-webkit-box-shadow:1px 1px 2px rgba(0,0,0,0.6);
+	text-shadow:0 -1px 1px rgba(0,0,0,0.4);
+}
+
+header nav ul li .alert:empty {
+	display: none;
+}
+
+/*header nav ul li:nth-child(1):hover:after{
+	content:url(../img/header_btn_timeline_on.png);
+	-webkit-transform:scale(0.5);
+	-webkit-transform-origin:left top;
+	position:absolute;
+	top:0;
+	left:0;
+}
+*/
+
 #timeline{
-	margin-top: 30px;
+	/*margin-top: 30px;*/
 }
 
 /*	common
@@ -109,10 +156,19 @@ header nav ul li {
 .woodFrame .woodWrapper {
 	background: url(../img/bg_timeline_body.png) repeat-y;
 	background-size: 320px;
+	padding-top: 35px;
 }
 
+.woodFrame#timeline .woodWrapper,
+.woodFrame.listWrap .woodWrapper,
+.woodFrame.friendTimelineDetail .woodWrapper,
+.woodFrame.friendList .woodWrapper,
+#account .woodFrame .woodWrapper,
+#guideline .woodFrame .woodWrapper{
+	padding-top:0;
+}
 .woodFrame li {
-	padding: 30px 20px 5px;
+	padding: 20px 20px 5px;
 	overflow: hidden;
 	background: url(../img/border_timeline.png) top center no-repeat, url(../img/icon_arrow_timeline.png) 93% center no-repeat;
 	background-size: 298px 10px, 32px 32px;
@@ -170,13 +226,14 @@ header nav ul li {
 	-moz-box-pack: justify;
 }
 .woodFrame li .avatarIcon {
-	width: 70px;
+	width: 80px;
 	float: left;
 	margin-right: 10px;
+	margin-bottom:10px;
 }
 .woodFrame li .avatarIcon img{
-	width: 70px;
-	height: 70px;
+	width: 80px;
+	height: 80px;
 }
 .woodFrame li .likes {
 	text-align: right;
@@ -275,7 +332,8 @@ header nav ul li {
 }
 
 .sendingIcon span img,
-#moreFeed span img {
+#moreFeed span img,
+#otsukareLoadIcon {
 	-webkit-animation-name: loadingIcon;
 	-webkit-animation-duration: 1s;
 	-webkit-animation-timing-function: linear;
@@ -285,45 +343,33 @@ header nav ul li {
 
 
 /*======================================================
-	login
+	junction
 ======================================================*/
-
-body.login{
-	background: none;
-}
 
 /*	0_junction
 -----------------------------------------------*/
-body.login ul#junction{
-	display: box;
-	display: -webkit-box;
-	display: -moz-box;
-	text-align: center;
+
+body.junction{
+	background: url(../img/junction_header_bg.png) top no-repeat, url(../img/regist_book_bg_footer.jpg) bottom no-repeat, url(../img/junction_bg.jpg) center repeat-y;
+	background-size: 320px 48px, 320px 83px, 320px 122px;
 }
-body.login ul#junction li a{
-	border-radius: 10px;
-	display: block;
-	color: #fff;
-	padding: 10px 0;
-	text-decoration: none;
-	width: 150px;
+body.junction .woodFrame.prologue{
+	margin-top:25px;
 }
-body.login ul#junction li:first-child a{
-	background: -webkit-linear-gradient(top, #ba5f7f 0%, #a20e42 65%, #ba5e7e 100%);
-	background: -moz-linear-gradient(top, #ba5f7f 0%, #a20e42 65%, #ba5e7e 100%);
-	background: -ms-linear-gradient(top, #ba5f7f 0%, #a20e42 65%, #ba5e7e 100%);
-	background: -o-linear-gradient(top, #ba5f7f 0%, #a20e42 65%, #ba5e7e 100%);
-	background: linear-gradient(top, #ba5f7f 0%, #a20e42 65%, #ba5e7e 100%);
-	background: -webkit-gradient(linear, left top, left bottom,color-stop(0, #ba5f7f), color-stop(0.65, #a20e42), color-stop(1, #ba5e7e));
+body.junction .woodFrame.prologue h2{
+	text-align:center;
+	margin-bottom:20px;
 }
-body.login ul#junction li:nth-child(2) a{
-	background: -webkit-linear-gradient(top, #6c8eae 0%, #28508b 62%, #6a8ca7 100%);
-	background: -moz-linear-gradient(top, #6c8eae 0%, #28508b 62%, #6a8ca7 100%);
-	background: -ms-linear-gradient(top, #6c8eae 0%, #28508b 62%, #6a8ca7 100%);
-	background: -o-linear-gradient(top, #6c8eae 0%, #28508b 62%, #6a8ca7 100%);
-	background: linear-gradient(top, #6c8eae 0%, #28508b 62%, #6a8ca7 100%);
-	background: -webkit-gradient(linear, left top, left bottom,color-stop(0, #6c8eae), color-stop(0.62, #28508b), color-stop(1, #6a8ca7));
+body.junction .woodFrame.prologue p{
+	margin:0 30px;
+	padding-bottom:20px;
 }
+body.junction .woodFrame.prologue p.btnArea{
+	padding-bottom:0;
+}
+
+
+
 
 /*	1_login
 -----------------------------------------------*/
@@ -374,14 +420,13 @@ body.login div.inputItem p.error{
 -----------------------------------------------*/
 
 body.nickname {
-	background: #fff4df;
-	padding-bottom: 10px;
+	background: url(../img/regist_book_bg.jpg) top no-repeat, url(../img/regist_book_bg_footer.jpg) bottom no-repeat, url(../img/regist_book_bgall.jpg) center repeat-y;
+	background-size: 320px 244px, 320px 83px;
 }
 
 #bookArea {
-	background: url(../img/regist_book_bg.jpg) no-repeat;
 	width: 100%;
-	height: 220px;
+	height: 180px;
 	background-size: contain;
 	display: -webkit-box;
 	-webkit-box-align: center;
@@ -397,59 +442,70 @@ body.nickname {
 	font-family: serif;
 }
 
-#resistration {
-	padding-left: 25px;
+.woodFrame.registFrame dd small{
+	color:#807069;
 }
-
-#resistration input {
-	background: url(../img/regist_name_mail.jpg) no-repeat;
-	/*background-size: contain;*/
-	background-size: 269px 44px;
-	width: 258px;
-	padding: 0 5px;
-	height: 43px;
-	display: block;
+.woodFrame.registFrame input.loginRegist{
+	background: url(../img/regist_bg_input_login_nrml.jpg) no-repeat 0 0;
+	background-size: 239px 44px;
+	-webkit-appearance:none;
 	border: none;
-	-webkit-appearance: none;
-	font-size: 18px;
-	font-weight: bold;
-	text-shadow: 0 1px 1px rgba(255,255,255,0.8);
-	color: #930;
-	margin-bottom: 10px;
+	width: 229px;
+	height: 44px;
+	padding: 0 20px;
 }
-
-#resistration label span {
-	background: url(../img/regist_icon_subtitle.png) no-repeat;
-	background-size: 13px 16px;
-	padding: 5px 0 7px 20px;
-	display: inline-block;
-	font-size: 16px;
-	font-weight: bold;
-	line-height: .4;
-	color: #3d0404;
+.woodFrame.registFrame dd.ok input.loginRegist{
+	background: url(../img/regist_bg_input_login.jpg) no-repeat 0 0;
+	background-size: 270px 44px;
 }
-
-#resistration input[type="password"] {
-	background: url(../img/regist_password.jpg) no-repeat;
-	background-size: 161px 42px;
-	width: 161px;
+.woodFrame.registFrame dd.error input{
+	background: url(../img/regist_bg_input_login_error.jpg) no-repeat 0 0;
+	background-size: 270px 44px;
 }
-
-#resistration label[for="_pass"] {
-	float: left;
+.woodFrame .errorText{
+	background-color:#ffe2d1;
+	border-radius:5px;
+	margin:0 25px 15px;
+	padding:10px;
+	color:#9f0d08;
+	text-shadow:0 1px 1px rgba(255,255,255,0.9);
 }
-
-#resistration input[type="image"] {
-	width: 79px;
-	height: auto;
-	float: left;
-	margin: 17px 0 0 20px;
-	padding: 0;
+.woodFrame .errorText p{
+	font-weight:bold;
+	margin-bottom:3px;
+}
+.woodFrame .errorText ul li{
+	background:none;
+	padding:0 0 0 20px;
+	text-indent:-5px;
+}
+.woodFrame .errorText ul li:before{
+	content:"-";
+	left:-10px;
+	position:relative;
+}
+p.forgetPW {
+	text-align:right;
+	margin-right:25px;
+}
+p.forgetPW a{
+	background: url(../img/login_icon_arrow.png) no-repeat 0 0;
+	background-size: 18px 23px;
+	padding:3px 0 3px 20px;
+	font-weight:bold;
+}
+p.loginAttention{
+	color:#603f2f;
+	text-shadow:1px 1px 1px rgba(255,255,255,0.8);
+	margin:0 10px;
+}
+p.loginAttention a{
+	font-weight:bold;
 }
 
 /*	2_top (akiba)
 -----------------------------------------------*/
-
+/*
 #moreFeed {
 	text-align: center;
 	margin: 15px 0 0;
@@ -460,4 +516,34 @@ body.nickname {
 
 #moreFeed span {
 	display: none;
+}*/
+
+
+/*======================================================
+	footer
+======================================================*/
+footer{
+	padding-top: 150px;
+}
+body.nickname footer,
+body.junction footer{
+	padding-top:30px;
+}
+footer nav ul{
+	display: -webkit-box;
+	-webkit-box-pack: center;
+	-webkit-box-align: center;
+}
+footer nav ul li{
+	margin-right:3px;
+}
+footer nav ul li:last-child{
+	margin-right:0;
+}
+footer p.copyright{
+	color:#fff;
+	text-shadow:0 1px 1px rgba(0,0,0,0.8);
+	text-align:center;
+	font-size:10px;
+	padding:12px 0 5px;
 }

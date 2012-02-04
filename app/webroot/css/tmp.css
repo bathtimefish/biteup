@@ -3,7 +3,42 @@
 .alC{
 	text-align: center;
 }
+p.delete{
+	margin-top:20px;
+}
+#moreFeed{
+	background:  url(../img/btn_readmore.png) no-repeat center bottom;
+	background-size: 271px 60px;
+	margin:0 auto;
+	padding-bottom:50px;
+	text-indent:-9999px;
+	position:relative;
+}
+#moreFeed span{
+	background: url(../img/btn_readmore_on.png) no-repeat center bottom;
+	margin:0 auto;
+	background-size: 271px 60px;
+	position:absolute;
+	width:271px;
+	height:60px;
+	top:11px;
+	left:25px;
+	display:none;
+}
+#moreFeed span img{
+	position:absolute;
+	top:15px;
+	left:180px;
+	width:32px;
+	height:32px;
+}
 
+.woodFrame li .avatarIcon{
+	padding: 3px;
+	background: #fff;
+	box-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+	-webkit-box-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
 /*	3_yotei_touroku
 ============================================*/
 .woodFrame.registFrame{
@@ -15,8 +50,7 @@
 	top:7px;
 }
 .woodFrame.registFrame dl{
-	margin:0 0 0 22px;
-	padding-top: 35px;
+	margin:0 0 0 25px;
 }
 .woodFrame.registFrame.noTitle dl{
 	padding-top: 0;
@@ -26,19 +60,26 @@
 	background-size: 13px 19px;
 	color:#3d0404;
 	font-weight:bold;
+	font-size:16px;
 	padding:0 0 4px 20px;
 	text-shadow:-1px -1px 1px rgba(255,255,255,1);
 }
 .woodFrame.registFrame dd{
 	padding-bottom: 10px;
-	padding-left: 20px;
-	font-weight: bold;
+	/*padding-left: 20px;
+	font-weight: bold;*/
 	text-shadow: 0 1px 1px rgba(255,255,255,0.8);
 	color: #3d0404;
+	margin-right:18px;
+}
+
+.woodFrame.registFrame dt.hidden{
+	text-decoration: underline;
+	color: red;
 }
 
 .woodFrame.registFrame dd:last-child {
-	padding-left: 0;
+	/*padding-left: 0;*/
 }
 
 .woodFrame.registFrame .selectWorks{
@@ -50,7 +91,7 @@
 	height: 44px;
 	padding: 0 10px 0 15px;
 }
-.woodFrame.registFrame .newRegist{
+.woodFrame/*.registFrame*/ .newRegist{
 	background: url(../img/regist_bg_input.png) no-repeat 0 0;
 	background-size: 269px 44px;
 	-webkit-appearance:none;
@@ -62,7 +103,7 @@
 .woodFrame.registFrame dd.calender{
 	background: url(../img/regist_bg_calender.png) no-repeat 0 0;
 	background-size: 271px 49px;
-	padding: 10px 0 10px 20px;
+	padding: 10px 0 15px 20px;
 	margin-bottom: 10px;
 	font-size: 1.2em;
 }
@@ -101,6 +142,10 @@
 .woodFrame.registFrame div.time.while em{
 	padding: 0 10px;
 }
+.woodFrame.registFrame p.text{
+	padding:10px 25px;
+	color:#603f2f;
+}
 
 .registBtn{
 	display: box;
@@ -120,6 +165,7 @@
 #controler {
 display: -webkit-box;
 -webkit-box-pack: justify;
+width:276px;
 }
 
 #controler a {
@@ -128,12 +174,13 @@ padding: 15px;
 }
 
 .clipArea {
-width: 100%;
+width: 276px;
 overflow-x: hidden;
 }
 
 .calbox {
 float: left;
+width:276px !important;
 }
 
 .calbox header {
@@ -149,10 +196,13 @@ margin: 0 0 15px;
 }
 .calbox table td {
 text-align: center;
-padding: 5px 0;
+padding: 10px 0;
 font-family: Arial, Helvetica, sans-serif;
 font-weight: bold;
-border: 1px solid #CCC;
+border: 1px solid #6e2b0a;
+box-shadow:inset 0 1px 1px rgba(255,255,255,0.8);
+-webkit-box-shadow:inset 0 1px 1px rgba(255,255,255,0.8);
+background-color:#fff4df;
 }
 .calbox table .today {
 background: #69C;
@@ -179,56 +229,115 @@ font-size: 18px;
 padding: 15px 0;
 }
 
+.woodFrame.registFrame dd#biteCalendar{
+	position:relative;
+	padding-left:0;
+	background: url(../img/cal_head_bg.png) no-repeat 0 0, url(../img/cal_foot_bg.png) no-repeat 0 bottom;
+	background-size: 276px 87px, 276px 231px;
+	padding-bottom:47px;
+	display:none;
+}
+#biteCalendar #controler{
+	position:absolute;
+	padding:20px 0 0;
+}
+#biteCalendar #controler a{
+	background-position:0 0;
+	background-repeat:no-repeat;
+	background-size:42px 34px;
+	text-indent:-9999px;
+	position: relative;
+	z-index: 2;
+}
+#biteCalendar #controler a.prev{
+	background-image:url(../img/cal_arrow_prev.png);
+}
+#biteCalendar #controler a.next{
+	background-image:url(../img/cal_arrow_next.png);
+}
+#biteCalendar .calbox header{
+	height:36px;
+	color:#fff;
+	text-shadow:1px 1px 1px rgba(0,0,0,0.8);
+	font-size:18px;
+	padding-top:24px;
+}
+#biteCalendar .calbox .content{
+	background: url(../img/cal_border_bg.png) repeat-y 0 0;
+	background-size: 276px 12px;
+	padding:0 7px;
+}
+#biteCalendar .calbox .content th{
+	color:#fdeae0;
+	text-shadow:1px 1px 1px rgba(0,0,0,0.8);
+	text-align:center;
+	height:26px;
+}
+
 /*	4_yotei_ichiran
 ============================================*/
 .woodFrame.listWrap ul{
 	margin-top: -5px;
 }
 .woodFrame.listWrap ul li{
+	background: url(../img/border_timeline.png) top center no-repeat, url(../img/icon_arrow_edit.png) 93% center no-repeat;
+	background-size: 298px 10px, 34px 34px;
 	padding: 20px 20px 10px;
 }
 .woodFrame.listWrap ul li:first-child{
-	background: url(../img/icon_arrow_timeline.png) 95% center no-repeat;
+	background: url(../img/icon_arrow_edit.png) 93% center no-repeat;
+	background-size: 34px 34px;
 	padding-top: 0;
 }
 .woodFrame.listWrap ul li a{
 	text-decoration: none;
 	color: #3c220c;
 }
+.woodFrame.listWrap ul li img{
+	float:left;
+	padding: 3px;
+	background: white;
+	box-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+	-webkit-box-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+.woodFrame.listWrap ul li div.kind{
+	float:right;
+	width:215px;
+}
 .woodFrame.listWrap ul li h3{
 	font-weight: bold;
-}
-.woodFrame.listWrap ul li h3 img{
-	vertical-align: middle;
-	margin-right: 3px;
+	font-size:18px;
+	background: url(../img/regist_icon_subtitle.png) no-repeat 2px 2px;
+	background-size: 13px 19px;
+	padding: 0 0 4px 20px;
+	text-shadow: -1px -1px 1px rgba(255, 255, 255, 1);
 }
 .woodFrame.listWrap ul li span{
 	font-size: 12px;
+	display:block;
 }
 .woodFrame.listWrap ul li span em{
 	font-size: 16px;
 	font-weight: bold;
 }
 .woodFrame.listWrap ul li span.date{
-	background: url(../img/icon_calender.png) no-repeat 0 0;
-	background-size: 20px 17px;
-	padding: 2px 0 0 23px;
-	margin-right: 2px;
-	margin-bottom: 5px;
+	background: url(../img/icon_calender.png) no-repeat 0 2px;
+	background-size: 18px 15px;
+	padding: 0 0 0 20px;
 }
 .woodFrame.listWrap ul li span.time{
-	background: url(../img/icon_date.png) no-repeat 0 0;
-	background-size: 18px 17px;
-	padding: 2px 0 0 21px;
+	background: url(../img/icon_date.png) no-repeat 0 2px;
+	background-size: 18px 18px;
+	padding: 0 0 0 20px;
 }
 
 /*	06_friend_timeline
 ============================================*/
 .searchBox{
-	background: url(../img/search_bg.png) no-repeat 0 0;
-	background-size: 320px 91px;
-	margin-top: -20px;
-	padding: 42px 10px 45px 15px;
+	background: url(../img/search_icon_roope.png) no-repeat 20px 30px, url(../img/search_bg.png) no-repeat 0 0;
+	background-size: 22px 27px, 310px 84px;
+	margin:0 0 0 5px;
+	padding: 30px 10px 40px 45px;
 	position: relative;
 }
 
@@ -237,18 +346,12 @@ padding: 15px 0;
 	border: none;
 	background: none;
 	text-shadow: -1px -1px 1px rgba(255,255,255,0.8);
+	font-size:16px;
 }
 .searchBox input.searchBtn{
-	-webkit-appearance: none;
-	border: none;
-	text-indent: -9999px;
-	background: url(../img/search_btn.png) no-repeat 0 0;
-	background-size: 75px 50px;
-	width:75px;
-	height: 50px;
 	position: absolute;
-	right:7px;
-	top:30px;
+	right:18px;
+	top:16px;
 }
 
 /*	06_friend_timeline2
@@ -258,8 +361,70 @@ padding: 15px 0;
 }
 .woodFrame.friendTimelineDetail li .activity {
 	float: left;
-	width: 200px;
+	width: 175px;
+	margin-bottom:10px;
 }
+
+/*	.comment
+-----------------------------------------------*/
+.woodFrame li div.commentForm{
+	clear:both;
+	position:relative;
+}
+.woodFrame li div.commentForm input.newRegist{
+	margin-left:8px;
+	margin-bottom:5px;
+}
+.woodFrame li div.commentForm .otsukareBtn{
+	text-align:center;
+	position:absolute;
+	left:105px;
+	z-index:5;
+}
+.woodFrame li div.commentForm #otsukareLoadIcon{
+	position:absolute;
+	left:105px;
+	z-index:6;
+}
+.woodFrame li .commentList{
+	background: url(../img/comment_title_bg.png) no-repeat center 0;
+	background-size: 280px 62px;
+	padding-top:60px;
+	margin-top:20px;
+	clear:both;
+	position:relative;
+}
+.woodFrame li .commentList .otsukareBtnSumi{
+	display:none;
+	position:absolute;
+	top:-20px;
+}
+.woodFrame li .commentList li{
+	border-bottom:1px solid #7d5929;
+	padding:8px;
+	background-color:#f9deac;
+}
+.woodFrame li .commentList li p.commentAvatar{
+	width:80px;
+	float: left;
+	margin-right: 8px;
+	padding: 3px;
+	background: white;
+	box-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+	-webkit-box-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+.woodFrame li .commentList li p.commentAvatar img{
+}
+.woodFrame li .commentList li div.detail{
+	width:170px;
+	float: left;
+}
+.woodFrame li .commentList li div.detail h2{
+	font-weight:bold;
+	text-shadow:1px 1px 1px rgba(255,255,255,0.7);
+}
+
+/*
 .commentForm{
 	background-color: #e9c174;
 	padding: 5px;
@@ -287,23 +452,59 @@ padding: 15px 0;
 .commentList li div.detail{
 	width:115px;
 	float: left;
-}
+}*/
 
 
 /*	07_search_result
 ============================================*/
 .woodFrame.friendList li{
-	padding: 15px 20px 5px;
+	position:relative;
 }
 .woodFrame.friendList li:first-child{
-	padding-top: 0;
+	/*padding-top: 0;*/
 }
 .woodFrame.friendList li .activity{
 }
-.friendList .activity p.name{
+.friendList .activity h2{
 	color: #452506;
 	font-weight: bold;
+	text-shadow:1px 1px 1px rgba(255, 255, 255, 0.8);
+	margin-bottom:5px;
 }
+.friendList .activity p.status{
+	background:	url(../img/friendlist_job_bg.jpg) repeat-x 0 0;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+	padding:2px 5px 1px;
+	width:140px;
+	margin-bottom:4px;
+	box-shadow:inset 1px 1px 2px rgba(0,0,0,0.3);
+	text-shadow:1px 1px 1px rgba(255, 255, 255, 0.2);
+	display:inline-block;
+	font-size:12px;
+}
+.friendList .activity p.job{
+	font-size:12px;
+	color:#978a85;
+}
+.friendList .activity p.level{
+	background:	url(../img/friendlist_level_bg.png) no-repeat 0 0;
+	background-size: 52px 25px;
+	color:#fff;
+	font-weight:bold;
+	text-shadow:1px 1px 1px rgba(0,0,0,0.3);
+	position:absolute;
+	top:18px;
+	left:55px;
+	width:80px;
+	height:25px;
+	text-align:center;
+}
+.friendList li:first-child .activity p.level{
+	top:0;
+}
+
+
 .friendList .activity p.detail img{
 	vertical-align: middle;
 
@@ -324,6 +525,8 @@ padding: 15px 0;
 	height: 80px;
 	float: left;
 }
+
+
 
 /*	08_friend_profile
 ============================================*/
@@ -350,8 +553,8 @@ p.profileAvatar img {
 .profileBg{
 	background: url(../img/friend_detail_bg.png) no-repeat 0 -1px;
 	background-size: 320px 126px;
-	padding: 22px 20px 30px;
-
+	padding: 20px 20px 20px;
+	position:relative;
 }
 .profileDetail{
 	display: box;
@@ -361,20 +564,32 @@ p.profileAvatar img {
 	-webkit-box-pack: justify;
 	-moz-box-pack: justify;
 }
+.profileLevel{
+	width:190px;
+}
 .profileLevel h2{
 	font-weight: bold;
+	margin-left:30px;
 	margin-bottom: 3px;
 }
-.profileLevel p img{
-	vertical-align: middle;
-}
-.profileLevel p span.job{
+.profileLevel h2 span{
 	font-size: 10px;
-	padding: 5px 0 5px 23px;
-	background-repeat: no-repeat;
-	background-position: 0 0;
-	background-size: 20px 20px;
+	margin-left:10px;
+	font-weight:normal;
+	color:#8d695b;
 }
+.profileLevel p.level{
+	color:#fff;
+	font-weight:bold;
+	text-shadow:1px 1px 1px rgba(0,0,0,0.3);
+	position:absolute;
+	top:20px;
+	left:7px;
+	font-size:20px;
+	text-align:center;
+	width:40px;
+}
+/*
 .job.power{
 	background-image: url(../img/icon_job_power.jpg);
 }
@@ -399,7 +614,7 @@ p.profileAvatar img {
 .job.season{
 	background-image: url(../img/icon_job_season.jpg);
 }
-
+*/
 
 
 .profileCount ul{
@@ -422,32 +637,33 @@ ul.profileCount li.checkout{
 }
 
 .profile .pointGage{
+	margin-top: 10px;
+}
+.profile .pointGage p.meter{
+	background: url(../img/friend_detail_gage_bg.png) no-repeat 0 0;
+	background-size: 285px 22px;
+	height: 22px;
+	width: 285px;
+}
+.profile .pointGage p.meter span{
+	background: url(../img/friend_detail_gage.png) no-repeat 5px 5px;
+	background-size: 277px 13px;
+	width: 202px;
+	height: 21px;
+	display:inline-block;
+}
+.profile .pointGage .gage{
 	display: box;
 	display: -webkit-box;
 	display: -moz-box;
 	box-pack: justify;
 	-webkit-box-pack: justify;
 	-moz-box-pack: justify;
-	margin-top: 5px;
-}
-.profile .pointGage .gage{
-	background: url(../img/friend_detail_gage_bg.png) no-repeat 0 0;
-	background-size: 202px 21px;
-	width: 202px;
-	height: 21px;
-	position: relative;
-}
-.profile .pointGage .gage p.meter{
-	position: absolute;
-	background: url(../img/friend_detail_gage.png) no-repeat 5px 5px;
-	background-size: 192px 12px;
-	height: 20px;
-	width: 50px;
 }
 .profile .pointGage .gage p.text{
 	font-size: 10px;
 	color: #333;
-	padding: 18px 0 0 8px;
+	padding: 0 0 0 8px;
 }
 .profile .pointGage .gage p.text strong{
 	font-weight: bold;
@@ -456,10 +672,35 @@ ul.profileCount li.checkout{
 .profile .pointGage .point{
 	font-family: Helvetica;
 	font-weight: bold;
-	text-shadow: -1px -1px 1px rgba(255,255,255,0.8);
+	text-shadow: -1px -1px 1px rgba(255,255,255,0.5);
 	color: #18502d; 
 }
 
+.followBtn{
+	text-align:center;
+	color:#333;
+}
+
+/*	09_account
+============================================*/
+#account dl dd.noedit{
+	background: url(../img/regist_bg_input_noedit.png) no-repeat 0 0;
+	background-size: 269px 44px;
+	padding:12px 0 12px 10px;
+	margin-bottom:5px;
+}
 
 
+/*	10_mypage
+============================================*/
+.mypageBtn{
+	text-align:center;
+	background: url(../img/header_btn_list_bg.png) no-repeat 0 0;
+	background-size: 320px 45px;
+}
 
+/*	11_guideline
+============================================*/
+#guideline{
+	margin-top:-50px;
+}

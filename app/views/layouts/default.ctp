@@ -24,6 +24,16 @@
 
   </div><!-- /#contenerInner -->
   </div><!-- /#container -->
- <?php echo $this->element('sql_dump'); ?>
+  <footer>
+    <nav>
+      <ul>
+	    <li class="tapping"><a href="#"><?php echo $html->image('footer_btn_info.png', array('alt' => '登録情報', 'width' => '68', 'height' => '38')); ?></a></li>
+        <li class="tapping"><a href="#"><?php echo $html->image('footer_btn_guideline.png', array('alt' => '利用ガイドライン', 'width' => '107', 'height' => '38')); ?></a></li>
+        <li class="tapping"><a href="#"><?php echo $html->image('footer_btn_about.png', array('alt' => 'designers hackとは', 'width' => '127', 'height' => '38')); ?></a></li>
+      </ul>
+    </nav>
+    <p class="copyright">Copyright &copy; designers hack All Rights Reserved.</p>
+  </footer>
+  <?php echo $this->element('sql_dump'); ?>
 </body>
 </html>
