@@ -1,3 +1,73 @@
+<?php echo $this->Javascript->link('global', false);?>
+<?php echo $this->Javascript->link('cal_ui', false);?>
+<script>
+window.onload = function (){
+    var ev = "touchstart"; //touchstart
+    $("#biteCalCall").bind(ev, showCalendar);
+    function showCalendar(){
+        $("#biteCalCall").unbind(ev);
+        var cal = new dhCalUI("biteCalCall","biteCalendar");
+        $(cal).bind("complete", function (e){
+            $("#biteCalCall").bind(ev, showCalendar);
+        });
+    };
+}
+</script>
+<?php echo $this->Html->css('tmp', 'stylesheet', array('inline'=>false)); ?>
+<div id="registration_edit">
+     <?php echo $this->Form->create('Job');?>
+    	<div class="woodFrame registFrame">
+            <h1><?php echo $this->Html->image('regist_title_select.png', array('alt'=>'バイト先を選ぶ', 'width'=>298, 'height'=>54)); ?></h1>
+			<div class="woodWrapper">
+				<dl>
+					<dt>今までのバイト先から選ぶ</dt>
+					<dd>
+						<select name="company" class="selectWorks">
+							<option value="-">▼えらんでぽ</option>
+							<option value="ヨドバシカメラ">ヨドバシカメラ</option>
+							<option value="ビックカメラ">ビックカメラ</option>
+						</select>
+					</dd>
+					<dt>新しいバイト先を追加する</dt>
+                    <dd><?php echo $this->Form->input('name', array('type'=>'text', 'div'=>false, 'label'=>false, 'placeholder'=>'新しいバイト先をいれてぽ', 'class'=>'newRegist')); ?></dd>
+					<dd><input type="text" placeholder="新しいバイト先を入れてぽ" class="newRegist"></dd>
+					<dt>バイト先のジャンルを選ぶ</dt>
+					<dd>
+						<select name="job" class="selectWorks">
+							<option value="-">▼ジャンルをえらんでぽ</option>
+							<option value="力仕事・労働">力仕事・労働</option>
+							<option value="オフィスワーク">オフィスワーク</option>
+						</select>
+					</dd>
+				</dl>
+			</div>
+		</div>
+
+				<div class="woodFrame registFrame">
+				<h1><img src="img/regist_title_date.png" alt="日時を入れてぽ" width="298" height="54"></h1>
+					<div class="woodWrapper">
+					<dl>
+						<dt>カレンダーから日付を選ぶ</dt>
+						<dd id="biteCalCall" class="calender">2月10日</dd>
+						<dd id="biteCalendar"></dd>
+						<dt>バイトの開始時刻と時間を選ぶ</dt>
+						<dd>
+							<div class="time start"><em>10</em><em>00</em></div>から
+							<div class="time while"><em>5</em>時間<em>00</em>分</div>
+						</dd>
+					</dl>
+					</div>
+				</div>
+				
+				<p class="alC"><a href="#"><img src="img/btn_edit.png" alt="編集する" width="206" height="60"></a></p>
+				<p class="alC"><a href="#"><img src="img/btn_deletebite.png" alt="予定を削除する" width="144" height="33"></a></p>
+					
+				</form>
+			</div><!-- /#registration -->	
+
+
+
+
 <div class="jobs view">
 <h2><?php  __('Job');?></h2>
 	<dl><?php $i = 0; $class = ' class="altrow"';?>

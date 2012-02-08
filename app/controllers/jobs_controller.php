@@ -87,7 +87,6 @@ class JobsController extends AppController {
     }
 
     function add() {
-        $this->layout = '';
         if (!empty($this->data)) {
             $this->Job->create();
             if ($this->Job->save($this->data)) {
@@ -97,8 +96,10 @@ class JobsController extends AppController {
                 $this->Session->setFlash(__('The job could not be saved. Please, try again.', true));
             }
         }
+        $jobs = $this->Job->find('list');
+        $jobs['new'] = '新しいバイト先を指定'; // 新規登録のためのデータを追加
         $jobkinds = $this->Job->Jobkind->find('list');
-        $this->set(compact('jobkinds'));
+        $this->set(compact('jobkinds', 'jobs'));
         $this->set('user', $this->Job->User->read(null, $this->Auth->user('id')));
     }
 
@@ -118,9 +119,9 @@ class JobsController extends AppController {
         if (empty($this->data)) {
             $this->data = $this->Job->read(null, $id);
         }
-        $users = $this->Job->User->find('list');
+        $jobs = $this->Job->find('list');
         $jobkinds = $this->Job->Jobkind->find('list');
-        $this->set(compact('users', 'jobkinds'));
+        $this->set(compact('jobkinds', 'jobs'));
     }
 
     function delete($id = null) {

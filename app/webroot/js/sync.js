@@ -107,6 +107,9 @@ var Sync = {
 											$("#otsukareLoadIcon").hide();
 											$(".commentForm").fadeOut(300, function () {
 											$(dom).prependTo(".commentList ul").hide().slideDown(1000);
+											//とみた追記(@2012.2.3)ここから
+											$(".otsukareBtnSumi").show();
+											//とみた追記(@2012.2.3)ここまで
 											Global.search2Canvas();
 										});
 									}

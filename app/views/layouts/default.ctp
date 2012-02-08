@@ -2,7 +2,7 @@
 <html>
  <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1">
+        <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
         <?php echo $this->Html->meta('icon'); ?>
         <title>Biteup</title>
         <?php echo $this->Javascript->link('jquery-1.7.min');?>

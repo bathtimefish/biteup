@@ -49,6 +49,7 @@ class UsersController extends AppController {
             }
             $this->set('feeds', $timelines);
         }
+        $this->set('title', 'バイトの妖精');
         $this->set('userid', $this->Auth->user('id'));
         $this->set('nickname', $this->Auth->user('username'));
     }

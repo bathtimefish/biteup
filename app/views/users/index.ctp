@@ -1,4 +1,6 @@
-		<!-- ここから、サーバに吐き出してもらいたいscript -->
+<?php $title = 'トップページ'; ?>
+
+        <!-- ここから、サーバに吐き出してもらいたいscript -->
 		<script>
 			var userData = { rows: [ {userName:"nakashizu",userID:123456}] };
 		</script>

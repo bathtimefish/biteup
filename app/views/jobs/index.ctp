@@ -27,7 +27,7 @@ $(function (){
 	foreach ($jobs as $job):
 	?>
 	<li>
-        <a href="/biteup/jobs/view/<?php echo $job['Job']['id']; ?>">
+        <a href="/biteup/jobs/edit/<?php echo $job['Job']['id']; ?>">
 			<div class="kind">
                 <h3>
                     <img src="img/icon_job_sampling.jpg" alt width="25" height="25">
@@ -46,7 +46,7 @@ $(function (){
 <!-- test -->
 <div style="text-align:center;margin-top:10px;">
 <?php echo $this->Paginator->prev('<< ' . __('previous', true), array(), null, array('class'=>'disabled'));?>
- | 	<?php echo $this->Paginator->numbers();?>
+ | <?php echo $this->Paginator->numbers();?>
  |
 <?php echo $this->Paginator->next(__('next', true) . ' >>', array(), null, array('class' => 'disabled'));?>
 </div>
