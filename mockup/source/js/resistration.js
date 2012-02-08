@@ -16,7 +16,7 @@ var Biteup = {
 		if($("input[name='date']").val() == "") {
 			errorMsg += "日付を決めてぽ！\n";
 		}
-		if($("#biteCalendar em:first-child").text() == "") {
+		if($("#hdnStartHour").val() == "" || $("#hdnStartMinute").val() == "" || $("#hdnEndHour").val() == "" || $("#hdnEndMinute").val() == "" ) {
 			errorMsg += "時刻を決めてぽ！\n";
 		}
 		if($("select[name='job']").val() == "" ) {
@@ -33,8 +33,8 @@ var Biteup = {
 	//新しいバイト先か？それとも今までのバイト先を選ぶか？
 	newCompanyUI: function (){
 		//もしも過去に勤務先がある場合、hiddenに勤務先の値をツッコむ
-		if($("#haveEver").css("display") === "block") { $("input[name='jobPlace']").val($("select[name='company']").val()); }
-			$("select[name='company']").change(function (){
+		if($("#haveEver").css("display") === "block") { $("input[name='jobPlace']").val($("select[id='company']").val()); }
+			$("select[id='company']").change(function (){
 					if($(this).val() === "new") {
 						var _this = this;
 						$(_this).val($(_this).children()[0]);//新規が選ばれると一旦最初のoptionの値に戻す
@@ -55,7 +55,7 @@ var Biteup = {
 		},//newCompanyUI
 		
 	haveEver: function (){ //過去のバイト先が選ばれる
-		$("input[name='jobPlace']").val($("select[name='company']").val());
+		$("input[name='jobPlace']").val($("select[id='company']").val());
 		$("#haveEver").removeClass("hidden").next("dd").slideDown(300, function (){
 				$("#newEver").addClass("hidden").bind("click", Biteup.newEver).next("dd").slideUp(300);
 			});
@@ -86,4 +86,8 @@ window.onload = function (){
 	var ev = "touchstart mousedown"; //touchstart
 	$("#biteCalCall").bind(Biteup.ev, Biteup.showCalendar);
 	Biteup.newCompanyUI();
+	
+	$("#startTime").timeSelector({ format: "<em>%H</em><em>%M</em>", target: "timeFrame1" });
+	$("#endTime").timeSelector({ format: "<em>%H</em>時間<em>%M</em>分", target: "timeFrame2" });
+		
 }

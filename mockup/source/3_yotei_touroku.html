@@ -12,6 +12,7 @@
 		<!-- / ここから、サーバに吐き出してもらいたいscript -->
 		<script src="js/global.js"></script>
 		<script src="js/cal_ui.js"></script>
+		<script src="js/ui.timeSelector.js"></script>
 		<script src="js/resistration.js"></script>
 		
 		<link rel="stylesheet" type="text/css" href="css/style.css">
@@ -44,7 +45,7 @@
 					<dl>
 						<dt id="haveEver">今までのバイト先から選ぶ</dt>
 						<dd>
-							<select name="company" class="selectWorks">
+							<select id="company" class="selectWorks">
 								<!--<option value="-">▼えらんでぽ</option>-->
 								<option value="ヨドバシカメラ">ヨドバシカメラ</option>
 								<option value="ビックカメラ">ビックカメラ</option>
@@ -78,8 +79,14 @@
 						<dd id="biteCalendar"></dd>
 						<dt>バイトの開始時刻と時間を選ぶ</dt>
 						<dd>
-							<div class="time start"><em></em><em></em></div>から
-							<div class="time while"><em></em>時間<em></em>分</div>
+							<div id="startTime" data-hour="hdnStartHour" data-minute="hdnStartMinute" class="time start"><em></em><em></em></div>から
+							<div id="timeFrame1"></div>
+							<div id="endTime" data-hour="hdnEndHour" data-minute="hdnEndMinute" class="time while"><em></em>時間<em></em>分</div>
+							<div id="timeFrame2"></div>
+							<input id="hdnStartHour" type="hidden" />
+							<input id="hdnStartMinute" type="hidden" />
+							<input id="hdnEndHour" type="hidden" />
+							<input id="hdnEndMinute" type="hidden" />
 						</dd>
 					</dl>
 					</div>
