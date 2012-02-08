@@ -1,10 +1,10 @@
 <?php
-		$comment_cnt = 0;
-		foreach ($likes as $like) {
-			if ($like['Like']['message']!='')
-				$comment_cnt++;
-		} 
-		?>
+$comment_cnt = 0;
+foreach ($likes as $like) {
+	if ($like['Like']['message']!='')
+		$comment_cnt++;
+	} 
+?>
 <?php echo $this->Javascript->link('global', false);?>
 <?php echo $this->Javascript->link('checkin_ui', false);?>
 <script>
@@ -20,8 +20,8 @@
 <div class="woodFrame friendTimelineDetail">
 					<div class="woodWrapper">
 						<ul>
-						<li>
-							<img src="img/dummy/dummy_avatar.png" alt="#" class="avatarIcon">
+						<li data-friend-jobkind="2" data-friend-level="1">
+							<canvas width="80" height="80" class="avatarIcon"></canvas>
 							<div class="activity">
 								<p class="comment">
 									<span><?php echo $detail['User']['username'] ?>さん</span>がバイトにチェックインしました。
@@ -31,42 +31,46 @@
 									<p class="times"><?php echo $detail['Feed']['action_time'] ?></p>
 								</div>
 							</div>
+<?php if($like_flg) : ?>
+							<div class="commentForm">
+								<?php echo $this->Form->create('Feed',array('controller' => 'feed', 'action' => 'detail','url'=>array($detail['Feed']['id']))); ?>								
+								<p><?php echo $this->Form->input('message', array('type' => 'text', 'class' => 'newRegist', 'placeholder' => 'コメントをいれてあげるぽよ', 'label' => false, 'div' => false)); ?></p>
+								<p class="otsukareBtn"><?php echo $form->submit('comment_btn_otsukare.png', array('alt' => 'オツカレ', 'value' => 'オツカレ', 'width' => '70', 'div' => false)); ?></p>
+								<img src="img/icon_otsukare_load.png" id="otsukareLoadIcon" style="display: none">
+								</form>
+							</div>
+<?php endif; ?>
+							<div class="commentList">
+								<p class="otsukareBtnSumi"><img src="img/comment_btn_otsukare_sumi.png" alt="オツカレ済！" value="オツカレ済" width="280"></p>
+								<ul>
+<?php				
+foreach ($likes as $like) :
+if ($like['Like']['message']!='') :
+?>
+								<li data-friend-jobkind="<?php echo $like['Like']['jobkind_id']; ?>" data-friend-level="3">
+									<a href="#">
+									<p class="commentAvatar"><canvas width="80" height="80"></canvas></p>
+									<div class="detail">
+										<h2><?php echo $like['User']['username']; ?></h2>
+										<p class="text"><?php echo $like['Like']['message']; ?></p>
+										<p class="times"><?php echo $like['Like']['action_time']; ?></p>
+									</div>
+									</a>
+								</li>
+<?php
+endif;
+endforeach;
+?>
+							</div>
+
 						</li>
-						
 					</ul>
+<?php
+if ( $comment_cnt > 5 ) :
+?>
+					<p id="moreFeed">もっと読む…<span><img src="img/icon_otsukare_load.png" alt="loading"></span></p>
+<?php
+endif;
+?>
 					</div>
 				</div><!-- /#friendTimeline -->
-<?php
-		if($like_flg) {
-?>
-				<div class="commentForm">
-					<h1>おつかれコメントを入れてあげましょう</h1>
-<?php
-			echo $this->Form->create('Feed',array('controller' => 'feed', 'action' => 'detail','url'=>array($detail['Feed']['id'])));
-			echo $this->Form->input('message');
-			echo $this->Form->submit('オツカレ！');
-			echo $this->Form->end($options=null); 
-		}
-?>
-				</div>
-				
-				<div class="commentList">
-					<ul>
-	<?php				foreach ($likes as $like) {
-			if ($like['Like']['message']!='') {
-?>
-					<li>
-						<a href="#">
-						<p class="commentAvatar"><?php echo $this->Html->image('dummy/dummy_avatar.png', array('alt'=>'#')); ?></p>
-						<div class="detail">
-							<h2><?php echo $like['User']['username']; ?></h2>
-							<p class="text"><?php echo $like['Like']['message']; ?></p>
-							<p class="times"><?php echo $like['Like']['action_time']; ?></p>
-						</div>
-						</a>
-					</li>
-<?php }
-} ?>
-					</ul>
-				</div>
-				
