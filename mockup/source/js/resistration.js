@@ -16,7 +16,7 @@ var Biteup = {
 		if($("input[name='date']").val() == "") {
 			errorMsg += "日付を決めてぽ！\n";
 		}
-		if($("#biteCalendar em:first-child").text() == "") {
+		if($("#hdnStartHour").val() == "" || $("#hdnStartMinute").val() == "" || $("#hdnEndHour").val() == "" || $("#hdnEndMinute").val() == "" ) {
 			errorMsg += "時刻を決めてぽ！\n";
 		}
 		if($("select[name='job']").val() == "" ) {
@@ -86,4 +86,8 @@ window.onload = function (){
 	var ev = "touchstart mousedown"; //touchstart
 	$("#biteCalCall").bind(Biteup.ev, Biteup.showCalendar);
 	Biteup.newCompanyUI();
+	
+	$("#startTime").timeSelector({ format: "<em>%H</em><em>%M</em>", target: "timeFrame1" });
+	$("#endTime").timeSelector({ format: "<em>%H</em>時間<em>%M</em>分", target: "timeFrame2" });
+		
 }
