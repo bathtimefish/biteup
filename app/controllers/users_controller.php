@@ -139,8 +139,8 @@ class UsersController extends AppController {
                 $this->data["User"]["password"] = $this->Auth->password($this->data['User']['join_password']);
             }
             $this->data['User']['point'] = 0; //アカウント登録時の初期ポイントを設定
-            $this->data['User']['current_jobkind_id'] = 0; //アカウント登録時の職業IDを設定
-            $this->data['User']['current_level'] = 0; //アカウント登録時のレベルを設定
+            $this->data['User']['current_jobkind_id'] = 1; //アカウント登録時の職業IDを設定
+            $this->data['User']['current_level'] = 1; //アカウント登録時のレベルを設定
 			$this->User->create();
 			if ($this->User->save($this->data)) {
 				$this->Session->setFlash(__('The user has been saved', true));
@@ -157,13 +157,18 @@ class UsersController extends AppController {
 			$this->Session->setFlash(__('Invalid user', true));
 			$this->redirect(array('action' => 'index'));
 		}
-		if (!empty($this->data)) {
-			if ($this->User->save($this->data)) {
-				$this->Session->setFlash(__('The user has been saved', true));
-				$this->redirect(array('action' => 'index'));
-			} else {
-				$this->Session->setFlash(__('The user could not be saved. Please, try again.', true));
-			}
+        if (!empty($this->data)) {
+            if($this->data['User']['new_password']) {
+                if($this->data['User']['new_password'] == $this->data['User']['renew_password']) { //パスワード照合
+                    $this->data['User']['password'] = $this->Auth->password($this->data['User']['new_password']);
+                }
+			    if ($this->User->save($this->data)) {
+				    $this->Session->setFlash(__('The user has been saved', true));
+				    $this->redirect(array('action' => 'edit'));
+			    } else {
+				    $this->Session->setFlash(__('The user could not be saved. Please, try again.', true));
+			    }
+            }
 		}
 		if ($id) {
 			$this->set('user', $this->User->read(null, $id));
