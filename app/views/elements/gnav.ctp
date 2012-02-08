@@ -1,5 +1,5 @@
 <header>
-    <h1><?php if(!empty($title)) { echo $title; }else { echo 'Biteup'; } ?></h1>
+    <h1><?php if(!empty($title)) { echo $title; }else { echo __('Biteup', true); } ?></h1>
     <p class="iprofileBtn tapping"><a href="javascript:history.go(-1);"><?php echo $this->Html->image('header_btn_back.png', array('alt'=>'戻る', 'width'=>43, 'height'=>34)); ?></a></p>
     <p class="profileBtn tapping"><?php echo $this->Html->link($this->Html->image('header_btn_logout.png', array('alt'=>'ログアウト', 'width'=>68, 'height'=>36)), array('controller' => 'users', 'action' => 'logout'), array('escape' => false));?></p>
     <nav>

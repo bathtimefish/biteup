@@ -1,3 +1,5 @@
+msgid "Biteup"
+msgstr "バイトの妖精"
 msgid "Login to World"
 msgstr "ワールドに入る"
 msgid "Change Password"

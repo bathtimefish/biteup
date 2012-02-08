@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
         <?php echo $this->Html->meta('icon'); ?>
-        <title>Biteup</title>
+        <title><?php echo __('Biteup', true); ?></title>
         <?php echo $this->Javascript->link('jquery-1.7.min');?>
         <?php if(!empty($async_json_data)) { ?>
           <script>

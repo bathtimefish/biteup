@@ -34,7 +34,7 @@ var Biteup = {
 	newCompanyUI: function (){
 		//もしも過去に勤務先がある場合、hiddenに勤務先の値をツッコむ
 		if($("#haveEver").css("display") === "block") { $("input[name='jobPlace']").val($("select[name='company']").val()); }
-			$("select[id='company']").change(function (){
+			$("select[name='company']").change(function (){
 					if($(this).val() === "new") {
 						var _this = this;
 						$(_this).val($(_this).children()[0]);//新規が選ばれると一旦最初のoptionの値に戻す
