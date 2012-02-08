@@ -3,7 +3,7 @@ class UsersController extends AppController {
 
 	var $name = 'Users';
     var $helpers = array('Javascript');
-    var $components = array('Auth', 'WebApi', 'Facebook');
+    var $components = array('Auth', 'WebApi', 'Facebook', 'Timeline');
     var $uses = array('User', 'Friend', 'Feed', 'Like');
 
     function beforeFilter(){
@@ -45,6 +45,7 @@ class UsersController extends AppController {
             foreach($feeds as $feed) {
                 $feed['Like']['likes'] = $this->Like->find('count', array('conditions'=>array('Like.feed_id'=>$feed['Feed']['id'])));
                 $feed['Like']['comments'] = $this->Like->find('count', array('conditions'=>array('Like.feed_id'=>$feed['Feed']['id'], 'Like.message IS NOT NULL')));
+                $feed['Feed']['created'] = $this->Timeline->getActionTime($feed['Feed']['created']);
                 array_push($timelines, $feed);
             }
             $this->set('feeds', $timelines);
