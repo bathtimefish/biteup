@@ -1,7 +1,6 @@
 <?php echo $this->Html->css('tmp', 'stylesheet', array('inline'=>false)); ?>
 <?php echo $this->Session->flash(); ?>
    <div id="account">
-    <form action="#" method="post">
     <div class="woodFrame registFrame noTitle">
      <div class="woodWrapper">
      <?php echo $this->Form->create('User');?>
@@ -16,7 +15,7 @@
         <?php } else { ?>
           <dd><?php echo $this->Html->link(__('My Facebook Account', true), 'http://m.facebook.com/home.php?__user='.$fb_uid); ?></dd>
         <?php } ?>
-      <dt>パスワード</dt>
+      <dt>新しいパスワード</dt>
         <dd><?php //echo $this->Html->link(__('Change Password', true), array('action' => 'chpwd'));?></dd>
         <dd><?php echo $this->Form->input('new_password', array('type'=>'password', 'div'=>false, 'label'=>false, 'value'=>'')); ?></dd>
       <dt>パスワードの確認</dt>
@@ -31,11 +30,4 @@
                     <p><?php echo $this->Html->link($this->Html->image('btn_quit.png', array('alt'=>'Retire', 'width'=>'129', 'height'=>'33')), array('action' => 'retire'), array('escape' => false));?></p>
     </div>
 
-    </form>
-
    </div><!-- /#account -->
-
-  </div><!-- /#container -->
-
- </body>
-</html>
