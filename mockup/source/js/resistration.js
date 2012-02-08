@@ -33,8 +33,8 @@ var Biteup = {
 	//新しいバイト先か？それとも今までのバイト先を選ぶか？
 	newCompanyUI: function (){
 		//もしも過去に勤務先がある場合、hiddenに勤務先の値をツッコむ
-		if($("#haveEver").css("display") === "block") { $("input[name='jobPlace']").val($("select[name='company']").val()); }
-			$("select[name='company']").change(function (){
+		if($("#haveEver").css("display") === "block") { $("input[name='jobPlace']").val($("select[id='company']").val()); }
+			$("select[id='company']").change(function (){
 					if($(this).val() === "new") {
 						var _this = this;
 						$(_this).val($(_this).children()[0]);//新規が選ばれると一旦最初のoptionの値に戻す
@@ -55,7 +55,7 @@ var Biteup = {
 		},//newCompanyUI
 		
 	haveEver: function (){ //過去のバイト先が選ばれる
-		$("input[name='jobPlace']").val($("select[name='company']").val());
+		$("input[name='jobPlace']").val($("select[id='company']").val());
 		$("#haveEver").removeClass("hidden").next("dd").slideDown(300, function (){
 				$("#newEver").addClass("hidden").bind("click", Biteup.newEver).next("dd").slideUp(300);
 			});
