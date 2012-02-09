@@ -4,7 +4,7 @@ class UsersController extends AppController {
 	var $name = 'Users';
     var $helpers = array('Javascript');
     var $components = array('Auth', 'WebApi', 'Facebook', 'Timeline');
-    var $uses = array('User', 'Friend', 'Feed', 'Like');
+    var $uses = array('User', 'Friend', 'Feed', 'Like', 'Job');
 
     function beforeFilter(){
         $this->Auth->userModel = 'User';
@@ -53,6 +53,7 @@ class UsersController extends AppController {
         $this->set('title', 'バイトの妖精');
         $this->set('userid', $this->Auth->user('id'));
         $this->set('nickname', $this->Auth->user('username'));
+        $this->set('webroot', $this->webroot);
     }
     /*
     function index() {
@@ -236,47 +237,70 @@ class UsersController extends AppController {
 
     /*** API Contollers ***/
 
-    // async data what toppage neeeds.
-    function api_index() {
+    // async data what checkin yet.
+    function api_checkin() {
         $this->autoRender = false;
-        // set jobs get near checkin
-
-        // set information count for badge
-        
-        // set now timelines
-        $this->Feed->recursive = 1;
-        $this->Like->recursive = -1;
-        $fields = array('Feed.id', 'Job.jobkind_id', 'User.current_level', 'User.id', 'Feed.message', 'Feed.created');
-        $conditions = array('Feed.user_id'=>$this->Auth->user('id'));
-        $order = array('Feed.id DESC');
-        $limit = 10;
-        $feeds = $this->Feed->find('all', array('fields'=>$fields, 'conditions'=>$conditions, 'order'=>$order, 'limit'=>$limit));
-        if(!empty($feeds)) {
-            $data = array('feeds'=>array());
-            foreach($feeds as $feed) {
-                $likesCount = $this->Like->find('count', array('conditions'=>array('Like.feed_id'=>$feed['Feed']['id'])));
-                $commentCount = $this->Like->find('count', array('conditions'=>array('Like.feed_id'=>$feed['Feed']['id'], 'Like.message IS NOT NULL')));
-                $message = $feed['Feed']['message'];
-                $row = array(
-                    'id' => $feed['Feed']['id'],
-                    'jobkind' => $feed['Job']['jobkind_id'],
-                    'level' => $feed['User']['current_level'],
-                    'userId' => $feed['User']['id'],
-                    'body' => $message,
-                    'likesCount' => $likesCount,
-                    'commentCount' => $commentCount,
-                    'created' => $feed['Feed']['created']
-                );
-                array_push($data['feeds'], $row);
-            }
-            $this->WebApi->sendApiResult($data);
+        $conditions = array('Job.checkin IS NOT NULL', 'Job.checkout IS NULL', 'Job.user_id'=>$this->Auth->user('id'));
+        $jobs = $this->Job->find('first', array('conditions'=>$conditions));
+        $flag = false;
+        if(empty($jobs)) {
+            $flag = false;
+        } else {
+            $flag = true;
         }
+        $data = array('checkin'=>$flag);
+        $this->WebApi->sendApiResult($data);
+    }
 
+    // async data what information count for badge.
+    function api_infocount() {
+        $this->autoRender = false;
+        //どこからが未読かを判定するトリガが未設計
+    }
+
+    // async data what users charactor level.
+    function api_getlevel() {
+        $this->autoRender = false;
+        $this->User->recursive = 1;
+        $fields = array('User.current_level', 'User.current_jobkind_id');
+        $conditions = array('User.id'=>$this->Auth->user('id'));
+        $user = $this->User->find('first', array('fields'=>$fields, 'conditions'=>$conditions));
+        $data = array('level'=>0);
+        if(!empty($user)) {
+            $data = array(
+                'level' => $user['User']['current_level'],
+                'jobkind' => $user['User']['current_jobkind_id'],
+            );
+        }
+        $this->WebApi->sendApiResult($data);
+    }
+
+    // async data what appear jobs near checkin.
+    function api_jobalert() {
+        $this->autoRender = false;
+        $this->Job->recursive = 1;
+        $futu = strtotime('+30 minutes');
+        $datestr = date('Y-m-d', $futu);
+        $timestr = date('H:i:s', $futu);
+        $conditions = array('Job.startdate'=>$datestr, 'Job.starttime <'=>$timestr, 'Job.checkin IS NULL', 'Job.checkout IS NULL', 'Job.user_id'=>$this->Auth->user('id'));
+        $job = $this->Job->find('first', array('conditions'=>$conditions));
+        $data = array('job'=>false);
+        if(!empty($job)) {
+            $data = array('job' => array(
+                'id' => $job['Job']['id'],
+                'name' => $job['Job']['name'],
+                'date' => $job['Job']['startdate'],
+                'startTime' => $job['Job']['starttime'],
+            ));
+        }
+        $this->WebApi->sendApiResult($data);
     }
 
     // async data what past feeds
     function api_tl($last_feed_id = null) {
         $this->autoRender = false;
+        $this->Feed->recursive = 1;
+        $this->Like->recursive = -1;
         if($last_feed_id) {
             $conditions = array('Feed.id <'=>intval($last_feed_id), 'Feed.user_id'=>$this->Auth->user('id'));
         } else {

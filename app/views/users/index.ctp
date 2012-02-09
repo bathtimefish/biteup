@@ -71,7 +71,7 @@
      <ul>
       <?php foreach($feeds as $feed) { ?>
       <li data-friend-jobkind="<?php echo $feed['User']['current_jobkind_id']; ?>" data-friend-level="<?php echo $feed['User']['current_jobkind_id']; ?>">
-      <a href="/a/feeds/detail/<?php echo $feed['Feed']['id']; ?>">
+      <a href="<?php echo $webroot; ?>feeds/detail/<?php echo $feed['Feed']['id']; ?>">
            <canvas width="80" height="80" class="avatarIcon"></canvas>
            <div class="activity">
              <p class="comment">
@@ -91,6 +91,6 @@
       <? } ?>
      </ul>
     <?php } ?>
-    <p id="moreFeed">もっと読む…</p>
+    <!--p id="moreFeed">もっと読む…</p-->
     </div>
 </div><!-- /#friendTimeline -->
