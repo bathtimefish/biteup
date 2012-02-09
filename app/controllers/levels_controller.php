@@ -59,12 +59,14 @@ class LevelsController extends AppController {
 		$this->Session->setFlash(__('Level was not deleted', true));
 		$this->redirect(array('action' => 'index'));
 	}
-	function admin_index() {
+    function admin_index() {
+        $this->layout = 'admin';
 		$this->Level->recursive = 0;
 		$this->set('levels', $this->paginate());
 	}
 
 	function admin_view($id = null) {
+        $this->layout = 'admin';
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid level', true));
 			$this->redirect(array('action' => 'index'));
@@ -73,6 +75,7 @@ class LevelsController extends AppController {
 	}
 
 	function admin_add() {
+        $this->layout = 'admin';
 		if (!empty($this->data)) {
 			$this->Level->create();
 			if ($this->Level->save($this->data)) {
@@ -85,6 +88,7 @@ class LevelsController extends AppController {
 	}
 
 	function admin_edit($id = null) {
+        $this->layout = 'admin';
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash(__('Invalid level', true));
 			$this->redirect(array('action' => 'index'));
@@ -103,6 +107,7 @@ class LevelsController extends AppController {
 	}
 
 	function admin_delete($id = null) {
+        $this->layout = 'admin';
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid id for level', true));
 			$this->redirect(array('action'=>'index'));

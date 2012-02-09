@@ -2,6 +2,7 @@
 class FriendsController extends AppController {
 
 	var $name = 'Friends';
+    var $uses = array('User', 'Friend', 'Feed', 'Like', 'Jobkind', 'Job', 'Level');
 	var $helpers = array('Javascript');
 
 	function index() {
@@ -13,8 +14,25 @@ class FriendsController extends AppController {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid friend', true));
 			$this->redirect(array('action' => 'index'));
-		}
-		$this->set('friend', $this->Friend->read(null, $id));
+        }
+        $this->User->recursive = -1;
+        $this->Jobkind->recursive = -1;
+        $this->Like->recursive = -1;
+        $this->Job->recursive = -1;
+        $this->Level->recursive = -1;
+        $this->Feed->recursive = -1;
+        $friend = $this->User->read(null, $id);
+        $jobkind = $this->Jobkind->read(null, $friend['User']['current_jobkind_id']);
+        $likecnt = $this->Like->find('count', array('conditions'=>array('Like.user_id'=>$friend['User']['id'])));
+        $checkoutcnt = $this->Job->find('count', array('conditions'=>array('Job.user_id'=>$friend['User']['id'], 'Job.checkout IS NOT NULL')));
+        $level = $this->Level->find('first', array('conditions'=>array('Level.id'=>$friend['User']['current_level'], 'Level.jobkind_id'=>$friend['User']['current_jobkind_id'])));
+        $feeds = $this->Feed->find('all', array('conditions'=>array('Feed.user_id'=>$friend['User']['id']), 'order'=>'Feed.id DESC', 'limit'=>5));
+		$this->set('friend', $friend);
+		$this->set('jobkind', $jobkind);
+		$this->set('likecnt', $likecnt);
+		$this->set('checkoutcnt', $checkoutcnt);
+		$this->set('level', $level);
+		$this->set('feeds', $feeds);
 	}
 
 	function add() {

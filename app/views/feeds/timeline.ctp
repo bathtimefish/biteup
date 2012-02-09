@@ -11,8 +11,10 @@
 		</script>
 <?php echo $this->Html->css('tmp', 'stylesheet', array('inline'=>false)); ?>
 <div class="searchBox">
-					<input type="text" name="search" placeholder="名前を入れてください" class="searchTxt">
-					<input type="submit" value="検索" class="searchBtn">
+                <?php echo $this->Form->create('Feed');?>
+                    <input type="text" name="search" placeholder="名前を入れてください" class="searchTxt">
+                    <?php echo $this->Form->submit('検索', array('div'=>false)); ?>
+                </form>
 				</div>
 				
 				<div class="woodFrame">

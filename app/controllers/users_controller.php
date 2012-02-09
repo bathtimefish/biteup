@@ -43,8 +43,8 @@ class UsersController extends AppController {
             $timelines = array();
             $this->Like->recursive = -1;
             foreach($feeds as $feed) {
-                $feed['Like']['likes'] = $this->Like->find('count', array('conditions'=>array('Like.feed_id'=>$feed['Feed']['id'])));
-                $feed['Like']['comments'] = $this->Like->find('count', array('conditions'=>array('Like.feed_id'=>$feed['Feed']['id'], 'Like.message IS NOT NULL')));
+                $feed['Like']['likes'] = $this->Like->find('count', array('conditions'=>array('Like.feed_id'=>$feed['Feed']['id'], 'Like.user_id'=>$feed['Feed']['user_id'])));
+                $feed['Like']['comments'] = $this->Like->find('count', array('conditions'=>array('Like.feed_id'=>$feed['Feed']['id'], 'Like.message IS NOT NULL', 'Like.user_id'=>$feed['Feed']['user_id'])));
                 $feed['Feed']['created'] = $this->Timeline->getActionTime($feed['Feed']['created']);
                 array_push($timelines, $feed);
             }
