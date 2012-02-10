@@ -5,7 +5,8 @@
 
 
 			<div id="registration">
-                <?php echo $this->Form->create('Job', array('onSubmit'=>'Biteup.checkResist(); return false;'));?>
+                <?php //echo $this->Form->create('Job', array('onSubmit'=>'Biteup.checkResist(); return false;'));?>
+                <?php echo $this->Form->create('Job');?>
 				<div class="woodFrame registFrame">
                 <h1><?php echo $this->Html->image('regist_title_select.png', array('alt'=>'バイト先を選ぶ', 'width'=>298, 'height'=>54)); ?></h1>
 					<div class="woodWrapper">
@@ -31,6 +32,16 @@
 				<div class="woodFrame registFrame">
                 <h1><?php echo $this->Html->image('regist_title_date.png', array('alt'=>'日時を入れてぽ', 'width'=>298, 'height'=>54)); ?></h1>
 					<div class="woodWrapper">
+                    <?php echo $this->Form->input('Job.startdate.year', array('type'=>'hidden')); ?>
+                    <?php echo $this->Form->input('Job.startdate.month', array('type'=>'hidden')); ?>
+                    <?php echo $this->Form->input('Job.startdate.day', array('type'=>'hidden')); ?>
+                    <?php echo $this->Form->input('Job.starttime.hour', array('type'=>'hidden')); ?>
+                    <?php echo $this->Form->input('Job.starttime.min', array('type'=>'hidden')); ?>
+                    <?php echo $this->Form->input('Job.jobtime.hour', array('type'=>'hidden')); ?>
+                    <?php echo $this->Form->input('Job.jobtime.min', array('type'=>'hidden')); ?>
+                    <?php echo $this->Form->input('startdate', array('type'=>'date', 'dateFormat'=>'YMD', 'monthNames'=>False, 'label'=>False)); ?>
+                    <?php echo $this->Form->input('starttime', array('type'=>'time', 'timeFormat'=>'24', 'label'=>False)); ?>
+                    <?php echo $this->Form->input('jobtime', array('type'=>'time', 'timeFormat'=>'24', 'label'=>False)); ?>
 					<dl>
 						<dt>カレンダーから日付を選ぶ</dt>
 						<dd id="biteCalCall" class="calender">タップしてぽ！</dd>
@@ -43,8 +54,7 @@
 					</dl>
 					</div>
 				</div>
-				
-				<p class="alC"><input type="image" src="/biteup/img/regist_btn.png" alt="予定を登録する" width="233" height="57"></p>
+                <p class="alC"><?php echo $this->Form->submit('regist_btn.png', array('alt'=>"予定を登録する", 'width'=>"233", 'height'=>"57")); ?></p>
 					<input type="hidden" name="jobPlace"><!-- 勤務先はここに設定 -->
                     <input type="hidden" name="date"><!-- 日付はここに設定 -->
                 </form>

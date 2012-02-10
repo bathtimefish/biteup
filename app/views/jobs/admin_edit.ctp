@@ -6,11 +6,11 @@
 		echo $this->Form->input('id');
 		echo $this->Form->input('user_id');
 		echo $this->Form->input('name');
-		echo $this->Form->input('startdate');
-		echo $this->Form->input('starttime');
+		echo $this->Form->input('startdate', array('type'=>'date', 'dateFormat'=>'YMD', 'monthNames'=>False));
+		echo $this->Form->input('starttime', array('type'=>'time', 'timeFormat'=>'24'));
 		echo $this->Form->input('jobtime');
 		echo $this->Form->input('jobkind_id');
-		echo $this->Form->input('checkin');
+		echo $this->Form->input('checkin', array('type'=>'datetime', 'dateFormat'=>'YMD', 'monthNames'=>False, 'timeFormat'=>'24'));
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit', true));?>

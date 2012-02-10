@@ -43,7 +43,7 @@ class Job extends AppModel {
 		),
 		'jobtime' => array(
 			'numeric' => array(
-				'rule' => array('numeric'),
+				'rule' => array('time'),
 				//'message' => 'Your custom message here',
 				//'allowEmpty' => false,
 				//'required' => false,
