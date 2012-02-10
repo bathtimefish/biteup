@@ -518,6 +518,32 @@ p.loginAttention a{
 	display: none;
 }*/
 
+/*	11_guideline
+-----------------------------------------------*/
+p.guidelineP{
+	margin:0 20px;
+	padding-bottom:20px;
+	background: url(../img/border_timeline.png) bottom center no-repeat;
+	background-size: 298px 10px;
+}
+
+dl.guideline ol li,
+dl.guideline ol li:first-child{
+	background:none;
+	margin-bottom:5px;
+	padding:0 0 5px 0;
+	border-bottom:1px dotted #3D0404;
+}
+dl.guideline ol li:last-child{
+	border-bottom:none;
+}
+dl.guideline dt{
+	margin-top:10px;
+}
+dl.guideline dd{
+	background: url(../img/border_timeline.png) bottom center no-repeat;
+	background-size: 298px 10px;
+}
 
 /*======================================================
 	footer
@@ -550,22 +576,28 @@ footer p.copyright{
 
 /*======================================================
 	ui-time-selector by wakamatsu
+	edit design by tomita 2012.2.8
 ======================================================*/
 
 .ui-time-selector {
 	position: relative;
 	margin: 5px auto;
-	width: 250px;
-	height: 317px;
+	width: 276px;
+	height: 332px;
+	/*background-color:rgba(195,152,71,0.2);*/
+	background: url(../img/cal_head_bg.png) no-repeat 0 0, url(../img/ui_time_foot_bg.png) no-repeat 0 bottom;
+	background-size: 276px 87px, 276px 265px;
 }
 .ui-time-selector .button {
 	position: absolute;
 	display: inline-block;
 	text-align: center;
-	border: 2px solid #666666;
+	/*border: 2px solid #666666;
+	background: rgba(0, 0, 0, 0.2);*/
+	background: url(../img/ui_time_button.png) no-repeat 0 0;
+	background-size:76px 43px;
 	width: 76px;
 	padding: 12px 0 11px;
-	background: rgba(0, 0, 0, 0.2);
 	line-height: 1;
 	font-size: 20px;
 	font-weight: bold;
@@ -573,16 +605,20 @@ footer p.copyright{
 	z-index: 2;
 }
 .ui-time-selector .tap {
-	background: #FFFFFF;
+	background: url(../img/ui_time_button_tap.png) no-repeat 0 0;
+	background-size:76px 43px;
+	/*background: #FFFFFF;*/
 }
 .ui-time-selector .input {
 	position: absolute;
 	display: inline-block;
-	border: 1px solid rgba(0, 0, 0, 0.7);
-	width: 46px;
-	height: 42px;
+	/*border: 1px solid rgba(0, 0, 0, 0.7);
+	background: #FFFFFF;*/
+	background: url(../img/ui_time_input.png) no-repeat 0 0;
+	background-size:48px 48px;
+	width: 49px;
+	height: 44px;
 	padding-top: 4px;
-	background: #FFFFFF;
 	text-align: center;
 	font-size: 20px;
 	font-weight: bold;
@@ -596,9 +632,11 @@ footer p.copyright{
 }
 
 .ui-time-selector .forcus {
-	border: 2px solid rgba(0, 128, 255, 1);
-	width: 44px;
-	height: 40px;
+	/*border: 2px solid rgba(0, 128, 255, 1);*/
+	background: url(../img/ui_time_input_focus.png) no-repeat 0 0;
+	background-size:48px 48px;
+	width: 49px;
+	height: 44px;
 	padding-top: 4px;
 }
 .ui-time-selector .forcus:before {
@@ -607,8 +645,8 @@ footer p.copyright{
 
 .ui-time-selector .input-frame {
 	position: absolute;
-	left: 0;
-	top: 2px;
+	left: 15px;
+	top: 10px;
 	width: 250px;
 	height: 58px;
 	z-index: 1;
@@ -616,8 +654,8 @@ footer p.copyright{
 
 .ui-time-selector .tenkey-frame {
 	position: absolute;
-	left: 0;
-	top: 60px;
+	left: 15px;
+	top: 70px;
 	width: 250px;
 	height: 204px;
 	z-index: 1;
@@ -682,19 +720,23 @@ footer p.copyright{
 }
 
 #ui-btn-back {
-	left: 170px;
-	top: 213px;
+	left: 185px;
+	top: 223px;
 }
 
 #ui-btn-cancel {
-	left: 0;
-	bottom: 5px;
+	left: 15px;
+	bottom: 15px;
+	font-size:16px;
 }
 			
 #ui-btn-now {
-	right: 0;
-	bottom: 5px;
+	right: 15px;
+	bottom: 15px;
 	width: 161px;
+	background: url(../img/ui_time_buttonL.png) no-repeat 0 0;
+	background-size:161px 43px;
+	font-size:16px;
 }
 
 .disabled {

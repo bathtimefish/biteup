@@ -136,15 +136,20 @@ class UsersController extends AppController {
         $this->layout = '';
         if (!empty($this->data)) {
             // 1.join_passwordがある場合、passwordをハッシュ化して格納
-            if(!empty($this->data['User']['join_password'])) {
-                $this->data["User"]["password"] = $this->Auth->password($this->data['User']['join_password']);
+            if(!empty($this->data['User']['join_password']) && !empty($this->data['User']['re_password'])) {
+                if($this->data['User']['join_password'] == $this->data['User']['re_password']) {
+                    $this->data["User"]["password"] = $this->Auth->password($this->data['User']['join_password']);
+                } else {
+                    $this->Session->setFlash(__('Password columns must input same words', true));
+                    $this->redirect(array('action' => 'join'));
+                }
             }
             $this->data['User']['point'] = 0; //アカウント登録時の初期ポイントを設定
             $this->data['User']['current_jobkind_id'] = 1; //アカウント登録時の職業IDを設定
             $this->data['User']['current_level'] = 1; //アカウント登録時のレベルを設定
 			$this->User->create();
 			if ($this->User->save($this->data)) {
-				$this->Session->setFlash(__('The user has been saved', true));
+				//$this->Session->setFlash(__('The user has been saved', true));
 				$this->redirect(array('action' => 'index'));
 			} else {
 				$this->Session->setFlash(__('The user could not be saved. Please, try again.', true));
