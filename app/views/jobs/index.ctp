@@ -27,10 +27,10 @@ $(function (){
 	foreach ($jobs as $job):
 	?>
 	<li>
-        <a href="/biteup/jobs/edit/<?php echo $job['Job']['id']; ?>">
+        <a href="<?php echo $this->webroot; ?>jobs/edit/<?php echo $job['Job']['id']; ?>">
 			<div class="kind">
                 <h3>
-                    <img src="img/icon_job_sampling.jpg" alt width="25" height="25">
+                    <?php $this->Html->image('icon_job_sampling.jpg', array('alt'=>'', 'width'=>'25', 'height'=>'25')); ?>
                     <?php echo $job['Job']['name']; ?>
                 </h3>
                 <?php $sd = getdate(strtotime($job['Job']['startdate'].' '.$job['Job']['starttime'])); ?>

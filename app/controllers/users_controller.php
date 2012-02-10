@@ -53,7 +53,6 @@ class UsersController extends AppController {
         $this->set('title', 'バイトの妖精');
         $this->set('userid', $this->Auth->user('id'));
         $this->set('nickname', $this->Auth->user('username'));
-        $this->set('webroot', $this->webroot);
     }
     /*
     function index() {
