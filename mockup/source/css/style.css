@@ -518,6 +518,32 @@ p.loginAttention a{
 	display: none;
 }*/
 
+/*	11_guideline
+-----------------------------------------------*/
+p.guidelineP{
+	margin:0 20px;
+	padding-bottom:20px;
+	background: url(../img/border_timeline.png) bottom center no-repeat;
+	background-size: 298px 10px;
+}
+
+dl.guideline ol li,
+dl.guideline ol li:first-child{
+	background:none;
+	margin-bottom:5px;
+	padding:0 0 5px 0;
+	border-bottom:1px dotted #3D0404;
+}
+dl.guideline ol li:last-child{
+	border-bottom:none;
+}
+dl.guideline dt{
+	margin-top:10px;
+}
+dl.guideline dd{
+	background: url(../img/border_timeline.png) bottom center no-repeat;
+	background-size: 298px 10px;
+}
 
 /*======================================================
 	footer
