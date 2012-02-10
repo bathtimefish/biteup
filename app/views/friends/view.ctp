@@ -41,10 +41,12 @@
 						</div><!-- /.profileDetail -->
 						<div class="pointGage">
 							<p class="meter"><span></span></p>
-							<div class="gage">
+                            <div class="gage">
+                                <!-- 未実装 -->
 								<p class="text">LEVEL9まであと<strong>4015pt</strong></p>
 								<p class="point">19546 pt</p>
-							</div>						
+                                <!-- 未実装 -->
+							</div>
 						</div><!-- /.gage -->
 
 					</div><!-- /.profileBg -->
@@ -52,81 +54,43 @@
 				</div><!-- /.profile -->
 				
                 <div class="followBtn">
-                    <?php echo $this->Form->create('Friend'); ?>
-                    <?php echo $this->Form->input('User.id', array('type'=>'hidden', 'value'=>$friend['User']['id'])); ?></p>
-                    <p><?php echo $this->Form->submit('btn_follow.png', array('alt'=>'フォローする', 'width'=>234, 'div'=>false)); ?></p>
+                    <?php echo $this->Form->create('Friend', array('action'=>'view'.DS.$friend['User']['id'])); ?>
+                    <?php echo $this->Form->input('Friend.friend_id', array('type'=>'hidden', 'value'=>$friend['User']['id'])); ?></p>
+                    <?php if($followed) { ?>
+                        <?php echo $this->Form->input('Friend.action', array('type'=>'hidden', 'value'=>'unfollow')); ?></p>
+					    <p><small>あなたはnakashizuさんをフォローしているぽ</small></p>
+                        <p><?php echo $this->Form->submit('btn_unfollow.png', array('alt'=>'アンフォロー', 'width'=>234, 'div'=>false)); ?></p>
+                    <?php } else { ?>
+                        <?php echo $this->Form->input('Friend.action', array('type'=>'hidden', 'value'=>'follow')); ?></p>
+                        <p><?php echo $this->Form->submit('btn_follow.png', array('alt'=>'フォローする', 'width'=>234, 'div'=>false)); ?></p>
+                    <?php } ?>
                     </form>
-					<!-- フォローしているときはこちらを表示
-					<p><small>あなたはnakashizuさんをフォローしているぽ</small></p>
-					<p><input type="image" src="img/btn_unfollow.png" alt="フォロー解除する" width="234"></p>
-					-->
 				</div>
 
 				<div id="timeline"  class="woodFrame">
 					<div class="woodWrapper">
+                    <?php if(!empty($feeds)) { // Friend Timeline Loop ?>
 						<ul>
-						<li data-friend-jobkind="0" data-friend-level="3">
-							<a href="#">
-							<!--<img src="img/dummy/dummy_avatar.png" alt="#" class="avatarIcon">-->
+                        <?php foreach($feeds as $feed) { ?>
+                        <li data-friend-jobkind="<?php echo $feed['User']['current_jobkind_id']; ?>" data-friend-level="<?php echo $feed['User']['current_jobkind_id']; ?>">
+							<a href="<?php echo $webroot; ?>feeds/detail/<?php echo $feed['Feed']['id']; ?>">
 							<canvas width="80" height="80" class="avatarIcon"></canvas>
 							<div class="activity">
 								<p class="comment">
-									<span>nakashizuさん</span>がバイトにチェックインしました。
+									<span><?php echo $feed['User']['username']; ?>さん</span>
+                                    <?php echo $feed['Feed']['message']; ?>
 								</p>
 								<div class="footer">
-									<p class="icon"><span class="comment">2</span><span class="otsu">50</span></p>
-									<p class="times">5分前</p>
+                                    <p class="icon"><span class="comment"><?php echo $feed['Like']['comments']; ?></span>
+                                    <span class="otsu"><?php echo $feed['Like']['likes']; ?></span></p>
+									<p class="times"><?php echo $feed['Feed']['created']; ?></p>
 								</div>
 							</div>
 							</a>
-						</li>
-						<li data-friend-jobkind="2" data-friend-level="1">
-							<a href="#">
-							<!--<img src="img/dummy/dummy_avatar.png" alt="#" class="avatarIcon">-->
-							<canvas width="80" height="80" class="avatarIcon"></canvas>
-							<div class="activity">
-								<p class="comment">
-									<span>nakashizuさん</span>がバイトにチェックインしました。
-								</p>
-								<div class="footer">
-									<p class="icon"><span class="comment">2</span><span class="otsu">50</span></p>
-									<p class="times">5分前</p>
-								</div>
-							</div>
-							</a>
-						</li>
-						<li data-friend-jobkind="3" data-friend-level="0">
-							<a href="#">
-							<!--<img src="img/dummy/dummy_avatar.png" alt="#" class="avatarIcon">-->
-							<canvas width="80" height="80" class="avatarIcon"></canvas>
-							<div class="activity">
-								<p class="comment">
-									<span>nakashizuさん</span>がバイトにチェックインしました。
-								</p>
-								<div class="footer">
-									<p class="icon"><span class="comment">2</span><span class="otsu">50</span></p>
-									<p class="times">5分前</p>
-								</div>
-							</div>
-							</a>
-						</li>
-						<li data-friend-jobkind="4" data-friend-level="1">
-							<a href="#">
-							<!--<img src="img/dummy/dummy_avatar.png" alt="#" class="avatarIcon">-->
-							<canvas width="80" height="80" class="avatarIcon"></canvas>
-							<div class="activity">
-								<p class="comment">
-									<span>nakashizuさん</span>がバイトにチェックインしました。
-								</p>
-								<div class="footer">
-									<p class="icon"><span class="comment">2</span><span class="otsu">50</span></p>
-									<p class="times">5分前</p>
-								</div>
-							</div>
-							</a>
-						</li>
-						
-					</ul>
-					<p id="moreFeed">もっと読む…<span><img src="img/icon_otsukare_load.png" alt="loading"></span></p>
+                        </li>
+                        <?php } ?>
+                        </ul>
+                    <?php } ?>
+					<!-- p id="moreFeed">もっと読む…<span><img src="img/icon_otsukare_load.png" alt="loading"></span></p -->
 					</div>
 				</div><!-- /#friendTimeline -->
