@@ -19,7 +19,10 @@ class UsersController extends AppController {
 
     function index() {
         $this->Friend->recursive = 0;
-        $this->set('async_json_data', json_encode(array('rows'=>array('name'=>'nakashizu', 'userid'=>'1234'))));  //仮のasyncデータ
+        $this->Feed->recursive = 1;
+        $this->Like->recursive = -1;
+        $this->Job->recursive = -1;
+        $latestjob = $this->Job->find('first', array('conditions'=>array('Job.user_id'=>$this->Auth->user('id'), 'Job.checkin IS NULL'), 'order'=>'Job.created DESC'));
         $friends = $this->Friend->find('list', array('conditions'=> array('Friend.user_id'=>$this->Auth->user('id'))));
         if(!empty($friends)) {
             $arybuf = array();
@@ -27,21 +30,11 @@ class UsersController extends AppController {
                 array_push($arybuf, $friend);
             }
             array_push($arybuf, $this->Auth->user('id'));
-            /*
-            $this->paginate = array(
-                'order' => 'Feed.created DESC',
-                'conditions'=> array('Feed.user_id IN ('.implode(',', $arybuf).')'),
-                'limit' => 10
-            );
-            $this->set('feeds', $this->paginate('Feed'));
-             */
-            $this->Feed->recursive = 1;
             $conditions = array('Feed.user_id IN ('.implode(',', $arybuf).')');
             $order = array('Feed.created DESC');
             $limit = 10;
             $feeds = $this->Feed->find('all', array('conditions'=>$conditions, 'order'=>$order, 'limit'=>$limit));
             $timelines = array();
-            $this->Like->recursive = -1;
             foreach($feeds as $feed) {
                 $feed['Like']['likes'] = $this->Like->find('count', array('conditions'=>array('Like.feed_id'=>$feed['Feed']['id'], 'Like.user_id'=>$feed['Feed']['user_id'])));
                 $feed['Like']['comments'] = $this->Like->find('count', array('conditions'=>array('Like.feed_id'=>$feed['Feed']['id'], 'Like.message IS NOT NULL', 'Like.user_id'=>$feed['Feed']['user_id'])));
@@ -50,17 +43,11 @@ class UsersController extends AppController {
             }
             $this->set('feeds', $timelines);
         }
-        $this->set('title', 'バイトの妖精');
+        $this->set('title_for_action', 'バイトの妖精');
         $this->set('userid', $this->Auth->user('id'));
         $this->set('nickname', $this->Auth->user('username'));
+        $this->set('latestjob', $latestjob);
     }
-    /*
-    function index() {
-        $this->layout = '';
-        $this->User->recursive = 0;
-        $this->set('user', $this->User->read(null, $this->Auth->user('id')));
-    }
-     */
 
     // search friend
     function searchfriend() {

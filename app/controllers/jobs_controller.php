@@ -88,6 +88,7 @@ class JobsController extends AppController {
 
     function add() {
         if (!empty($this->data)) {
+            $this->data['Job']['user_id'] = $this->Auth->user('id');
             $this->Job->create();
             if ($this->Job->save($this->data)) {
                 $this->Session->setFlash(__('The job has been saved', true));

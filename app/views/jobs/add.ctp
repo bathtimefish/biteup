@@ -18,12 +18,8 @@
 						<dt id="newEver">新しいバイト先を追加する</dt>
                         <dd style="display: none;"><?php echo $this->Form->input('name', array('type'=>'text', 'div'=>false, 'label'=>false, 'placeholder'=>'新しいバイト先をいれてぽ', 'class'=>'newRegist')); ?></dd>
 						<dt>バイト先のジャンルを選ぶ</dt>
-						<dd>
-							<select name="job" class="selectWorks">
-								<option value="">▼ジャンルをえらんでぽ</option>
-								<option value="力仕事・労働">力仕事・労働</option>
-								<option value="オフィスワーク">オフィスワーク</option>
-							</select>
+                        <dd>
+                            <?php echo $this->Form->input('jobkind_id', array('label'=>False, 'div'=>False, 'class'=>'selectWorks')); ?>
 						</dd>
 					</dl>
 					</div>

@@ -14,59 +14,80 @@
 			$(function (){
 					var sl = new checkInUI();
 					
-					//sl.isWorking = false; //勤務中はtrue,つまりチェックアウトが出る
-					/*var gTimer = setInterval(function (){
-							sl.init("checkInSlider", false);
-						}, 10000);*/
+					//初回1度だけ、通信をかける
+					Sync.once(2, function (res){
+                        //バイト予定が入っていたら
+						if(res.job.date) {
+							var date = res.job.date.split("-");
+							var times = res.job.startTime.split("-");
+							var comments = date[1]+"月"+date[2]+"日 "+times[0]+"時"+times[1]+"分から"+res.job.name+"でバイトが入ってるぽ！";
+							//バイト先とか、どうする？
+							$(".cloud").text(comments);
+						}
+					});
+					//
 					
+					//ポーリングスタート、間隔の時間設定はSync内で
+                    Sync.start(2,function (res){
+                        console.log(res.job);
+						if(res.job) {
+							sl.init("checkInSlider", res.job.id, false);
+						}
+					});
+					//
 					
-					//$.fn.subwindow.open("alert/sending.html", {"filter":"#target"}, 200,200);
-					/*$(".profileBtn").click(function (e){
-						e.preventDefault();
-							
-						})*/
-						
-					Sync.start(2,function (obj){
-							if(obj.isCheckin) {
-								sl.init("checkInSlider", false);
-							}
-						});
-						
+					//もっと読むのタップ時に一度だけポーリング
 					$("#moreFeed").bind("click", function (){
-						Sync.once(2, function (res){
-								if(res.feeds) {
-									//console.log(res.feeds);
-									var dom = "";
-									for (var i = 0; i<res.feeds.length; i++) {
-										
-										//本来ここで1フィードごとに時間を計算する
-											
-										dom += '<li data-friend-jobkind="'+res.feeds[i].jobKind+'" data-friend-level="'+res.feeds[i].level+'"><a href="#"><canvas width="80" height="80" class="avatarIcon"></canvas><div class="activity"><p class="comment">'+res.feeds[i].body+'</p><div class="footer"><p class="icon"><span class="comment">'+res.feeds[i].likesCount+'</span><span class="otsu">'+res.feeds[i].commentCount+'</span></p><p class="times">'+res.feeds[i].created+'</p></div></div></a></li>';
-									}
-									console.log(dom)
-									$(dom).appendTo(".woodWrapper ul").hide().slideDown(1000);
-									Thumbnail2Canvas();
+						$(this).find("span").show();
+						var Itimers = setInterval(function () {
+							clearInterval(Itimers);
+							Sync.once(2, function (res){
+									if(res.feeds) {
+										var dom = "";
+										for (var i = 0; i<res.feeds.length; i++) {
+											//1フィードごとに時間を計算する
+											var times = Global.compareTime(res.feeds[i].created);
+											dom += '<li data-friend-jobkind="'+res.feeds[i].jobKind+'" data-friend-level="'+res.feeds[i].level+'"><a href="#"><canvas width="80" height="80" class="avatarIcon"></canvas><div class="activity"><p class="comment">'+res.feeds[i].body+'</p><div class="footer"><p class="icon"><span class="comment">'+res.feeds[i].likesCount+'</span><span class="otsu">'+res.feeds[i].commentCount+'</span></p><p class="times">'+times+'</p></div></div></a></li>';
+										}
+									$(dom).appendTo(".woodWrapper ul").hide().slideDown(1000, function (){
+										$("#moreFeed span").hide();
+										});
+									Global.thumbnail2Canvas();
 								}
 							});
-						
-						});
+						}, 1000);
+					});
+					//
 					
 				});
 				
 		</script>
-		
+
+<?php echo $this->Html->css('tmp', 'stylesheet', array('inline'=>false)); ?>
 <?php echo $this->Html->css('jquery.subwindow', 'stylesheet', array('inline'=>false)); ?>
-	
-				
+
 <div id="topics">
     <div id="checkInSlider"></div>
-    <div class="cloud">○月○日、18:00からバイトが入っています！</div>
+    <div class="cloud">
+    <?php if(!empty($latestjob)) { ?>
+        <?php $ljd = date_parse($latestjob['Job']['startdate'].' '.$latestjob['Job']['starttime']); ?>
+        <?php echo $ljd['month']; ?>月<?php echo $ljd['day']; ?>日、<?php echo $ljd['hour']; ?>:<?php echo sprintf("%02d", $ljd['minute']); ?>からバイトが入っています！
+    <?php } else { ?>
+        バイトは入ってないぽ。
+    <?php } ?>
+    </div>
+</div>
+<div class="searchBox">
+    <?php echo $this->Form->create('Friend'); ?>
+    <?php echo $this->Form->input('Friend.username', array('label'=>False, 'div'=>False, 'class'=>'searchTxt', 'placeholder'=>'名前を入れてください')); ?>
+    <?php echo $this->Form->submit('search_btn.png', array('value'=>'検索', 'class'=>'searchBtn', 'width'=>'58')); ?>
+    </form>
 </div>
 
 <div id="timeline" class="woodFrame">
     <div class="woodWrapper">
     <?php if(!empty($feeds)) { // Friend Timeline Loop ?>
-     <ul>
+    <ul>
       <?php foreach($feeds as $feed) { ?>
       <li data-friend-jobkind="<?php echo $feed['User']['current_jobkind_id']; ?>" data-friend-level="<?php echo $feed['User']['current_jobkind_id']; ?>">
       <a href="<?php echo $this->webroot; ?>feeds/detail/<?php echo $feed['Feed']['id']; ?>">
@@ -75,7 +96,7 @@
              <p class="comment">
                <span><?php echo $feed['User']['username']; ?>さん</span>
                <?php echo $feed['Feed']['message']; ?>
-             </p><!-- **** 実装が途中まで。これもJSで出力したほうがいいかも？ *** -->
+             </p>
              <div class="footer">
                <p class="icon">
                  <span class="comment"><?php echo $feed['Like']['comments']; ?></span><!--コメント数-->
@@ -87,8 +108,10 @@
          </a>
       </li>
       <? } ?>
-     </ul>
+    </ul>
     <?php } ?>
-    <!--p id="moreFeed">もっと読む…</p-->
-    </div>
+    <p id="moreFeed">もっと読む…<span>
+    <?php echo $this->Html->image('icon_otsukare_load.png', array('alt'=>'loading')); ?>
+    </span></p>
+</div>
 </div><!-- /#friendTimeline -->
