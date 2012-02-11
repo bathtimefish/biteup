@@ -78,7 +78,7 @@
     </div>
 </div>
 <div class="searchBox">
-    <?php echo $this->Form->create('Friend'); ?>
+    <?php echo $this->Form->create('Friend', array('action'=>'search')); ?>
     <?php echo $this->Form->input('Friend.username', array('label'=>False, 'div'=>False, 'class'=>'searchTxt', 'placeholder'=>'名前を入れてください')); ?>
     <?php echo $this->Form->submit('search_btn.png', array('value'=>'検索', 'class'=>'searchBtn', 'width'=>'58')); ?>
     </form>

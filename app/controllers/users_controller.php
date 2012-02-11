@@ -4,7 +4,7 @@ class UsersController extends AppController {
 	var $name = 'Users';
     var $helpers = array('Javascript');
     var $components = array('Auth', 'WebApi', 'Facebook', 'Timeline');
-    var $uses = array('User', 'Friend', 'Feed', 'Like', 'Job');
+    var $uses = array('User', 'Friend', 'Feed', 'Like', 'Job', 'Level', 'Jobkind');
 
     function beforeFilter(){
         $this->Auth->userModel = 'User';
@@ -49,16 +49,6 @@ class UsersController extends AppController {
         $this->set('latestjob', $latestjob);
     }
 
-    // search friend
-    function searchfriend() {
-        $this->User->recursive = 0;
-        if(!empty($this->data['User']['keyword'])) {
-            $this->paginate = array(
-                'conditions' => array('User.username like' => '%'.$this->data['User']['keyword'].'%')
-            );
-            $this->set('users', $this->paginate());
-        }
-    }
 
     // list follow Users
     function followusers() {
@@ -110,13 +100,41 @@ class UsersController extends AppController {
         $this->redirect(array('action' => 'followusers'));
     }
 
-	function view($id = null) {
+
+    function view($id = null) {
+        if(!$id) $id = $this->Auth->user('id');
+        $this->User->recursive = -1;
+        $this->Jobkind->recursive = -1;
+        $this->Like->recursive = -1;
+        $this->Job->recursive = -1;
+        $this->Level->recursive = -1;
+        $this->Feed->recursive = 0;
 		if (!$id) {
-			$this->Session->setFlash(__('Invalid user', true));
+			$this->Session->setFlash(__('Invalid friend', true));
 			$this->redirect(array('action' => 'index'));
-		}
-		$this->set('user', $this->User->read(null, $id));
+        }
+        $user = $this->User->read(null, $id);
+        $jobkind = $this->Jobkind->read(null, $user['User']['current_jobkind_id']);
+        $likecnt = $this->Like->find('count', array('conditions'=>array('Like.user_id'=>$user['User']['id'])));
+        $checkoutcnt = $this->Job->find('count', array('conditions'=>array('Job.user_id'=>$user['User']['id'], 'Job.checkout IS NOT NULL')));
+        $level = $this->Level->find('first', array('conditions'=>array('Level.id'=>$user['User']['current_level'], 'Level.jobkind_id'=>$user['User']['current_jobkind_id'])));
+        $feeds = $this->Feed->find('all', array('conditions'=>array('Feed.user_id'=>$user['User']['id']), 'order'=>'Feed.id DESC', 'limit'=>5));
+        $timelines = array();
+        foreach($feeds as $feed) {
+            $feed['Like']['likes'] = $this->Like->find('count', array('conditions'=>array('Like.feed_id'=>$feed['Feed']['id'], 'Like.user_id'=>$feed['Feed']['user_id'])));
+            $feed['Like']['comments'] = $this->Like->find('count', array('conditions'=>array('Like.feed_id'=>$feed['Feed']['id'], 'Like.message IS NOT NULL', 'Like.user_id'=>$feed['Feed']['user_id'])));
+            $feed['Feed']['created'] = $this->Timeline->getActionTime($feed['Feed']['created']);
+            array_push($timelines, $feed);
+        }
+		$this->set('user', $user);
+		$this->set('jobkind', $jobkind);
+		$this->set('likecnt', $likecnt);
+		$this->set('checkoutcnt', $checkoutcnt);
+		$this->set('level', $level);
+		$this->set('feeds', $timelines);
+        $this->set('title_for_action', 'マイページ');
 	}
+
 
     function join() {
         $this->layout = '';
@@ -229,7 +247,7 @@ class UsersController extends AppController {
     /*** API Contollers ***/
 
     // async data what checkin yet.
-    function api_checkin() {
+    function api_ischeckin() {
         $this->autoRender = false;
         $conditions = array('Job.checkin IS NOT NULL', 'Job.checkout IS NULL', 'Job.user_id'=>$this->Auth->user('id'));
         $jobs = $this->Job->find('first', array('conditions'=>$conditions));
@@ -240,6 +258,28 @@ class UsersController extends AppController {
             $flag = true;
         }
         $data = array('checkin'=>$flag);
+        $this->WebApi->sendApiResult($data);
+    }
+
+    // async checkin
+    function api_checkin() {
+        $this->autoRender = false;
+        $data = array('checkin'=>array('success'=>false));
+        if(!empty($this->data)) {
+            $user = $this->User->read('id', $this->data['userId']);
+            if(!empty($user)) {
+                $user['User']['checkin'] = date('Y-m-d H:i:s');
+                if ($this->User->save($user)) {
+                    $data = array('checkin'=>array('success'=>true));
+                } else {
+                    $data = array('checkin'=>array('success'=>false, 'message'=>'system error, data save failure'));
+                }
+            } else {
+                $data = array('checkin'=>array('success'=>false, 'message'=>'counldnot find user'));
+            }
+        } else {
+            $data = array('checkin'=>array('success'=>false, 'message'=>'post data is null'));
+        }
         $this->WebApi->sendApiResult($data);
     }
 

@@ -11,11 +11,11 @@
 		</script>
 <?php echo $this->Html->css('tmp', 'stylesheet', array('inline'=>false)); ?>
 <div class="searchBox">
-                <?php echo $this->Form->create('Feed');?>
-                    <input type="text" name="search" placeholder="名前を入れてください" class="searchTxt">
-                    <?php echo $this->Form->submit('検索', array('div'=>false)); ?>
-                </form>
-				</div>
+    <?php echo $this->Form->create('Friend', array('action'=>'search')); ?>
+    <?php echo $this->Form->input('Friend.username', array('label'=>False, 'div'=>False, 'class'=>'searchTxt', 'placeholder'=>'名前を入れてください')); ?>
+    <?php echo $this->Form->submit('search_btn.png', array('value'=>'検索', 'class'=>'searchBtn', 'width'=>'58')); ?>
+    </form>
+</div>
 				
 				<div class="woodFrame">
 					<div class="woodWrapper">

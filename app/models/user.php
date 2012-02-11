@@ -23,6 +23,10 @@ class User extends AppModel {
                 'rule' => 'isUnique',
                 'message' => 'This username is already use.'
             ),
+            'alphaNumeric' => array(
+                'rule' => 'alphaNumeric',
+                'message' => 'Username must be alphabet and numeric.'
+            ),
 		),
 		'password' => array(
 			'notempty' => array(

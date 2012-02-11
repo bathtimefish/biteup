@@ -72,6 +72,31 @@ class FriendsController extends AppController {
 		$this->set('webroot', $this->webroot);
 	}
 
+    // search friend
+    function search() {
+        $this->User->recursive = 0;
+        $this->Jobkind->recursive = -1;
+        $this->Level->recursive = -1;
+        if(!empty($this->data['Friend']['username'])) {
+            $this->paginate = array(
+                'model' => 'User',
+                'conditions' => array('User.username like' => $this->data['Friend']['username'].'%')
+            );
+            $friends = array();
+            $lists = $this->paginate();
+            foreach($lists as $l) {
+                $jobkind = $this->Jobkind->read('name', $l['User']['current_jobkind_id']);
+                $level = $this->Level->find('first', array('conditions'=>array('Level.id'=>$l['User']['current_level'], 'Level.jobkind_id'=>$l['User']['current_jobkind_id']), 'fields'=>array('Level.name')));
+                $l['User']['jobkind'] = $jobkind['Jobkind']['name'];
+                $l['User']['status'] = $level['Level']['name'];
+                array_push($friends, $l);
+            }
+            $this->set('friends', $friends);
+        }
+        $this->set('title_for_action', 'サポーター検索');
+    }
+
+/*
 	function add() {
 		if (!empty($this->data)) {
 			$this->Friend->create();
@@ -117,7 +142,8 @@ class FriendsController extends AppController {
 		}
 		$this->Session->setFlash(__('Friend was not deleted', true));
 		$this->redirect(array('action' => 'index'));
-	}
+    }
+ */
 	function admin_index() {
 		$this->Friend->recursive = 1;
 		$this->set('friends', $this->paginate());
