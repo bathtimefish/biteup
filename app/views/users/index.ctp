@@ -67,7 +67,7 @@
 <?php echo $this->Html->css('jquery.subwindow', 'stylesheet', array('inline'=>false)); ?>
 
 <div id="topics">
-    <div id="checkInSlider"></div>
+    <div id="checkInSlider" data-user-id="<?php if(!empty($userid)) echo $userid; ?>" data-job-id="<?php if(!empty($latestjob['Job']['id'])) echo $latestjob['Job']['id']; ?>"></div>
     <div class="cloud">
     <?php if(!empty($latestjob)) { ?>
         <?php $ljd = date_parse($latestjob['Job']['startdate'].' '.$latestjob['Job']['starttime']); ?>

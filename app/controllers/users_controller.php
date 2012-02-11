@@ -264,18 +264,19 @@ class UsersController extends AppController {
     // async checkin
     function api_checkin() {
         $this->autoRender = false;
+        $thos->Job->recursive = -1;
         $data = array('checkin'=>array('success'=>false));
         if(!empty($this->data)) {
-            $user = $this->User->read('id', $this->data['userId']);
-            if(!empty($user)) {
-                $user['User']['checkin'] = date('Y-m-d H:i:s');
-                if ($this->User->save($user)) {
+            $job = $this->Job->find('first', array('fields'=>array('Job.id'), 'conditions'=>array('Job.id'=>$this->data['jobId'], 'Job.user_id'=>$this->data['userId'])));
+            if(!empty($job)) {
+                $job['Job']['checkin'] = date('Y-m-d H:i:s');
+                if ($this->Job->save($user)) {
                     $data = array('checkin'=>array('success'=>true));
                 } else {
                     $data = array('checkin'=>array('success'=>false, 'message'=>'system error, data save failure'));
                 }
             } else {
-                $data = array('checkin'=>array('success'=>false, 'message'=>'counldnot find user'));
+                $data = array('checkin'=>array('success'=>false, 'message'=>'counldnot find job'));
             }
         } else {
             $data = array('checkin'=>array('success'=>false, 'message'=>'post data is null'));
