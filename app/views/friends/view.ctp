@@ -58,7 +58,7 @@
                     <?php echo $this->Form->input('Friend.friend_id', array('type'=>'hidden', 'value'=>$friend['User']['id'])); ?></p>
                     <?php if($followed) { ?>
                         <?php echo $this->Form->input('Friend.action', array('type'=>'hidden', 'value'=>'unfollow')); ?></p>
-					    <p><small>あなたはnakashizuさんをフォローしているぽ</small></p>
+                        <p><small>あなたは<?php echo $friend['User']['username']; ?>さんをフォローしているぽ</small></p>
                         <p><?php echo $this->Form->submit('btn_unfollow.png', array('alt'=>'アンフォロー', 'width'=>234, 'div'=>false)); ?></p>
                     <?php } else { ?>
                         <?php echo $this->Form->input('Friend.action', array('type'=>'hidden', 'value'=>'follow')); ?></p>

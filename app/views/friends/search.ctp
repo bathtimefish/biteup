@@ -21,7 +21,6 @@
         <?php if(!empty($friends)) { ?>
         <ul>
         <?php foreach($friends as $friend) { ?>
-            <li data-friend-jobkind="0" data-friend-level="3">
             <li data-friend-jobkind="<?php echo $friend['User']['current_jobkind_id']; ?>" data-friend-level="<?php echo $friend['User']['current_jobkind_id']; ?>">
                 <a href="<?php echo $this->webroot; ?>/friends/view/<?php echo $friend['User']['id']; ?>">
                 <canvas width="80" height="80" class="avatarIcon"></canvas>
@@ -30,7 +29,7 @@
                     <div class="friendStatus">
                         <p class="status"><?php echo $friend['User']['status']; ?></p>
                         <p class="job"><?php echo $friend['User']['jobkind']; ?></p>
-                        <p class="level"><?php $friend['User']['current_level']; ?></p>
+                        <p class="level"><?php echo $friend['User']['current_level']; ?></p>
                     </div>
                 </div>
                 </a>

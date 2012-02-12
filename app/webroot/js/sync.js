@@ -24,7 +24,7 @@ var Sync = {
 		apiID : [
 			"",
 			"",
-			"/biteup/api/users/jobalert", //2 チェックインチェック
+			"/test2.php", //2 トップページ用
 			"",
 			"",
 			"",
@@ -49,7 +49,7 @@ var Sync = {
 							data: userData,
 							success: function(res){
 								if(res) {
-									var obj = (new Function("return " + JSON.stringify(res)))();
+									var obj = (new Function("return " + res))();
 									if(parseInt(obj.infoCount) != 0) { $("header span.alert").css("display","block").text(obj.infoCount); } else {$("header span.alert").css("display","none")} // 新着カウント表示
 									fn(obj); // 共通以外は引数で送られてきた関数を実行
 								}

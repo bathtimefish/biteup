@@ -89,12 +89,27 @@ class JobsController extends AppController {
     function add() {
         if (!empty($this->data)) {
             $this->data['Job']['user_id'] = $this->Auth->user('id');
+            //時間を整形
+            $this->data['Job']['startdate']['month'] = sprintf('%02d', $this->data['Job']['startdate']['month']);
+            $this->data['Job']['startdate']['day'] = sprintf('%02d', $this->data['Job']['startdate']['day']);
+            $this->data['Job']['starttime']['hour'] = sprintf('%02d', $this->data['Job']['starttime']['hour']);
+            $this->data['Job']['starttime']['min'] = sprintf('%02d', $this->data['Job']['starttime']['min']);
+            $this->data['Job']['jobtime']['hour'] = sprintf('%02d', $this->data['Job']['jobtime']['hour']);
+            $this->data['Job']['jobtime']['min'] = sprintf('%02d', $this->data['Job']['jobtime']['min']);
+            //仕事名を確定
+            if(empty($this->data['Job']['name'])) {
+                if(!empty($this->data['Job']['job_selected'])) {
+                    $job = $this->Job->read('name', $this->data['Job']['job_selected']);
+                    $this->data['Job']['name'] = $job['Job']['name'];
+                }
+            }
             $this->Job->create();
             if ($this->Job->save($this->data)) {
                 $this->Session->setFlash(__('The job has been saved', true));
                 $this->redirect(array('action' => 'index'));
             } else {
                 $this->Session->setFlash(__('The job could not be saved. Please, try again.', true));
+                var_dump($this->data);
             }
         }
         $jobs = $this->Job->find('list');
@@ -110,10 +125,25 @@ class JobsController extends AppController {
             $this->redirect(array('action' => 'index'));
         }
         if (!empty($this->data)) {
+            //時間を整形
+            $this->data['Job']['startdate']['month'] = sprintf('%02d', $this->data['Job']['startdate']['month']);
+            $this->data['Job']['startdate']['day'] = sprintf('%02d', $this->data['Job']['startdate']['day']);
+            $this->data['Job']['starttime']['hour'] = sprintf('%02d', $this->data['Job']['starttime']['hour']);
+            $this->data['Job']['starttime']['min'] = sprintf('%02d', $this->data['Job']['starttime']['min']);
+            $this->data['Job']['jobtime']['hour'] = sprintf('%02d', $this->data['Job']['jobtime']['hour']);
+            $this->data['Job']['jobtime']['min'] = sprintf('%02d', $this->data['Job']['jobtime']['min']);
+            //仕事名を確定
+            if(empty($this->data['Job']['name'])) {
+                if(!empty($this->data['Job']['job_selected'])) {
+                    $job = $this->Job->read('name', $this->data['Job']['job_selected']);
+                    $this->data['Job']['name'] = $job['Job']['name'];
+                }
+            }
             if ($this->Job->save($this->data)) {
                 $this->Session->setFlash(__('The job has been saved', true));
                 $this->redirect(array('action' => 'index'));
             } else {
+                var_dump($this->data);
                 $this->Session->setFlash(__('The job could not be saved. Please, try again.', true));
             }
         }
@@ -121,8 +151,10 @@ class JobsController extends AppController {
             $this->data = $this->Job->read(null, $id);
         }
         $jobs = $this->Job->find('list');
+        $jobs['new'] = '新しいバイト先を指定'; // 新規登録のためのデータを追加
         $jobkinds = $this->Job->Jobkind->find('list');
         $this->set(compact('jobkinds', 'jobs'));
+        $this->set('user', $this->Job->User->read(null, $this->Auth->user('id')));
     }
 
     function delete($id = null) {

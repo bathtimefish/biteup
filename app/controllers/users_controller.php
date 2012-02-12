@@ -161,8 +161,8 @@ class UsersController extends AppController {
 		}
 	}
 
-    function edit($id = null) {
-        if(!$id) $id = $this->Auth->user('id'); // get User.id for Auth Session
+    function edit() {
+        $id = $this->Auth->user('id'); // get User.id for Auth Session
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash(__('Invalid user', true));
 			$this->redirect(array('action' => 'index'));

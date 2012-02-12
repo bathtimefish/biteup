@@ -120,6 +120,12 @@ function dhCalUI (_res, _id) {
 		
 		$("#calConfirm a").text(yy+"年"+mm+"月"+dd+"日で決定する").bind(eventName, function (e){
 			$(resourse).text(yy+"年"+mm+"月"+dd+"日");
+
+            //結果値をフォームに反映する
+            $('#JobStartdateYear').val(yy);
+            $('#JobStartdateMonth').val(mm);
+            $('#JobStartdateDay').val(dd);
+
 			$(container).fadeOut(300, function (){
 					$(_this).trigger("complete");
 					$(container).children().remove();

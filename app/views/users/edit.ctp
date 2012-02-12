@@ -4,6 +4,7 @@
     <div class="woodFrame registFrame noTitle">
      <div class="woodWrapper">
      <?php echo $this->Form->create('User');?>
+     <?php echo $this->Form->input('id', array('type'=>'hidden', 'value'=>$user['User']['id'])); ?>
      <dl>
       <dt>あなたのニックネーム</dt>
         <dd><?php if(!empty($user['User']['username'])) echo $user['User']['username']; ?></dd>
