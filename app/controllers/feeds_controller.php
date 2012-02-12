@@ -153,7 +153,7 @@ class FeedsController extends AppController {
 		$detail = $this->Feed->read('', $feed_id);
 		$detail['Feed']['action_time'] = $this->Timeline->getActionTime($detail['Feed']['created']);
 
-		$like_flg = $this->Like->find('first', array('conditions'=> array("Like.feed_id" => $feed_id, "Like.friend_id" => $this->Auth->user('id')))) ? false : true ;
+        $like_flg = $this->Like->find('first', array('conditions'=> array("Like.feed_id" => $feed_id, "Like.friend_id" => $this->Auth->user('id')))) ? false : true ;
 		if (!empty($this->data) && $like_flg === true) {
 			$jobs = $this->Job->read('', $detail['Feed']['job_id']);
 			$data = array();
@@ -167,12 +167,13 @@ class FeedsController extends AppController {
 			$this->Like->save($data);
 			$like_flg = false;
 		}
-		$this->set('feeds', $this->paginate());
+        $this->set('feeds', $this->paginate());
 
-		$likes  = $this->Like->find('all', array('order' => 'Like.created DESC','conditions'=> array("Like.feed_id" => $feed_id)));
+        $likes  = $this->Like->find('all', array('order' => 'Like.created DESC','conditions'=> array("Like.feed_id" => $feed_id)));
 		foreach ($likes as $key => $val){
 			$likes[$key]['Like']['action_time'] = $this->Timeline->getActionTime($val['Like']['created']);
 		}
-		$this->set(compact('detail', 'likes', 'like_flg'));
+        $this->set(compact('detail', 'likes', 'like_flg'));
+        $this->set('title_for_action', $detail['User']['username'].'さん');
 	}
 }
