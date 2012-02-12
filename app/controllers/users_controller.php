@@ -22,7 +22,13 @@ class UsersController extends AppController {
         $this->Feed->recursive = 1;
         $this->Like->recursive = -1;
         $this->Job->recursive = -1;
-        $latestjob = $this->Job->find('first', array('conditions'=>array('Job.user_id'=>$this->Auth->user('id'), 'Job.checkin IS NULL'), 'order'=>'Job.created DESC'));
+        //直近の仕事を抽出 with api_jobalert
+        $futu = strtotime('+30 minutes');
+        $datestr = date('Y-m-d', $futu);
+        $timestr = date('H:i:s', $futu);
+        $conditions = array('Job.startdate'=>$datestr, 'Job.starttime <'=>$timestr, 'Job.checkin IS NULL', 'Job.checkout IS NULL', 'Job.user_id'=>$this->Auth->user('id'));
+        $latestjob = $this->Job->find('first', array('conditions'=>$conditions));
+        //フレンドを抽出
         $friends = $this->Friend->find('list', array('conditions'=> array('Friend.user_id'=>$this->Auth->user('id'))));
         if(!empty($friends)) {
             $arybuf = array();
@@ -266,11 +272,12 @@ class UsersController extends AppController {
         $this->autoRender = false;
         $thos->Job->recursive = -1;
         $data = array('checkin'=>array('success'=>false));
+        $this->log($this->data, LOG_DEBUG);
         if(!empty($this->data)) {
             $job = $this->Job->find('first', array('fields'=>array('Job.id'), 'conditions'=>array('Job.id'=>$this->data['jobId'], 'Job.user_id'=>$this->data['userId'])));
             if(!empty($job)) {
                 $job['Job']['checkin'] = date('Y-m-d H:i:s');
-                if ($this->Job->save($user)) {
+                if ($this->Job->save($job)) {
                     $data = array('checkin'=>array('success'=>true));
                 } else {
                     $data = array('checkin'=>array('success'=>false, 'message'=>'system error, data save failure'));
@@ -280,6 +287,44 @@ class UsersController extends AppController {
             }
         } else {
             $data = array('checkin'=>array('success'=>false, 'message'=>'post data is null'));
+        }
+        $this->WebApi->sendApiResult($data);
+    }
+
+    // async checkout
+    function api_checkout() {
+        $this->autoRender = false;
+        $thos->Job->recursive = -1;
+        $thos->Feed->recursive = -1;
+        $data = array('checkout'=>array('success'=>false));
+        if(!empty($this->data)) {
+            //Jobにチェックアウトタイムを登録
+            $job = $this->Job->find('first', array('fields'=>array('Job.id', 'Job.name'), 'conditions'=>array('Job.id'=>$this->data['jobId'], 'Job.user_id'=>$this->data['userId'])));
+            if(!empty($job)) {
+                $job['Job']['checkout'] = date('Y-m-d H:i:s');
+                if ($this->Job->save($job)) {
+                    $data = array('checkout'=>array('success'=>true));
+                } else {
+                    $data = array('checkout'=>array('success'=>false, 'message'=>'system error, job data save failure'));
+                }
+            } else {
+                $data = array('checkout'=>array('success'=>false, 'message'=>'counldnot find job'));
+            }
+            $pmsg = 'が'.$job['Job']['name'].'からチェックアウトしました。'."\n";
+            //Feedにメッセージを登録
+            $feed = array('Feed' => array(
+                'user_id'=> $this->data['userId'],
+                'job_id'=> $this->data['jobId'],
+                'message'=>$pmsg.$this->data['message']
+            ));
+            $this->Feed->create();
+            if ($this->Feed->save($feed)) {
+                $data = array('checkout'=>array('success'=>true));
+            } else {
+                $data = array('checkout'=>array('success'=>false, 'message'=>'system error, feed data save failure'));
+            }
+        } else {
+            $data = array('checkout'=>array('success'=>false, 'message'=>'post data is null'));
         }
         $this->WebApi->sendApiResult($data);
     }
@@ -323,6 +368,26 @@ class UsersController extends AppController {
                 'name' => $job['Job']['name'],
                 'date' => $job['Job']['startdate'],
                 'startTime' => $job['Job']['starttime'],
+            ));
+        }
+        $this->WebApi->sendApiResult($data);
+    }
+
+    // async data what appear jobs near checkout.
+    function api_checkoutalert() {
+        $this->autoRender = false;
+        $this->Job->recursive = 1;
+        $futu = strtotime('+30 minutes');
+        $datestr = date('Y-m-d H:i:s', $futu);
+        $sql = 'SELECT id, name, startdate, starttime FROM jobs as Job WHERE checkin IS NOT NULL and checkout IS NULL and user_id = '.$this->Auth->user('id').' and addtime( addtime( startdate, starttime ) , jobtime ) < \''.$datestr.'\'';
+        $job = $this->Job->query($sql);
+        $data = array('job'=>false);
+        if(!empty($job)) {
+            $data = array('job' => array(
+                'id' => $job[0]['Job']['id'],
+                'name' => $job[0]['Job']['name'],
+                'date' => $job[0]['Job']['startdate'],
+                'startTime' => $job[0]['Job']['starttime'],
             ));
         }
         $this->WebApi->sendApiResult($data);
