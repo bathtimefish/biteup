@@ -22,7 +22,7 @@
 						<ul>
 <?php foreach ($timeline as $feed_id => $feed): ?>
 						<li>
-							<a href="/biteup/feeds/detail/<?php echo $feed_id ?>">
+                            <a href="<?php echo $this->webroot; ?>feeds/detail/<?php echo $feed_id ?>">
 							<?php echo $this->Html->image('dummy/dummy_avatar.png', array('alt'=>'#','class'=>'avatarIcon')); ?>
 							<div class="activity">
 								<p class="comment">

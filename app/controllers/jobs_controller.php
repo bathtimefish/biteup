@@ -20,7 +20,8 @@ class JobsController extends AppController {
         $this->Job->recursive = -1;
         $this->paginate = array(
             'limit' => 5,
-            'order' => array('Job.created DESC')
+            'order' => array('Job.created DESC'),
+            'conditions'=> array('Job.user_id' => $this->Auth->user('id')),
         );
         $pagination = $this->paginate();
         $this->set('jobs', $pagination);
