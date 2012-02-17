@@ -21,7 +21,7 @@ class JobsController extends AppController {
         $this->paginate = array(
             'limit' => 5,
             'order' => array('Job.created DESC'),
-            'conditions'=> array('Job.user_id' => $this->Auth->user('id')),
+            'conditions'=> array('Job.user_id' => $this->Auth->user('id'), 'Job.checkout IS NULL'),
         );
         $pagination = $this->paginate();
         $this->set('jobs', $pagination);

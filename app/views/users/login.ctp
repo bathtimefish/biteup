@@ -55,9 +55,9 @@
 		<footer>
 			<nav>
 				<ul>
-					<li class="tapping"><a href="#"><img src="img/footer_btn_info.png" alt="登録情報" width="68" height="38"></a></li>
-					<li class="tapping"><a href="#"><img src="img/footer_btn_guideline.png" alt="利用ガイドライン" width="107" height="38"></a></li>
-					<li class="tapping"><a href="#"><img src="img/footer_btn_about.png" alt="designers hackとは" width="127" height="38"></a></li>
+	    <li class="tapping"><?php echo $this->Html->link($this->Html->image('footer_btn_info.png', array('alt' => '登録情報', 'width' => '68', 'height' => '38')), array('controller'=>'users', 'action'=>'edit'), array('escape'=>false)); ?></a></li>
+        <li class="tapping"><a href="#"><?php echo $html->image('footer_btn_guideline.png', array('alt' => '利用ガイドライン', 'width' => '107', 'height' => '38')); ?></a></li>
+        <li class="tapping"><a href="#"><?php echo $html->image('footer_btn_about.png', array('alt' => 'designers hackとは', 'width' => '127', 'height' => '38')); ?></a></li>
 				</ul>
 			</nav>
 			<p class="copyright">Copyright &copy; designers hack All Rights Reserved.</p>
