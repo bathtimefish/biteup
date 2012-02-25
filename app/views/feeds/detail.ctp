@@ -14,7 +14,7 @@ foreach ($likes as $like) {
 <div class="woodFrame friendTimelineDetail">
     <div class="woodWrapper">
         <ul>
-            <li data-friend-jobkind="<?php echo $detail['User']['current_jobkind_id']; ?>" data-friend-level="<?php echo $detail['User']['current_level']; ?>">
+            <li data-friend-jobkind="<?php echo $detail['User']['current_jobkind_id']; ?>" data-friend-level="<?php echo $detail['User']['current_level']; ?>" data-feed-id="<?php echo $feed['User']['id']; ?>">
                 <canvas width="80" height="80" class="avatarIcon"></canvas>
                 <div class="activity">
                     <p class="comment">

@@ -89,7 +89,7 @@
     <?php if(!empty($feeds)) { // Friend Timeline Loop ?>
     <ul>
       <?php foreach($feeds as $feed) { ?>
-      <li data-friend-jobkind="<?php echo $feed['User']['current_jobkind_id']; ?>" data-friend-level="<?php echo $feed['User']['current_jobkind_id']; ?>">
+      <li data-friend-jobkind="<?php echo $feed['User']['current_jobkind_id']; ?>" data-friend-level="<?php echo $feed['User']['current_level']; ?>" data-feed-id="<?php echo $feed['User']['id']; ?>">
       <a href="<?php echo $this->webroot; ?>feeds/detail/<?php echo $feed['Feed']['id']; ?>">
            <canvas width="80" height="80" class="avatarIcon"></canvas>
            <div class="activity">
