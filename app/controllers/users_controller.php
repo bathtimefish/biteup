@@ -424,8 +424,10 @@ class UsersController extends AppController {
                 );
                 array_push($data['feeds'], $row);
             }
-            $this->WebApi->sendApiResult($data);
+        } else {
+            $data = array('feeds'=>null);
         }
+        $this->WebApi->sendApiResult($data);
     }
 
     // user follow a friend

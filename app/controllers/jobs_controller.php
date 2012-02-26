@@ -156,6 +156,7 @@ class JobsController extends AppController {
         $jobkinds = $this->Job->Jobkind->find('list');
         $this->set(compact('jobkinds', 'jobs'));
         $this->set('user', $this->Job->User->read(null, $this->Auth->user('id')));
+        $this->set('title_for_action', '予定を編集する');
     }
 
     function delete($id = null) {

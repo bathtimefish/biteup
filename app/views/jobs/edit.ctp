@@ -27,10 +27,10 @@
         <input type="hidden" id="JobStartdateYear" name="data[Job][startdate][year]" value="<?php echo date('Y', strtotime($this->data['Job']['startdate'])); ?>">
         <input type="hidden" id="JobStartdateMonth" name="data[Job][startdate][month]" value="<?php echo date('n', strtotime($this->data['Job']['startdate'])); ?>">
         <input type="hidden" id="JobStartdateDay" name="data[Job][startdate][day]" value="<?php echo date('j', strtotime($this->data['Job']['startdate'])); ?>">
-        <?php echo $this->Form->input('Job.starttime.hour', array('type'=>'hidden', 'id'=>'hdnStartHour')); ?>
-        <?php echo $this->Form->input('Job.starttime.min', array('type'=>'hidden', 'id'=>'hdnStartMinute')); ?>
-        <?php echo $this->Form->input('Job.jobtime.hour', array('type'=>'hidden', 'id'=>'hdnEndHour')); ?>
-        <?php echo $this->Form->input('Job.jobtime.min', array('type'=>'hidden', 'id'=>'hdnEndMinute')); ?>
+        <input type="hidden" id="hdnStartHour" name="data[Job][starttime][hour]" value="<?php echo date('G', strtotime($this->data['Job']['starttime'])); ?>">
+        <input type="hidden" id="hdnStartMinute" name="data[Job][starttime][min]" value="<?php echo date('i', strtotime($this->data['Job']['starttime'])); ?>">
+        <input type="hidden" id="hdnEndHour" name="data[Job][jobtime][hour]" value="<?php echo date('G', strtotime($this->data['Job']['jobtime'])); ?>">
+        <input type="hidden" id="hdnEndMinute" name="data[Job][jobtime][min]" value="<?php echo date('i', strtotime($this->data['Job']['jobtime'])); ?>">
         <div class="woodWrapper">
             <dl>
                 <dt>カレンダーから日付を選ぶ</dt>
@@ -45,13 +45,13 @@
                 <dt>バイトの開始時刻と時間を選ぶ</dt>
                 <dd>
                     <div id="startTime" data-hour="hdnStartHour" data-minute="hdnStartMinute" class="time start">
-                    <em><?php echo $this->data['Job']['startdate']['hour']; ?></em>
-                    <em><?php echo $this->data['Job']['startdate']['min']; ?></em>
+                    <em><?php echo date('H', strtotime($this->data['Job']['starttime'])); ?></em>
+                    <em><?php echo date('i', strtotime($this->data['Job']['starttime'])); ?></em>
                     </div>から
                     <div id="timeFrame1"></div>
                     <div id="endTime" data-hour="hdnEndHour" data-minute="hdnEndMinute" class="time while">
-                    <em><?php echo $this->data['Job']['jobtime']['hour']; ?></em>時間
-                    <em><?php echo $this->data['Job']['jobtime']['min']; ?></em>分</div>
+                    <em><?php echo date('H', strtotime($this->data['Job']['jobtime'])); ?></em>時間
+                    <em><?php echo date('i', strtotime($this->data['Job']['jobtime'])); ?></em>分</div>
                     <div id="timeFrame2"></div>
                 </dd>
             </dl>
