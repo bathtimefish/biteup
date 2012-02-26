@@ -140,11 +140,35 @@ class FeedsController extends AppController {
    $this->Session->setFlash(__('Invalid feed', true));
    $this->redirect(array('action' => 'index'));
   }
+  //フレンドを抽出
+  $friends = $this->Friend->find('list', array('conditions'=> array('Friend.user_id'=>$this->Auth->user('id'))));
+  if(!empty($friends)) {
+      $arybuf = array();
+      foreach($friends as $friend) {
+          array_push($arybuf, $friend);
+      }
+      array_push($arybuf, $this->Auth->user('id'));
+      $conditions = array('Feed.user_id IN ('.implode(',', $arybuf).')');
+      $order = array('Feed.created DESC');
+      $limit = 10;
+      $feeds = $this->Feed->find('all', array('conditions'=>$conditions, 'order'=>$order, 'limit'=>$limit));
+      $timelines = array();
+      foreach($feeds as $feed) {
+          $feed['Like']['likes'] = $this->Like->find('count', array('conditions'=>array('Like.feed_id'=>$feed['Feed']['id'], 'Like.user_id'=>$feed['Feed']['user_id'])));
+          $feed['Like']['comments'] = $this->Like->find('count', array('conditions'=>array('Like.feed_id'=>$feed['Feed']['id'], 'Like.message IS NOT NULL', 'Like.user_id'=>$feed['Feed']['user_id'])));
+          $feed['Feed']['created'] = $this->Timeline->getActionTime($feed['Feed']['created']);
+          array_push($timelines, $feed);
+      }
+      $this->set('feeds', $timelines);
+  }
+  $this->set('title_for_action', 'マイサポーター');
+  /*
   $this->set('feeds', $this->paginate());
   $timeline = $this->Timeline->getTimeline($id);
   $this->set(compact('timeline'));
+   */
  }
- 
+
 	function detail($feed_id) {
 		if (!$feed_id) {
 			$this->Session->setFlash(__('Invalid feed', true));
@@ -174,6 +198,6 @@ class FeedsController extends AppController {
 			$likes[$key]['Like']['action_time'] = $this->Timeline->getActionTime($val['Like']['created']);
 		}
         $this->set(compact('detail', 'likes', 'like_flg'));
-        $this->set('title_for_action', $detail['User']['username'].'さん');
+        $this->set('title_for_action', $detail['User']['username'].'縺輔ｓ');
 	}
 }
