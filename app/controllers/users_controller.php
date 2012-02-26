@@ -285,6 +285,19 @@ class UsersController extends AppController {
             } else {
                 $data = array('checkin'=>array('success'=>false, 'message'=>'counldnot find job'));
             }
+            $pmsg = 'が'.$job['Job']['name'].'にチェックインしました。'."\n";
+            //Feedにメッセージを登録
+            $feed = array('Feed' => array(
+                'user_id'=> $this->data['userId'],
+                'job_id'=> $this->data['jobId'],
+                'message'=>$pmsg.$this->data['message']
+            ));
+            $this->Feed->create();
+            if ($this->Feed->save($feed)) {
+                $data = array('checkin'=>array('success'=>true));
+            } else {
+                $data = array('checkin'=>array('success'=>false, 'message'=>'system error, feed data save failure'));
+            }
         } else {
             $data = array('checkin'=>array('success'=>false, 'message'=>'post data is null'));
         }
