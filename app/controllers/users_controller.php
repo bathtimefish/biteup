@@ -477,6 +477,36 @@ class UsersController extends AppController {
         $this->WebApi->sendApiResult(null);
     }
 
+    // get all charactor data
+    function api_getcharactors() {
+        $this->autoRender = false;
+        $this->Level->recursive = -1;
+        $this->Jobkind->recursive = -1;
+        $jobkinds = $this->Jobkind->find('all');
+        $levels = $this->Level->find('all', array('Order'=>array('jobkind_id', 'level')));
+        $data = array('chara');
+        foreach($jobkinds as $jobkind) {
+            $row = array(
+                $jobkind['Jobkind']['code'] => array(
+                    'name' => $jobkind['Jobkind']['name'],
+                    'level' => array()
+                )
+            );
+            foreach($levels as $level) {
+                if($jobkind['Jobkind']['id'] == $level['Level']['jobkind_id']) {
+                    $cinfs = array(
+                        'lv' => $level['Level']['level'],
+                        'url' => $level['Level']['avator'],
+                        'alt' => $level['Level']['name'],
+                    );
+                    array_push($row[$jobkind['Jobkind']['code']]['level'], $cinfs);
+                }
+            }
+            array_push($data, $row);
+        }
+        $this->WebApi->sendApiResult($data);
+    }
+
     //*** Admin Controllers ***
 
 	function admin_index() {
