@@ -53,16 +53,21 @@
 											//仮
 											res.feeds[i].jobKind = 1;
 											
-											dom += '<li data-friend-jobkind="'+res.feeds[i].jobKind+'" data-friend-level="'+res.feeds[i].level+'" data-friend-level="'+res.feeds[i].id+'"><a href="#"><canvas width="80" height="80" class="avatarIcon"></canvas><div class="activity"><p class="comment">'+res.feeds[i].body+'</p><div class="footer"><p class="icon"><span class="comment">'+res.feeds[i].likesCount+'</span><span class="otsu">'+res.feeds[i].commentCount+'</span></p><p class="times">'+times+'</p></div></div></a></li>';
+											dom += '<li data-friend-jobkind="'+res.feeds[i].jobKind+'" data-friend-level="'+res.feeds[i].level+'" data-friend-level="'+res.feeds[i].id+'"><a href="/a/feeds/detail/'+res.feeds[i].id+'"><canvas width="80" height="80" class="avatarIcon"></canvas><div class="activity"><p class="comment">'+res.feeds[i].body+'</p><div class="footer"><p class="icon"><span class="comment">'+res.feeds[i].likesCount+'</span><span class="otsu">'+res.feeds[i].commentCount+'</span></p><p class="times">'+times+'</p></div></div></a></li>';
 										}
 									$(dom).appendTo(".woodWrapper ul").hide().slideDown(1000, function (){
 										$("#moreFeed span").hide();
 										});
 									Global.thumbnail2Canvas();
+								}else{
+									//もし{feed: null}だったら
+									$("#moreFeed").css("background-image","/a/img/btn_readnomore.png");
+									$("#moreFeed span").hide();
 								}
+								
 							},$("#timeline ul li:last-child").data("feed-id"));
 							
-						}, 1000);
+						}, 500);
 					});
 					//
 					
