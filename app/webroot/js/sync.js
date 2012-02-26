@@ -27,7 +27,7 @@ var Sync = {
 			"/a/api/users/jobalert", //2 トップページ用
 			"",
 			"",
-			"",
+			"/a/api/users/tl/123",
 			"/a/api/feeds/latest", // 6 フレンドタイムライン
 			"/test7.php",// 7 このスラッシュの後に[min_feed_id:Number]がくっつく
 			"/test8.php", // 8 オツカレコメントあんどボタンを押した時通信
