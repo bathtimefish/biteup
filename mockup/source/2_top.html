@@ -54,7 +54,8 @@
 						$(this).find("span").show();
 						var Itimers = setInterval(function () {
 							clearInterval(Itimers);
-							Sync.once(2, function (res){
+							Sync.once(5, function (res){
+										console.dir(res)
 									if(res.feeds) {
 										var dom = "";
 										for (var i = 0; i<res.feeds.length; i++) {
