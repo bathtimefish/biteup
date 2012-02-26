@@ -23,7 +23,7 @@
 </div>
 <div class="profile">
     <h1><?php echo $user['User']['username']; ?></h1>
-    <p class="profileAvatar">
+    <p class="profileAvatar" data-friend-jobkind="<?php echo $user['User']['current_jobkind_id']; ?>" data-friend-level="<?php echo $user['User']['current_level']; ?>">
     <script>
         var s = Charactor.getImage("free", 1);
         document.write(s);
@@ -55,7 +55,7 @@
     <?php if(!empty($feeds)) { // Friend Timeline Loop ?>
     <ul>
     <?php foreach($feeds as $feed) { ?>
-        <li data-friend-jobkind="<?php echo $feed['User']['current_jobkind_id']; ?>" data-friend-level="<?php echo $feed['User']['current_level']; ?>" data-feed-id="<?php echo $feed['User']['id']; ?>">
+        <li data-friend-jobkind="<?php echo $feed['User']['current_jobkind_id']; ?>" data-friend-level="<?php echo $feed['User']['current_level']; ?>" data-feed-id="<?php echo $feed['Feed']['id']; ?>">
             <a href="<?php echo $this->webroot; ?>feeds/detail/<?php echo $feed['Feed']['id']; ?>">
                 <canvas width="80" height="80" class="avatarIcon"></canvas>
                 <div class="activity">
