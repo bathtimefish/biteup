@@ -43,17 +43,14 @@
 						var Itimers = setInterval(function () {
 							clearInterval(Itimers);
 							Sync.more(5, function (res){
-								console.log("応答",res)
+								//console.log("応答",res)
 									if(res.feeds) {
 										var dom = "";
 										for (var i = 0; i<res.feeds.length; i++) {
 											//1フィードごとに時間を計算する
 											var times = Global.compareTime(res.feeds[i].created);
 											
-											//仮
-											res.feeds[i].jobKind = 1;
-											
-											dom += '<li data-friend-jobkind="'+res.feeds[i].jobKind+'" data-friend-level="'+res.feeds[i].level+'" data-friend-level="'+res.feeds[i].id+'"><a href="/a/feeds/detail/'+res.feeds[i].id+'"><canvas width="80" height="80" class="avatarIcon"></canvas><div class="activity"><p class="comment">'+res.feeds[i].body+'</p><div class="footer"><p class="icon"><span class="comment">'+res.feeds[i].likesCount+'</span><span class="otsu">'+res.feeds[i].commentCount+'</span></p><p class="times">'+times+'</p></div></div></a></li>';
+											dom += '<li data-friend-jobkind="'+res.feeds[i].jobkind+'" data-friend-level="'+res.feeds[i].level+'" data-friend-level="'+res.feeds[i].id+'"><a href="/a/feeds/detail/'+res.feeds[i].id+'"><canvas width="80" height="80" class="avatarIcon"></canvas><div class="activity"><p class="comment">'+res.feeds[i].body+'</p><div class="footer"><p class="icon"><span class="comment">'+res.feeds[i].likesCount+'</span><span class="otsu">'+res.feeds[i].commentCount+'</span></p><p class="times">'+times+'</p></div></div></a></li>';
 										}
 									$(dom).appendTo(".woodWrapper ul").hide().slideDown(1000, function (){
 										$("#moreFeed span").hide();
