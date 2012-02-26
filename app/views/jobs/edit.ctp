@@ -12,12 +12,8 @@
         <h1><?php echo $this->Html->image('regist_title_select.png', array('alt'=>'バイト先を選ぶ', 'width'=>298, 'height'=>54)); ?></h1>
         <div class="woodWrapper">
             <dl>
-                <dt id="haveEver">今までのバイト先から選ぶ</dt>
-                <dd>
-                    <?php echo $this->Form->input('job_selected', array('type'=>'select', 'options'=>array_unique($jobs), 'class'=>'selectWorks', 'label'=>false, 'div'=>false, 'id'=>'company')); ?>
-                </dd>
-                <dt id="newEver">新しいバイト先を追加する</dt>
-                <dd style="display: none;"><?php echo $this->Form->input('name', array('type'=>'text', 'div'=>false, 'label'=>false, 'placeholder'=>'新しいバイト先をいれてぽ', 'class'=>'newRegist')); ?></dd>
+                <dt id="newEver">バイト先を編集する</dt>
+                <dd><?php echo $this->Form->input('name', array('type'=>'text', 'div'=>false, 'label'=>false, 'placeholder'=>'新しいバイト先をいれてぽ', 'class'=>'newRegist')); ?></dd>
                 <dt>バイト先のジャンルを選ぶ</dt>
                 <dd>
                     <?php echo $this->Form->input('jobkind_id', array('label'=>False, 'div'=>False, 'class'=>'selectWorks')); ?>
@@ -27,9 +23,10 @@
     </div>
     <div class="woodFrame registFrame">
         <h1><?php echo $this->Html->image('regist_title_date.png', array('alt'=>'日時を入れてぽ', 'width'=>298, 'height'=>54)); ?></h1>
-        <?php echo $this->Form->input('Job.startdate.year', array('type'=>'hidden')); ?>
-        <?php echo $this->Form->input('Job.startdate.month', array('type'=>'hidden')); ?>
-        <?php echo $this->Form->input('Job.startdate.day', array('type'=>'hidden')); ?>
+        <?php //　Job.startdate.year 等で日付値が正常に反映されないのでHTMLを直接書く ?>
+        <input type="hidden" id="JobStartdateYear" name="data[Job][startdate][year]" value="<?php echo date('Y', strtotime($this->data['Job']['startdate'])); ?>">
+        <input type="hidden" id="JobStartdateMonth" name="data[Job][startdate][month]" value="<?php echo date('n', strtotime($this->data['Job']['startdate'])); ?>">
+        <input type="hidden" id="JobStartdateDay" name="data[Job][startdate][day]" value="<?php echo date('j', strtotime($this->data['Job']['startdate'])); ?>">
         <?php echo $this->Form->input('Job.starttime.hour', array('type'=>'hidden', 'id'=>'hdnStartHour')); ?>
         <?php echo $this->Form->input('Job.starttime.min', array('type'=>'hidden', 'id'=>'hdnStartMinute')); ?>
         <?php echo $this->Form->input('Job.jobtime.hour', array('type'=>'hidden', 'id'=>'hdnEndHour')); ?>
@@ -37,13 +34,24 @@
         <div class="woodWrapper">
             <dl>
                 <dt>カレンダーから日付を選ぶ</dt>
-                <dd id="biteCalCall" class="calender">タップしてぽ！</dd>
+                <dd id="biteCalCall" class="calender">
+                <?php if(!empty($this->data['Job']['startdate'])) {
+                    echo date('Y年n月j日', strtotime($this->data['Job']['startdate']));
+                } else {
+                    echo 'タップしてぽ！';
+                } ?>
+                </dd>
                 <dd id="biteCalendar"></dd>
                 <dt>バイトの開始時刻と時間を選ぶ</dt>
                 <dd>
-                    <div id="startTime" data-hour="hdnStartHour" data-minute="hdnStartMinute" class="time start"><em></em><em></em></div>から
+                    <div id="startTime" data-hour="hdnStartHour" data-minute="hdnStartMinute" class="time start">
+                    <em><?php echo $this->data['Job']['startdate']['hour']; ?></em>
+                    <em><?php echo $this->data['Job']['startdate']['min']; ?></em>
+                    </div>から
                     <div id="timeFrame1"></div>
-                    <div id="endTime" data-hour="hdnEndHour" data-minute="hdnEndMinute" class="time while"><em></em>時間<em></em>分</div>
+                    <div id="endTime" data-hour="hdnEndHour" data-minute="hdnEndMinute" class="time while">
+                    <em><?php echo $this->data['Job']['jobtime']['hour']; ?></em>時間
+                    <em><?php echo $this->data['Job']['jobtime']['min']; ?></em>分</div>
                     <div id="timeFrame2"></div>
                 </dd>
             </dl>

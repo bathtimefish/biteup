@@ -414,7 +414,7 @@ class UsersController extends AppController {
                 $message = $feed['Feed']['message'];
                 $row = array(
                     'id' => $feed['Feed']['id'],
-                    'jobkind' => $feed['Job']['jobkind_id'],
+                    'jobkind' => $feed['User']['current_jobkind_id'],
                     'level' => $feed['User']['current_level'],
                     'userId' => $feed['User']['id'],
                     'body' => $message,
