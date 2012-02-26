@@ -28,34 +28,46 @@
 					//
 					
 					//ポーリングスタート、間隔の時間設定はSync内で
-                    Sync.start(2,function (res){
-                        console.log(res.job);
+					Sync.start(2,function (res){
+							console.log(res.job);
 						if(res.job) {
 							sl.init("checkInSlider", res.job.id, false);
 						}
 					});
 					//
 					
+					//console.log("lastID",$("#timeline ul li:last-child").data("feed-id"))
 					//もっと読むのタップ時に一度だけポーリング
 					$("#moreFeed").bind("click", function (){
 						$(this).find("span").show();
 						var Itimers = setInterval(function () {
 							clearInterval(Itimers);
-							Sync.once(2, function (res){
+							Sync.more(5, function (res){
+								console.log("応答",res)
 									if(res.feeds) {
 										var dom = "";
 										for (var i = 0; i<res.feeds.length; i++) {
 											//1フィードごとに時間を計算する
 											var times = Global.compareTime(res.feeds[i].created);
-											dom += '<li data-friend-jobkind="'+res.feeds[i].jobKind+'" data-friend-level="'+res.feeds[i].level+'"><a href="#"><canvas width="80" height="80" class="avatarIcon"></canvas><div class="activity"><p class="comment">'+res.feeds[i].body+'</p><div class="footer"><p class="icon"><span class="comment">'+res.feeds[i].likesCount+'</span><span class="otsu">'+res.feeds[i].commentCount+'</span></p><p class="times">'+times+'</p></div></div></a></li>';
+											
+											//仮
+											res.feeds[i].jobKind = 1;
+											
+											dom += '<li data-friend-jobkind="'+res.feeds[i].jobKind+'" data-friend-level="'+res.feeds[i].level+'" data-friend-level="'+res.feeds[i].id+'"><a href="/a/feeds/detail/'+res.feeds[i].id+'"><canvas width="80" height="80" class="avatarIcon"></canvas><div class="activity"><p class="comment">'+res.feeds[i].body+'</p><div class="footer"><p class="icon"><span class="comment">'+res.feeds[i].likesCount+'</span><span class="otsu">'+res.feeds[i].commentCount+'</span></p><p class="times">'+times+'</p></div></div></a></li>';
 										}
 									$(dom).appendTo(".woodWrapper ul").hide().slideDown(1000, function (){
 										$("#moreFeed span").hide();
 										});
 									Global.thumbnail2Canvas();
+								}else{
+									//もし{feed: null}だったら
+									$("#moreFeed").css("background-image","/a/img/btn_readnomore.png");
+									$("#moreFeed span").hide();
 								}
-							});
-						}, 1000);
+								
+							},$("#timeline ul li:last-child").data("feed-id"));
+							
+						}, 500);
 					});
 					//
 					

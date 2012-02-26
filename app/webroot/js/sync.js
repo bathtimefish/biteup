@@ -27,7 +27,7 @@ var Sync = {
 			"/a/api/users/jobalert", //2 トップページ用
 			"",
 			"",
-			"/a/api/users/tl/123",
+			"/a/api/users/tl/",
 			"/a/api/feeds/latest", // 6 フレンドタイムライン
 			"/test7.php",// 7 このスラッシュの後に[min_feed_id:Number]がくっつく
 			"/test8.php", // 8 オツカレコメントあんどボタンを押した時通信
@@ -63,16 +63,32 @@ var Sync = {
 			},
 	
 		//1回だけリクエスト
-		once: function (nm, fn, sentParam){
+		once: function (nm, fn, sentParam, urlParams){
 			if(Sync.isOnline()) {
 				$.ajax({
 					type: "POST",
-					url: Sync.apiID[nm],
+					url: Sync.apiID[nm]+(urlParams)?urlParams:"",
 					data: (sentParam) ?sentParam :userData,
 					success: function(res){
 						if(res) {
 							var obj = (new Function("return " + res))();
 							fn(obj); // 共通以外は引数で送られてきた関数を実行
+						}
+					}
+				});
+			}
+			
+		},
+		
+		//「もっと読む」が押された
+		more: function (nm, fn, feedID){
+			if(Sync.isOnline()) {
+				$.ajax({
+					type: "POST",
+					url: Sync.apiID[nm]+feedID,
+					success: function(res){
+						if(res) {
+							fn(res); // 
 						}
 					}
 				});
