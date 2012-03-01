@@ -1,5 +1,7 @@
 <?php echo $this->Javascript->link('global', false);?>
 <?php echo $this->Javascript->link('checkin_ui', false);?>
+<?php echo $this->Html->css('tmp', 'stylesheet', array('inline'=>false)); ?>
+
 <script>
 $(function (){
     var sl = new checkInUI();
@@ -32,6 +34,7 @@ $(function (){
                 <h3>
                     <?php $this->Html->image('icon_job_sampling.jpg', array('alt'=>'', 'width'=>'25', 'height'=>'25')); ?>
                     <?php echo $job['Job']['name']; ?>
+                    <span>Jobkindを出力したい</span>
                 </h3>
                 <?php $sd = getdate(strtotime($job['Job']['startdate'].' '.$job['Job']['starttime'])); ?>
 				<p><time datetime="2012-01-02T10:30Z">

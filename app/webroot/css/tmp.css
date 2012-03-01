@@ -301,8 +301,7 @@ padding: 15px 0;
 	-webkit-box-shadow: 1px 1px 3px rgba(0,0,0,0.2);
 }
 .woodFrame.listWrap ul li div.kind{
-	float:right;
-	width:215px;
+	margin-left: 10px;
 }
 .woodFrame.listWrap ul li h3{
 	font-weight: bold;
@@ -311,6 +310,10 @@ padding: 15px 0;
 	background-size: 13px 19px;
 	padding: 0 0 4px 20px;
 	text-shadow: -1px -1px 1px rgba(255, 255, 255, 1);
+}
+.woodFrame.listWrap ul li h3 span{
+	font-weight: normal;
+	color: #8D695B;
 }
 .woodFrame.listWrap ul li span{
 	font-size: 12px;
@@ -356,7 +359,8 @@ padding: 15px 0;
 
 /*	06_friend_timeline2
 ============================================*/
-.woodFrame.friendTimelineDetail li{
+.woodFrame.friendTimelineDetail li,
+.woodFrame.friendTimelineDetail li:first-child{
 	background: none;
 }
 .woodFrame.friendTimelineDetail li .activity {
@@ -399,10 +403,12 @@ padding: 15px 0;
 	position:absolute;
 	top:-20px;
 }
-.woodFrame li .commentList li{
+.woodFrame li .commentList li,
+.woodFrame li .commentList li:first-child{
 	border-bottom:1px solid #7d5929;
 	padding:8px;
-	background-color:#f9deac;
+	background:#f9deac url(../img/icon_arrow_timeline.png) 98% center no-repeat;
+	background-size: 32px 32px;
 }
 .woodFrame li .commentList li p.commentAvatar{
 	width:80px;
@@ -416,7 +422,7 @@ padding: 15px 0;
 .woodFrame li .commentList li p.commentAvatar img{
 }
 .woodFrame li .commentList li div.detail{
-	width:170px;
+	width:160px;
 	float: left;
 }
 .woodFrame li .commentList li div.detail h2{
@@ -552,7 +558,7 @@ p.profileAvatar img {
 
 .profileBg{
 	background: url(../img/friend_detail_bg.png) no-repeat 0 -1px;
-	background-size: 320px 126px;
+	background-size: 320px 79px;
 	padding: 20px 20px 20px;
 	position:relative;
 }

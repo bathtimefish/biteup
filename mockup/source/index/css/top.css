@@ -1,0 +1,133 @@
+@charset "UTF-8";
+
+/* reset */
+html{color:#000;background:#FFF;}
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td{margin:0;padding:0;}
+table{border-collapse:collapse;border-spacing:0;}
+fieldset,img{border:0;}
+address,caption,cite,code,dfn,em,strong,th,var,optgroup{font-style:inherit;font-weight:inherit;}
+li{list-style:none;}
+caption,th{text-align:left;}
+h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}
+legend{color:#000;}
+input,button,textarea,select,optgroup,option{font-family:inherit;font-size:inherit;font-style:inherit;font-weight:inherit;}
+input,button,textarea,select{*font-size:100%;}
+select,input,button,textarea,button{font:99% arial,helvetica,clean,sans-serif;}
+table{font-size:inherit;font:100%;}
+
+body {
+	background: url(../top_img/bg.jpg) top repeat-x;
+}
+
+#container {
+	background: url(../top_img/top_bg.jpg) top no-repeat;
+	width: 996px;
+	height: 830px;
+	margin: 0 auto;
+}
+
+#container #title {
+	position: relative;
+	top: 60px;
+	left: 55px;
+	width: 480px;
+}
+
+#container #title p {
+	margin-bottom: 8px;
+}
+
+#container #title h1 {
+	margin-left: 52px;
+}
+
+#container #story {
+	position: relative;
+	left: 574px;
+	top: 0px;
+	width: 390px;
+	margin-bottom: 0;
+}
+
+#container #story p {
+	font-size: 16px;
+	font-weight: bold;
+	color: #603f2f;
+	text-shadow: 2px 2px 0 #fff;
+	font-family: "ヒラギノ角ゴ Pro W3","メイリオ","ＭＳ Ｐゴシック", Osaka;
+	line-height: 180%;
+}
+
+#container #atten {
+	position: relative;
+	left: 671px;
+	top: 58px;
+	width: 315px;
+	font-size: 14px;
+	font-family: "ヒラギノ角ゴ Pro W3","メイリオ","ＭＳ Ｐゴシック", Osaka;
+}
+
+#container #atten p {
+	margin-bottom: 1em;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+#container #story p {
+	letter-spacing: -0.09em;
+	line-height: 185%;
+	font-family: "ヒラギノ角ゴ Pro W3";
+}
+#container #atten {
+	color: #333333;
+	font-family: "ヒラギノ角ゴ Pro W3";
+}
+}
+
+
+#container #mailbutton {
+	position: relative;
+	left: 671px;
+	top: 65px;
+	width:332px;
+}
+
+#container #qrcode {
+	position: relative;
+	left: 715px;
+	top: 72px;
+	width: 223px;
+}
+
+#footer {
+	background: url(../top_img/footer.jpg) top repeat;
+	height: 212px;
+	margin: 0 auto;
+}
+
+#footer #footerinner {
+	width: 996px;
+	margin: 0 auto;
+	padding: 0 20px;
+	color: #fff;
+	font-family: "ヒラギノ角ゴ Pro W3","メイリオ","ＭＳ Ｐゴシック", Osaka;
+}
+
+#footer ul {
+	float: left;
+}
+
+#footer ul li {
+	display: inline;
+	margin-right: 15px;
+	font-size: 11px;
+}
+
+#footer ul li a {
+	text-decoration: underline;
+	color: #fff;
+}
+
+#footer p {
+	text-align: right;
+	font-size: 11px;
+}

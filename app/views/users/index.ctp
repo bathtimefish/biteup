@@ -58,7 +58,13 @@
 									Global.thumbnail2Canvas();
 								}else{
 									//もし{feed: null}だったら
-									$("#moreFeed").css("background-image","/a/img/btn_readnomore.png");
+									$("#moreFeed").css({
+										"background":"url(/a/img/btn_readnomore.png) no-repeat center top",
+										"background-size":"299px 86px",
+										"width":"299px",
+										"height":"86px",
+										"padding-bottom":"0"
+										});
 									$("#moreFeed span").hide();
 								}
 								

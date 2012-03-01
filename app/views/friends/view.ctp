@@ -39,15 +39,16 @@
                                 <li class="checkout"><?php echo $checkoutcnt; ?></li>
 							</ul>
 						</div><!-- /.profileDetail -->
+						<!-- 未実装 
 						<div class="pointGage">
 							<p class="meter"><span></span></p>
                             <div class="gage">
-                                <!-- 未実装 -->
-								<p class="text">LEVEL9まであと<strong>4015pt</strong></p>
+                                <p class="text">LEVEL9まであと<strong>4015pt</strong></p>
 								<p class="point">19546 pt</p>
-                                <!-- 未実装 -->
+                                
 							</div>
-						</div><!-- /.gage -->
+						</div>
+						-->
 
 					</div><!-- /.profileBg -->
 					

@@ -147,6 +147,23 @@ header nav ul li .alert:empty {
 /*	common
 ============================================*/
 
+/*	#flashMessage
+-----------------------------------------------*/
+#flashMessage,#authMessage{
+	margin: 10px 20px;
+	padding: 10px;
+	background: rgba(0,0,0,0.8);
+	color: #fff;
+	font-size: 12px;
+	border-radius: 10px;
+	-webkit-border-radius: 10px;
+}
+
+
+
+/*	.woodFrame
+-----------------------------------------------*/
+
 .woodFrame {
 	background: url(../img/bg_timeline_head.png) top no-repeat, url(../img/bg_timeline_footer.png) bottom no-repeat;
 	background-size: 320px 30px;

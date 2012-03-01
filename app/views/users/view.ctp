@@ -40,14 +40,15 @@
                 <li class="checkout"><?php echo $checkoutcnt; ?></li>
             </ul>
         </div><!-- /.profileDetail -->
+        <!-- 未実装
         <div class="pointGage">
             <p class="meter"><span></span></p>
             <div class="gage">
-                <!-- 未実装 -->
                 <p class="text">LEVEL2まであと<strong>35 pt</strong></p>
                 <p class="point">20 pt</p>
             </div>
-        </div><!-- /.gage -->
+        </div>
+        -->
     </div><!-- /.profileBg -->
 </div><!-- /.profile -->
 <div id="timeline" class="woodFrame">
