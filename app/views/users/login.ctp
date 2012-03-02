@@ -15,7 +15,6 @@
 		<div id="container">
 				<header>
                     <h1><?php __('Biteup'); ?></h1>
-                    <p class="pageBack tapping"><?php echo $this->Html->link($this->Html->image('header_btn_back.png', array('alt'=>'戻る', 'width'=>'43', 'height'=>'34')), 'javascript:history.go(-1);', array('escape' => false));?></p>
 				</header>
 			
 			<div id="bookArea">

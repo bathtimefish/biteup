@@ -17,7 +17,7 @@ class JobsController extends AppController {
     }
 
     function index() {
-        $this->Job->recursive = -1;
+        $this->Job->recursive = 0;
         $this->paginate = array(
             'limit' => 5,
             'order' => array('Job.created DESC'),
@@ -25,6 +25,7 @@ class JobsController extends AppController {
         );
         $pagination = $this->paginate();
         $this->set('jobs', $pagination);
+        $this->set('title_for_action', '予定リスト');
     }
 
     // user check in a job.
@@ -85,6 +86,7 @@ class JobsController extends AppController {
             $this->redirect(array('action' => 'index'));
         }
         $this->set('job', $this->Job->read(null, $id));
+        $this->set('title_for_action', '予定詳細');
     }
 
     function add() {
@@ -118,6 +120,7 @@ class JobsController extends AppController {
         $jobkinds = $this->Job->Jobkind->find('list');
         $this->set(compact('jobkinds', 'jobs'));
         $this->set('user', $this->Job->User->read(null, $this->Auth->user('id')));
+        $this->set('title_for_action', '予定登録');
     }
 
     function edit($id = null) {

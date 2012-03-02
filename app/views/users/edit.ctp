@@ -21,7 +21,8 @@
         <dd><?php echo $this->Form->input('new_password', array('type'=>'password', 'div'=>false, 'label'=>false, 'value'=>'', 'class'=>'newRegist', 'placeholder'=>'新しいパスワードを入力するぽ')); ?></dd>
         <dd><?php echo $this->Form->input('renew_password', array('type'=>'password', 'div'=>false, 'label'=>false, 'value'=>'', 'class'=>'newRegist', 'placeholder'=>'もう一度確認用に入力するぽ')); ?></dd>
      </dl>
-     <?php echo $this->Form->end(__('Edit', true));?>
+     <p class="alC"><?php echo $this->Form->submit('btn_edit.png', array('alt'=>"編集する", 'width'=>"206", 'height'=>"60", 'div'=>false, 'label'=>false)); ?></p>
+    </form>
      </div>
     </div>
 

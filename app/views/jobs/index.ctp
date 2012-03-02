@@ -34,7 +34,7 @@ $(function (){
                 <h3>
                     <?php $this->Html->image('icon_job_sampling.jpg', array('alt'=>'', 'width'=>'25', 'height'=>'25')); ?>
                     <?php echo $job['Job']['name']; ?>
-                    <span>Jobkindを出力したい</span>
+                    <span><? echo $job['Jobkind']['name']; ?></span>
                 </h3>
                 <?php $sd = getdate(strtotime($job['Job']['startdate'].' '.$job['Job']['starttime'])); ?>
 				<p><time datetime="2012-01-02T10:30Z">

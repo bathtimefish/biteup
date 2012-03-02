@@ -198,6 +198,6 @@ class FeedsController extends AppController {
 			$likes[$key]['Like']['action_time'] = $this->Timeline->getActionTime($val['Like']['created']);
 		}
         $this->set(compact('detail', 'likes', 'like_flg'));
-        $this->set('title_for_action', $detail['User']['username'].'縺輔ｓ');
+        $this->set('title_for_action', $detail['User']['username'].'の詳細');
 	}
 }

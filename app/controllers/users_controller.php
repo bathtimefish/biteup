@@ -13,7 +13,7 @@ class UsersController extends AppController {
         $this->Auth->loginRedirect = array('action' => 'index');
         $this->Auth->logoutRedirect = array('action' => 'login');
         $this->Auth->allow('login', 'logout', 'join');
-        $this->Auth->loginError = 'email or password is invalid.';
+        $this->Auth->loginError = __('email or password is invalid.', true);
         //$this->Auth->authError = 'Please try logon as admin.';
     }
 
@@ -285,7 +285,7 @@ class UsersController extends AppController {
             } else {
                 $data = array('checkin'=>array('success'=>false, 'message'=>'counldnot find job'));
             }
-            $pmsg = 'が'.$job['Job']['name'].'にチェックインしました。'."\n";
+            $pmsg = 'がバイトにチェックインしました。'."\n";
             //Feedにメッセージを登録
             $feed = array('Feed' => array(
                 'user_id'=> $this->data['userId'],
