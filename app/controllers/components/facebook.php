@@ -114,6 +114,7 @@ class FacebookComponent extends Object
         );
         try {
             $this->Facebook->api('/me/feed', 'POST', $attachment);
+            $this->log($attachment, LOG_DEBUG);
         } catch (FacebookApiException $e) {
             $this->log($e->getType(), LOG_DEBUG);
             $this->log($e->getMessage(), LOG_DEBUG);
