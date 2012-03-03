@@ -8,7 +8,7 @@ class FacebookComponent extends Object
     function startup(&$controller) {
         App::import('Vendor', 'facebook/php-sdk/src/facebook');
         $this->Facebook = new Facebook(array(
-            /*** GuruguKobe App ID & Secret ***/
+            /*** App ID & Secret ***/
             'appId'  => '206177822805264',
             'secret' => 'b9b37bc15a58a969eec0a93fdfb9999a',
             'cookie' => true,

@@ -295,6 +295,8 @@ class UsersController extends AppController {
             $this->Feed->create();
             if ($this->Feed->save($feed)) {
                 $data = array('checkin'=>array('success'=>true));
+                $pubmsg = $this->Auth->user('username').$pmsg.$this->data['message'];
+                $this->Facebook->publish($this->Auth->user('username'), $pubmsg); // publish to Facebook
             } else {
                 $data = array('checkin'=>array('success'=>false, 'message'=>'system error, feed data save failure'));
             }
@@ -333,6 +335,8 @@ class UsersController extends AppController {
             $this->Feed->create();
             if ($this->Feed->save($feed)) {
                 $data = array('checkout'=>array('success'=>true));
+                $pubmsg = $this->Auth->user('username').$pmsg.$this->data['message'];
+                $this->Facebook->publish($this->Auth->user('username'), $pubmsg); // publish to Facebook
             } else {
                 $data = array('checkout'=>array('success'=>false, 'message'=>'system error, feed data save failure'));
             }
