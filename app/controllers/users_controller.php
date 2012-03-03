@@ -272,7 +272,6 @@ class UsersController extends AppController {
         $this->autoRender = false;
         $thos->Job->recursive = -1;
         $data = array('checkin'=>array('success'=>false));
-        $this->log($this->data, LOG_DEBUG);
         if(!empty($this->data)) {
             $job = $this->Job->find('first', array('fields'=>array('Job.id'), 'conditions'=>array('Job.id'=>$this->data['jobId'], 'Job.user_id'=>$this->data['userId'])));
             if(!empty($job)) {
@@ -294,7 +293,6 @@ class UsersController extends AppController {
             ));
             $this->Feed->create();
             if ($this->Feed->save($feed)) {
-                $this->log('feed saved', LOG_DEBUG);
                 $data = array('checkin'=>array('success'=>true));
                 $pubmsg = $this->Auth->user('username').$pmsg;
                 $this->Facebook->publish($this->Auth->user('id'), $pubmsg); // publish to Facebook

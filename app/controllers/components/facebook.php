@@ -101,10 +101,8 @@ class FacebookComponent extends Object
 
     // publish stream
     function publish($user_id = null, $message = null) {
-        $this->log($message, LOG_DEBUG);
         if(!$user_id || !$message) return false;
         $user = $this->User->read(null, $user_id);
-        $this->log($user, LOG_DEBUG);
         if(empty($user)) return false;
         if(empty($user['User']['fb_access_token'])) {
             $this->log('Facebook publish(): fb_access_token is empty, UserID='.$user_id, LOG_DEBUG);
@@ -116,7 +114,6 @@ class FacebookComponent extends Object
         );
         try {
             $this->Facebook->api('/me/feed', 'POST', $attachment);
-            $this->log($attachment, LOG_DEBUG);
         } catch (FacebookApiException $e) {
             $this->log($e->getType(), LOG_DEBUG);
             $this->log($e->getMessage(), LOG_DEBUG);
