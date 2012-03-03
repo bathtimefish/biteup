@@ -295,7 +295,7 @@ class UsersController extends AppController {
             if ($this->Feed->save($feed)) {
                 $data = array('checkin'=>array('success'=>true));
                 $pubmsg = $this->Auth->user('username').$pmsg;
-                $this->Facebook->publish($this->Auth->user('id'), $pubmsg); // publish to Facebook
+                $this->Facebook->publish($this->Auth->user('id'), $pubmsg); // message publish to Facebook
             } else {
                 $data = array('checkin'=>array('success'=>false, 'message'=>'system error, feed data save failure'));
             }
