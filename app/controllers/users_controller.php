@@ -294,6 +294,7 @@ class UsersController extends AppController {
             ));
             $this->Feed->create();
             if ($this->Feed->save($feed)) {
+                $this->log('feed saved', LOG_DEBUG);
                 $data = array('checkin'=>array('success'=>true));
                 $pubmsg = $this->Auth->user('username').$pmsg;
                 $this->Facebook->publish($this->Auth->user('username'), $pubmsg); // publish to Facebook
