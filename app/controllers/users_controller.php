@@ -272,6 +272,7 @@ class UsersController extends AppController {
         $this->autoRender = false;
         $thos->Job->recursive = -1;
         $data = array('checkin'=>array('success'=>false));
+        $this->log($this->data, LOG_DEBUG);
         if(!empty($this->data)) {
             $job = $this->Job->find('first', array('fields'=>array('Job.id'), 'conditions'=>array('Job.id'=>$this->data['jobId'], 'Job.user_id'=>$this->data['userId'])));
             if(!empty($job)) {
