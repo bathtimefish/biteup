@@ -43,8 +43,8 @@
 						var Itimers = setInterval(function () {
 							clearInterval(Itimers);
 							Sync.more(5, function (res){
-								//console.log("応答",res)
-									if(res.feeds) {
+								console.log("応答",res.feeds)
+									if(res.feeds !== null) {
 										var dom = "";
 										for (var i = 0; i<res.feeds.length; i++) {
 											//1フィードごとに時間を計算する
@@ -58,6 +58,7 @@
 									Global.thumbnail2Canvas();
 								}else{
 									//もし{feed: null}だったら
+<<<<<<< HEAD
 									$("#moreFeed").css({
 										"background":"url(/a/img/btn_readnomore.png) no-repeat center top",
 										"background-size":"299px 86px",
@@ -65,6 +66,10 @@
 										"height":"86px",
 										"padding-bottom":"0"
 										});
+=======
+									$("#moreFeed").unbind("click");
+									$("#moreFeed").css("background-image","url(/a/app/webroot/img/btn_readnomore.png)");
+>>>>>>> test
 									$("#moreFeed span").hide();
 								}
 								
