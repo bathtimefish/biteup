@@ -16,9 +16,9 @@
  + "<span id='ui-btn-8' data-value='8' class='button disabled'>8</span>"
  + "<span id='ui-btn-9' data-value='9' class='button disabled'>9</span>"
  + "</div>"
- + "<span id='ui-btn-back' data-value='back' class='button disabled'>消す</span>"
- + "<span id='ui-btn-cancel' data-value='cancel' class='button'>閉じる</span>"
- + "<span id='ui-btn-now' data-value='now' class='button'>今の時間</span>"
+ + "<span id='ui-btn-back' data-value='back' class='button disabled'>もどる</span>"
+ + "<span id='ui-btn-cancel' data-value='cancel' class='button'>消す</span>"
+ + "<span id='ui-btn-now' data-value='now' class='button'>今の時刻</span>"
  + "<div class='input-frame'>"
  + "<span id='ui-input-1' class='input forcus'></span>"
  + "<span id='ui-input-2' class='input'></span>"
@@ -38,9 +38,16 @@
 		
 		var format = (arg.format) ? arg.format : "%H:%M";
 		
+		var toHour = arg.toHour;
+		var toMinute = arg.toMinute;
+		if (!toHour && !toMinute) {
+			return;
+		}
+		
 		oTarget.on("click", function() {
 		
 			var oHour = $("#" + tHour), oMinute = $("#" + tMinute);
+			var hdnHour = $("#" + toHour), hdnMinute = $("#" + toMinute);
 			var defHour = oHour.val(), defMinute = oMinute.val();
 			
 			var valH1 = valH2 = valM1 = valM2 = "";
@@ -209,7 +216,7 @@
 
 						oForcus.removeClass("forcus");
 						oNext.addClass("forcus");
-						$("#ui-btn-back").removeClass("disabled").text("消す");
+						$("#ui-btn-back").removeClass("disabled").text("もどる");
 						break;
 				}
 				
@@ -236,10 +243,14 @@
 					var setM = valM1 + "" + valM2;
 					var setVal = format.replace("%H", setH);
 							setVal = setVal.replace("%M", setM);
+							
+							console.log(parseInt(setH, 10));
 
 					oTarget.html(setVal);
-					oHour.val(parseInt(setH));
-					oMinute.val(parseInt(setM));					
+					oHour.val(parseInt(setH, 10));
+					oMinute.val(parseInt(setM, 10));					
+					hdnHour.val(parseInt(setH, 10));
+					hdnMinute.val(parseInt(setM, 10));
 				}
 				
 				

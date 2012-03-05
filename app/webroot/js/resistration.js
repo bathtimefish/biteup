@@ -87,7 +87,7 @@ window.onload = function (){
 	$("#biteCalCall").bind(Biteup.ev, Biteup.showCalendar);
 	Biteup.newCompanyUI();
 	
-	$("#startTime").timeSelector({ format: "<em>%H</em><em>%M</em>", target: "timeFrame1" });
-	$("#endTime").timeSelector({ format: "<em>%H</em>時間<em>%M</em>分", target: "timeFrame2" });
+	$("#startTime").timeSelector({ format: "<em>%H</em><em>%M</em>", target: "timeFrame1", toHour: "hdnStartHour", toMinute: "hdnStartMinute" });
+	$("#endTime").timeSelector({ format: "<em>%H</em>時間<em>%M</em>分", target: "timeFrame2", toHour: "hdnEndHour", toMinute: "hdnEndMinute" });
 		
 }
