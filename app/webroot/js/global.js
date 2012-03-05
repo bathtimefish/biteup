@@ -8,15 +8,15 @@ Global = {
 			Global.setPageBackBtn();
 			return this;
 		},
-		
-	setPageBackBtn: function (){
-			//ヘッダのバックボタンを設定する
+	
+	//ヘッダのバックボタンを設定する->aタグにリンクを追加したため、不要に（3/4とみた）
+	/*setPageBackBtn: function (){
 			$(".pageBack a").bind("click", function (e){
 					e.preventDefault();
 					window.history.back();
 				});
 			return this;
-		},
+		},*/
 		
 	compareTime : function (tm) {
 			var ds = Date.parse( tm.replace( /-/g, '/') );
