@@ -25,7 +25,9 @@
     <h1><?php echo $user['User']['username']; ?></h1>
     <p class="profileAvatar" data-friend-jobkind="<?php echo $user['User']['current_jobkind_id']; ?>" data-friend-level="<?php echo $user['User']['current_level']; ?>">
     <script>
-        var s = Charactor.getImage("free", 1);
+		console.log($(".profileAvatar").data("friend-jobkind"), $(".profileAvatar").data("friend-level"));
+				//var avatarData = {kind:}
+        var s = Charactor.getImage($(".profileAvatar").data("friend-jobkind"), $(".profileAvatar").data("friend-level"));
         document.write(s);
     </script>
     </p>

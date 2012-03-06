@@ -145,14 +145,15 @@ var Charactor = {
   if(level === 0) {
    imgs.uwamono = "chara_lv0.png";
   }else{
-  $(Charactor.chara).each( function (i, val){
+  /*$(Charactor.chara).each( function (i, val){
     for(var i in this) {
      if(i === jobKind) {
       imgs.uwamono = this[i].level[level].url;
       break;
      }
     }
-   });
+   });*/
+	 imgs.uwamono = Charactor.chara[Charactor.num2JobTitle(jobKind)].level[level].url;
   }
 
   if(num === 1) {
@@ -188,7 +189,7 @@ var Charactor = {
  getThumbnail: function (jobKind, level, canvas){
   //サムネイルにはcanvasで生成する
   var basePath = "/a/img/avatar/";
-  var arr = Charactor.getArray(Charactor.num2JobTitle(jobKind), level, 1);
+  var arr = Charactor.getArray(jobKind, level, 1);
   var ctx = canvas.getContext("2d");
   var img1 = new Image();
   img1.src = basePath+arr[0]+"?"+new Date().getTime();
