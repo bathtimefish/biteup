@@ -28,6 +28,7 @@ foreach ($likes as $like) {
                 <?php if($like_flg) : ?>
                 <div class="commentForm">
                 <?php echo $this->Form->create('Feed',array('controller' => 'feed', 'action' => 'detail','url'=>array($detail['Feed']['id']))); ?>
+                <?php echo $this->Form->input('Feed.job_id', array('type'=>'hidden', array('value'=>$detail['Feed']['job_id']))); ?>
                     <p><?php echo $this->Form->input('message', array('type' => 'text', 'class' => 'newRegist', 'placeholder' => 'コメントをいれてあげるぽよ', 'label' => false, 'div' => false)); ?></p>
                     <p class="otsukareBtn"><?php echo $form->submit('comment_btn_otsukare.png', array('alt' => 'オツカレ', 'value' => 'オツカレ', 'width' => '70', 'div' => false)); ?></p>
                     <?php echo $this->Html->image('icon_otsukare_load.png', array('id'=>'otukareLoadIcon', 'style'=>'display:none;')); ?>

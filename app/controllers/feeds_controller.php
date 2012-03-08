@@ -184,8 +184,9 @@ class FeedsController extends AppController {
 			$data['Like']['user_id']    = $detail['Feed']['user_id'];
 			$data['Like']['friend_id']  = $this->Auth->user('id');
 			$data['Like']['feed_id']    = $feed_id;
-			$data['Like']['job_id']     = $detail['Feed']['job_id'];
-			$data['Like']['message']    = $this->data['Feed']['message'];
+            $data['Like']['job_id']     = $detail['Feed']['job_id'];
+            $data['Like']['message']    = $this->Auth->user('username').'がおつかれ！と言っています。'."\n";
+			$data['Like']['message']    = $data['Like']['message'].$this->data['Feed']['message'];
 			$data['Like']['jobkind_id'] = $jobs['Job']['jobkind_id'];
 			$data['Like']['point']      = 5;
 			$this->Like->save($data);
