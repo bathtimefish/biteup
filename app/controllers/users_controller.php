@@ -500,7 +500,7 @@ class UsersController extends AppController {
         $this->Jobkind->recursive = -1;
         $jobkinds = $this->Jobkind->find('all');
         $levels = $this->Level->find('all', array('Order'=>array('jobkind_id', 'level')));
-        $data = array('chara');
+        $data = array();
         foreach($jobkinds as $jobkind) {
             $row = array(
                 $jobkind['Jobkind']['code'] => array(

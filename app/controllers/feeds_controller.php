@@ -3,8 +3,8 @@ class FeedsController extends AppController {
 
  var $name = 'Feeds';
  var $helpers = array('Javascript');
- var $components = array('Auth', 'WebApi', 'Timeline');
- var $uses = array('Feed', 'Friend', 'Like', 'Job');
+ var $components = array('Auth', 'WebApi', 'Timeline', 'LevelCalc', 'Facebook');
+ var $uses = array('Feed', 'Friend', 'Like', 'Job', 'Level');
 
 
  function index() {
@@ -175,21 +175,44 @@ class FeedsController extends AppController {
 			$this->redirect(array('action' => 'index'));
 		}
 		$detail = $this->Feed->read('', $feed_id);
-		$detail['Feed']['action_time'] = $this->Timeline->getActionTime($detail['Feed']['created']);
+        $detail['Feed']['action_time'] = $this->Timeline->getActionTime($detail['Feed']['created']);
 
-        $like_flg = $this->Like->find('first', array('conditions'=> array("Like.feed_id" => $feed_id, "Like.friend_id" => $this->Auth->user('id')))) ? false : true ;
-		if (!empty($this->data) && $like_flg === true) {
-			$jobs = $this->Job->read('', $detail['Feed']['job_id']);
+        $jobs = $this->Job->read('', $detail['Feed']['job_id']);
+
+        //最新の同業種のLikeを取得
+        $like = $this->Like->find('first', array('conditions'=> array("Like.jobkind_id" => $jobs['Job']['jobkind_id'], "Like.friend_id" => $this->Auth->user('id')), 'order'=>'Feed.id DESC'));
+
+        $like_flg = $this->Like->find('first', array('conditions'=> array("Like.feed_id" => $detail['Feed']['id'], "Like.friend_id" => $this->Auth->user('id')))) ? false : true;
+
+        //Feed.job_id==0の場合は汎用メッセージなので $like_flg = false
+        if($detail['Feed']['job_id'] == 0) $like_flg = false;
+
+		if (!empty($this->data)) {
 			$data = array();
 			$data['Like']['user_id']    = $detail['Feed']['user_id'];
 			$data['Like']['friend_id']  = $this->Auth->user('id');
 			$data['Like']['feed_id']    = $feed_id;
             $data['Like']['job_id']     = $detail['Feed']['job_id'];
-            $data['Like']['message']    = $this->Auth->user('username').'がおつかれ！と言っています。'."\n";
-			$data['Like']['message']    = $data['Like']['message'].$this->data['Feed']['message'];
+            $data['Like']['message']    = $this->Auth->user('username').'さんがおつかれ！と言っています。'."\n";
+            if(!empty($this->data['Feed']['message'])) {
+                $data['Like']['message'] .= $this->data['Feed']['message'];
+            }
 			$data['Like']['jobkind_id'] = $jobs['Job']['jobkind_id'];
-			$data['Like']['point']      = 5;
-			$this->Like->save($data);
+			$data['Like']['point']      = 5; //オツカレポイント
+			$data['Like']['current_point'] = strval(intval($like['Like']['current_point']) + intval($data['Like']['point'])); //現在の職業別ポイントを加算
+            $this->Like->save($data);
+            $level_uped = $this->LevelCalc->setUserLevel($this->Auth->user('id'), $jobs['Job']['jobkind_id']); //ユーザーのカレントレベル等を変更
+            if($level_uped['uped']) { //レベルアップした
+                $message = $level_uped['name'].' にレベルアップしました！';
+                $feed = array(
+                    'user_id' => $this->Auth->user('id'),
+                    'job_id' => 0,
+                    'message' => $message,
+                );
+                $this->Feed->create();
+                $this->Feed->save($feed);
+                $this->Facebook->publish($this->Auth->user('id'), $message);
+            }
 			$like_flg = false;
 		}
         $this->set('feeds', $this->paginate());
@@ -197,7 +220,7 @@ class FeedsController extends AppController {
         $likes  = $this->Like->find('all', array('order' => 'Like.created DESC','conditions'=> array("Like.feed_id" => $feed_id)));
 		foreach ($likes as $key => $val){
 			$likes[$key]['Like']['action_time'] = $this->Timeline->getActionTime($val['Like']['created']);
-		}
+        }
         $this->set(compact('detail', 'likes', 'like_flg'));
         $this->set('title_for_action', $detail['User']['username'].'の詳細');
 	}
