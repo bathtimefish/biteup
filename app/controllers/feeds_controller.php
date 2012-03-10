@@ -141,11 +141,11 @@ class FeedsController extends AppController {
    $this->redirect(array('action' => 'index'));
   }
   //フレンドを抽出
-  $friends = $this->Friend->find('list', array('conditions'=> array('Friend.user_id'=>$this->Auth->user('id'))));
+  $friends = $this->Friend->find('all', array('conditions'=> array('Friend.user_id'=>$this->Auth->user('id'))));
   if(!empty($friends)) {
       $arybuf = array();
       foreach($friends as $friend) {
-          array_push($arybuf, $friend);
+            array_push($arybuf, $friend['Friend']['friend_id']);
       }
       array_push($arybuf, $this->Auth->user('id'));
       $conditions = array('Feed.user_id IN ('.implode(',', $arybuf).')');
