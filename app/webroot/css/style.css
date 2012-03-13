@@ -28,6 +28,10 @@ a{
 	color:#cf4c05;
 }
 
+#nolist{
+	margin:0 30px;
+}
+
 #container {
 	overflow: hidden;
 	width: 320px;
