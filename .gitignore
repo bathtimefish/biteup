@@ -7,3 +7,7 @@
 .htaccess
 /app/.htaccess
 /app/webroot/.htaccess
+
+app/views/users/index.ctp
+
+app/views/users/index.ctp
