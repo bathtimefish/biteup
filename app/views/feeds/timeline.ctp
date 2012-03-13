@@ -68,11 +68,11 @@
             </li>
             <?php } ?>
         </ul>
-        <?php } else { ?>
-        <div style="text-align:center">
-        <p>友達を探してサポートしよう！</p>
-        </div>
-        <?php } ?>
         <p id="moreFeed">もっと読む…<span><img src="img/icon_otsukare_load.png" alt="loading"></span></p>
+        <?php } else { ?>
+        <p id="nolist">
+        上の検索から友達を探してサポートするぽ！
+        <p>
+        <?php } ?>
     </div>
 </div><!-- /#friendTimeline -->

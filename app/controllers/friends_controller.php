@@ -86,7 +86,7 @@ class FriendsController extends AppController {
             $lists = $this->paginate();
             foreach($lists as $l) {
                 $jobkind = $this->Jobkind->read('name', $l['User']['current_jobkind_id']);
-                $level = $this->Level->find('first', array('conditions'=>array('Level.id'=>$l['User']['current_level'], 'Level.jobkind_id'=>$l['User']['current_jobkind_id']), 'fields'=>array('Level.name')));
+                $level = $this->Level->find('first', array('conditions'=>array('Level.level'=>$l['User']['current_level'], 'Level.jobkind_id'=>$l['User']['current_jobkind_id']), 'fields'=>array('Level.name')));
                 $l['User']['jobkind'] = $jobkind['Jobkind']['name'];
                 $l['User']['status'] = $level['Level']['name'];
                 array_push($friends, $l);

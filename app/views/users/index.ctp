@@ -130,8 +130,14 @@
       <? } ?>
     </ul>
     <?php } ?>
+    <?php if(!empty($feeds)) { ?>
     <p id="moreFeed">もっと読む…<span>
     <?php echo $this->Html->image('icon_otsukare_load.png', array('alt'=>'loading')); ?>
     </span></p>
+    <? } else { ?>
+    <p id="nolist">
+    <?php echo $this->Html->link('友達を探してサポートするぽ！', array('controller'=>'feeds', 'action'=>'timeline')); ?>
+    </p>
+    <? } ?>
 </div>
 </div><!-- /#friendTimeline -->

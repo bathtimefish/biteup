@@ -76,6 +76,12 @@
     <?php } ?>
     </ul>
     <?php } ?>
+    <?php if(!empty($feeds)) { ?>
     <p id="moreFeed">もっと読む…<span><?php $this->Html->image('icon_otsukare_load.png', array('alt'=>'loading')); ?></span></p>
+    <? } else { ?>
+    <p id="nolist">
+    <?php echo $this->Html->link('予定を登録してバイトをするぽ！', array('controller'=>'jobs', 'action'=>'add')); ?>
+    </p>
+    <? } ?>
     </div>
 </div><!-- /#friendTimeline -->

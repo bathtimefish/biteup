@@ -105,7 +105,7 @@ class FacebookComponent extends Object
         $user = $this->User->read(null, $user_id);
         if(empty($user)) return false;
         if(empty($user['User']['fb_access_token'])) {
-            $this->log('Facebook publish(): fb_access_token is empty, UserID='.$user_id, LOG_DEBUG);
+            // $this->log('Facebook publish(): fb_access_token is empty, UserID='.$user_id, LOG_DEBUG);
             return false;
         }
         $attachment = array(
