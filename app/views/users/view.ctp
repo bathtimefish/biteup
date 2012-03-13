@@ -5,13 +5,13 @@
 		<script>
 		$(function (){
 				
-				Sync.once( 9, function (res){
+				/*Sync.once( 9, function (res){
 						var total = res.totalPoint;
 						var level = res.level;
 						var jobKind = res.jobkind;
 						//もしかしたら要らないかも、、、
 						//console.log(total);
-					});
+					});*/
 				
 			});
 		</script>
@@ -25,7 +25,7 @@
     <h1><?php echo $user['User']['username']; ?></h1>
     <p class="profileAvatar" data-friend-jobkind="<?php echo $user['User']['current_jobkind_id']; ?>" data-friend-level="<?php echo $user['User']['current_level']; ?>">
     <script>
-		console.log($(".profileAvatar").data("friend-jobkind"), $(".profileAvatar").data("friend-level"));
+		//console.log($(".profileAvatar").data("friend-jobkind"), $(".profileAvatar").data("friend-level"));
 				//var avatarData = {kind:}
         var s = Charactor.getImage($(".profileAvatar").data("friend-jobkind"), $(".profileAvatar").data("friend-level"));
         document.write(s);

@@ -1,6 +1,7 @@
         <!-- ここから、サーバに吐き出してもらいたいscript -->
 		<script>
 			var userData = { rows: [ {userName:"nakashizu",userID:123456}] };
+			Charactor.getCharaData();
 		</script>
 		<!-- / ここから、サーバに吐き出してもらいたいscript -->
 
@@ -28,8 +29,8 @@
 					//
 					
 					//ポーリングスタート、間隔の時間設定はSync内で
+					alert("hoge")
 					Sync.start(2,function (res){
-							console.log(res.job);
 						if(res.job) {
 							sl.init("checkInSlider", res.job.id, false);
 						}
