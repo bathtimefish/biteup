@@ -113,6 +113,7 @@ var Sync = {
 	//オツカレと言ってくれた ----------------------------------------------------------------------
 		otsukare : {
 				said: function (o){
+												console.log("otu")
 					$("#otsukareLoadIcon").fadeIn(300);
 					var ms = $(o).find("input[type='text']").val();
 					userData.rows[0].message = ms;

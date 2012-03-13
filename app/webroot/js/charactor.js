@@ -1,5 +1,5 @@
 var Charactor = {
- chara: {/*
+ chara: {
   power: {
    name: "力仕事系、労働",
    level: [
@@ -96,7 +96,7 @@ var Charactor = {
      ]
     } // 職業：season　終了
 
-  */}, // chara
+  /**/}, // chara
 
   // --------------------------------   chara　終了   --------------------------------
 
@@ -119,8 +119,12 @@ var Charactor = {
 
 
  num2JobTitle: function (num){
-   var titles = ["power","events","sampling","shop","office","teacher","free","season"];
-   return titles[num];
+	 if(typeof num == "number") {
+   	var titles = ["power","events","sampling","shop","office","teacher","free","season"];
+   	return titles[num];
+	 }else{
+   	return num;
+	 }
   },
 
   // --------------------------------   サーバから来た職業数値を文字列にして返す　終了   --------------------------------

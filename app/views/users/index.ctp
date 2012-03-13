@@ -11,13 +11,12 @@
 <?php echo $this->Javascript->link('sync', false);?>
 
 		<script>
-		
 			$(function (){
 					var sl = new checkInUI();
 					
 					//初回1度だけ、通信をかける
 					Sync.once(2, function (res){
-                        //バイト予定が入っていたら
+          //バイト予定が入っていたら
 						if(res.job.date) {
 							var date = res.job.date.split("-");
 							var times = res.job.startTime.split("-");
@@ -29,7 +28,6 @@
 					//
 					
 					//ポーリングスタート、間隔の時間設定はSync内で
-					alert("hoge")
 					Sync.start(2,function (res){
 						if(res.job) {
 							sl.init("checkInSlider", res.job.id, false);
@@ -37,14 +35,13 @@
 					});
 					//
 					
-					//console.log("lastID",$("#timeline ul li:last-child").data("feed-id"))
 					//もっと読むのタップ時に一度だけポーリング
 					$("#moreFeed").bind("click", function (){
 						$(this).find("span").show();
 						var Itimers = setInterval(function () {
 							clearInterval(Itimers);
 							Sync.more(5, function (res){
-								console.log("応答",res.feeds)
+								//console.log("応答",res.feeds)
 									if(res.feeds !== null) {
 										var dom = "";
 										for (var i = 0; i<res.feeds.length; i++) {
@@ -59,7 +56,7 @@
 									Global.thumbnail2Canvas();
 								}else{
 									//もし{feed: null}だったら
-<<<<<<< HEAD
+/*<<<<<<< HEAD*/
 									$("#moreFeed").css({
 										"background":"url(/a/img/btn_readnomore.png) no-repeat center top",
 										"background-size":"299px 86px",
@@ -67,10 +64,10 @@
 										"height":"86px",
 										"padding-bottom":"0"
 										});
-=======
+/*=======*/
 									$("#moreFeed").unbind("click");
 									$("#moreFeed").css("background-image","url(/a/app/webroot/img/btn_readnomore.png)");
->>>>>>> test
+/*>>>>>>> test*/
 									$("#moreFeed span").hide();
 								}
 								
