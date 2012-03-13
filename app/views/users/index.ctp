@@ -58,7 +58,6 @@
 									Global.thumbnail2Canvas();
 								}else{
 									//もし{feed: null}だったら
-<<<<<<< HEAD
 									$("#moreFeed").css({
 										"background":"url(/a/img/btn_readnomore.png) no-repeat center top",
 										"background-size":"299px 86px",
@@ -66,10 +65,6 @@
 										"height":"86px",
 										"padding-bottom":"0"
 										});
-=======
-									$("#moreFeed").unbind("click");
-									$("#moreFeed").css("background-image","url(/a/app/webroot/img/btn_readnomore.png)");
->>>>>>> test
 									$("#moreFeed span").hide();
 								}
 								
