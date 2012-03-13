@@ -31,7 +31,12 @@ var Sync = {
 			"/a/api/feeds/latest", // 6 フレンドタイムライン
 			"/test7.php",// 7 このスラッシュの後に[min_feed_id:Number]がくっつく
 			"/test8.php", // 8 オツカレコメントあんどボタンを押した時通信
-			"/test9.php" // 9 キャラクター構成のためのレベル、職業
+			"/test9.php", // 9 キャラクター構成のためのレベル、職業
+			"",
+			"",
+			"",
+			"/a/api/users/getcharactors",
+			
 		],
 		//テストAPI 実装後外す
 		
@@ -53,6 +58,9 @@ var Sync = {
 									if(parseInt(obj.infoCount) != 0) { $("header span.alert").css("display","block").text(obj.infoCount); } else {$("header span.alert").css("display","none")} // 新着カウント表示
 									fn(obj); // 共通以外は引数で送られてきた関数を実行
 								}
+							},
+							ajaxError: function (){
+								alert("error")
 							}
 						});
 					}
@@ -105,6 +113,7 @@ var Sync = {
 	//オツカレと言ってくれた ----------------------------------------------------------------------
 		otsukare : {
 				said: function (o){
+												console.log("otu")
 					$("#otsukareLoadIcon").fadeIn(300);
 					var ms = $(o).find("input[type='text']").val();
 					userData.rows[0].message = ms;

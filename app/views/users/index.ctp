@@ -1,8 +1,13 @@
-        <!-- ここから、サーバに吐き出してもらいたいscript -->
+
+		<!-- 秋葉追加 -->
+		<!-- ↓↓↓↓　このnakashizuは要らない？？ -->
+   	<!-- ここから、サーバに吐き出してもらいたいscript -->
 		<script>
 			var userData = { rows: [ {userName:"nakashizu",userID:123456}] };
 		</script>
 		<!-- / ここから、サーバに吐き出してもらいたいscript -->
+		
+		<!-- ここまで　このnakashizuは要らない？？ -->
 
 <?php echo $this->Javascript->link('global', false);?>
 <?php echo $this->Javascript->link('checkin_ui', false);?>
@@ -58,7 +63,6 @@
 									Global.thumbnail2Canvas();
 								}else{
 									//もし{feed: null}だったら
-<<<<<<< HEAD
 									$("#moreFeed").css({
 										"background":"url(/a/img/btn_readnomore.png) no-repeat center top",
 										"background-size":"299px 86px",
@@ -66,10 +70,6 @@
 										"height":"86px",
 										"padding-bottom":"0"
 										});
-=======
-									$("#moreFeed").unbind("click");
-									$("#moreFeed").css("background-image","url(/a/app/webroot/img/btn_readnomore.png)");
->>>>>>> test
 									$("#moreFeed span").hide();
 								}
 								

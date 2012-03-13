@@ -53,7 +53,7 @@ class FriendsController extends AppController {
         $jobkind = $this->Jobkind->read(null, $friend['User']['current_jobkind_id']);
         $likecnt = $this->Like->find('count', array('conditions'=>array('Like.user_id'=>$friend['User']['id'])));
         $checkoutcnt = $this->Job->find('count', array('conditions'=>array('Job.user_id'=>$friend['User']['id'], 'Job.checkout IS NOT NULL')));
-        $level = $this->Level->find('first', array('conditions'=>array('Level.id'=>$friend['User']['current_level'], 'Level.jobkind_id'=>$friend['User']['current_jobkind_id'])));
+        $level = $this->Level->find('first', array('conditions'=>array('Level.level'=>$friend['User']['current_level'], 'Level.jobkind_id'=>$friend['User']['current_jobkind_id'])));
         $feeds = $this->Feed->find('all', array('conditions'=>array('Feed.user_id'=>$friend['User']['id']), 'order'=>'Feed.id DESC', 'limit'=>5));
         $timelines = array();
         foreach($feeds as $feed) {

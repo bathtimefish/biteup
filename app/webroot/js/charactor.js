@@ -96,7 +96,7 @@ var Charactor = {
      ]
     } // 職業：season　終了
 
-  }, // chara
+  /**/}, // chara
 
   // --------------------------------   chara　終了   --------------------------------
 
@@ -119,8 +119,12 @@ var Charactor = {
 
 
  num2JobTitle: function (num){
-   var titles = ["power","events","sampling","shop","office","teacher","free","season"];
-   return titles[num];
+	 if(typeof num == "number") {
+   	var titles = ["power","events","sampling","shop","office","teacher","free","season"];
+   	return titles[num];
+	 }else{
+   	return num;
+	 }
   },
 
   // --------------------------------   サーバから来た職業数値を文字列にして返す　終了   --------------------------------
@@ -128,6 +132,32 @@ var Charactor = {
  thumbBGColor: function (num){
    var color = ["cyan","yellow","orange","green","parple","silver"]; //追加可能
    return color[num];
+  },
+
+  // --------------------------------   サムネイルの背景色はレベルによって変更される　終了   --------------------------------
+
+
+ getCharaData: function (){
+	 //仕様変更により、データベースにCharactor.chara同等のデータを格納し、
+	 //そこから毎回引っ張ってくる。
+	 if(Charactor.chara.season === undefined) {
+	 	//このメソッド内で、Charactor.chara.seasonがundefinedであれば、
+		//console.log(Sync.apiID[13])
+		//console.dir(Charactor.chara);
+		if(Sync.isOnline()) {
+				$.ajax({
+					type: "POST",
+					url: Sync.apiID[13],
+					success: function(res){
+						if(res) {
+							Charactor.chara = res;
+							console.dir(Charactor.chara);
+						}
+					}
+				});
+			}
+			//
+	 }
   },
 
   // --------------------------------   サムネイルの背景色はレベルによって変更される　終了   --------------------------------

@@ -5,7 +5,7 @@ Global = {
 	
 	init: function (){
 			//ページ読み込み完了時処理
-			Global.setPageBackBtn();
+			//Global.setPageBackBtn();
 			return this;
 		},
 	
@@ -99,7 +99,7 @@ Global = {
 				var img = $(this).find("img");
 				var src = img.attr("src").replace(".png", "_on.png?")+new Date().getTime();
 				var i = new Image().src = src;
-				console.log(src)
+				//console.log(src)
 				$(this).bind("touchstart mousedown", function (){
 						img.attr("src",src);
 					});
