@@ -29,11 +29,11 @@ class UsersController extends AppController {
         $conditions = array('Job.startdate'=>$datestr, 'Job.starttime <'=>$timestr, 'Job.checkin IS NULL', 'Job.checkout IS NULL', 'Job.user_id'=>$this->Auth->user('id'));
         $latestjob = $this->Job->find('first', array('conditions'=>$conditions));
         //フレンドを抽出
-        $friends = $this->Friend->find('list', array('conditions'=> array('Friend.user_id'=>$this->Auth->user('id'))));
+        $friends = $this->Friend->find('all', array('conditions'=> array('Friend.user_id'=>$this->Auth->user('id'))));
         if(!empty($friends)) {
             $arybuf = array();
             foreach($friends as $friend) {
-                array_push($arybuf, $friend);
+                array_push($arybuf, $friend['Friend']['friend_id']);
             }
             array_push($arybuf, $this->Auth->user('id'));
             $conditions = array('Feed.user_id IN ('.implode(',', $arybuf).')');
@@ -252,18 +252,39 @@ class UsersController extends AppController {
 
     /*** API Contollers ***/
 
-    // async data what checkin yet.
+    // チェックイン中 状態を返す (checkin=trueであればcheckoutUIを表示する)
     function api_ischeckin() {
         $this->autoRender = false;
         $conditions = array('Job.checkin IS NOT NULL', 'Job.checkout IS NULL', 'Job.user_id'=>$this->Auth->user('id'));
         $jobs = $this->Job->find('first', array('conditions'=>$conditions));
         $flag = false;
+        $user_id = $this->Auth->user('id');
+        $job_id = 0;
         if(empty($jobs)) {
             $flag = false;
         } else {
             $flag = true;
+            $job_id = $jobs['Job']['id'];
         }
-        $data = array('checkin'=>$flag);
+        $data = array('checkin'=>$flag, 'jobId'=>$job_id, 'userId'=>$user_id);
+        $this->WebApi->sendApiResult($data);
+    }
+
+    // チェックイン中 状態を返す (checkin=trueであればcheckoutUIを表示する)
+    function api_ischeckout() {
+        $this->autoRender = false;
+        $conditions = array('Job.checkin IS NOT NULL', 'Job.checkout IS NULL', 'Job.user_id'=>$this->Auth->user('id'));
+        $jobs = $this->Job->find('first', array('conditions'=>$conditions));
+        $flag = false;
+        $user_id = $this->Auth->user('id');
+        $job_id = 0;
+        if(empty($jobs)) {
+            $flag = false;
+        } else {
+            $flag = true;
+            $job_id = $jobs['Job']['id'];
+        }
+        $data = array('checkout'=>$flag, 'jobId'=>$job_id, 'userId'=>$user_id);
         $this->WebApi->sendApiResult($data);
     }
 
@@ -381,6 +402,7 @@ class UsersController extends AppController {
         if(!empty($job)) {
             $data = array('job' => array(
                 'id' => $job['Job']['id'],
+                'userId' => $job['Job']['user_id'],
                 'name' => $job['Job']['name'],
                 'date' => $job['Job']['startdate'],
                 'startTime' => $job['Job']['starttime'],
@@ -401,6 +423,7 @@ class UsersController extends AppController {
         if(!empty($job)) {
             $data = array('job' => array(
                 'id' => $job[0]['Job']['id'],
+                'userId' => $job['Job']['user_id'],
                 'name' => $job[0]['Job']['name'],
                 'date' => $job[0]['Job']['startdate'],
                 'startTime' => $job[0]['Job']['starttime'],
@@ -500,7 +523,7 @@ class UsersController extends AppController {
         $this->Jobkind->recursive = -1;
         $jobkinds = $this->Jobkind->find('all');
         $levels = $this->Level->find('all', array('Order'=>array('jobkind_id', 'level')));
-        $data = array('chara');
+        $data = array();
         foreach($jobkinds as $jobkind) {
             $row = array(
                 $jobkind['Jobkind']['code'] => array(

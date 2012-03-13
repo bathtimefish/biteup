@@ -13,6 +13,7 @@ $(function (){
 
 <div class="woodFrame listWrap">
 <div class="woodWrapper">
+<?php if(!empty($jobs)) { ?>
 <ul>
     <?php
     $wday = array(
@@ -46,6 +47,9 @@ $(function (){
     </li>
     <?php endforeach; ?>
 </ul>
+<? } else { ?>
+<p id="nolist">予定はまだないぽ。</p>
+<? } ?>
 <!-- test -->
 <div style="text-align:center;margin-top:10px;">
 <?php echo $this->Paginator->prev('<< ' . __('previous', true), array(), null, array('class'=>'disabled'));?>
