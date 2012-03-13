@@ -1,4 +1,3 @@
-<<<<<<< HEAD
         <!-- ここから、サーバに吐き出してもらいたいscript -->
 		<script>
 			var userData = { rows: [ {userName:"nakashizu",userID:123456}] };
@@ -188,6 +187,61 @@
 											var times = Global.compareTime(res.feeds[i].created);
 											
 											dom += '<li data-friend-jobkind="'+res.feeds[i].jobkind+'" data-friend-level="'+res.feeds[i].level+'" data-friend-level="'+res.feeds[i].id+'"><a href="/a/feeds/detail/'+res.feeds[i].id+'"><canvas width="80" height="80" class="avatarIcon"></canvas><div class="activity"><p class="comment">'+res.feeds[i].body+'</p><div class="footer"><p class="icon"><span class="comment">'+res.feeds[i].likesCount+'</span><span class="otsu">'+res.feeds[i].commentCount+'</span></p><p class="times">'+times+'</p></div></div></a></li>';
+=======
+        <!-- ここから、サーバに吐き出してもらいたいscript -->
+		<script>
+			var userData = { rows: [ {userName:"nakashizu",userID:123456}] };
+		</script>
+		<!-- / ここから、サーバに吐き出してもらいたいscript -->
+
+<?php echo $this->Javascript->link('global', false);?>
+<?php echo $this->Javascript->link('checkin_ui', false);?>
+<?php echo $this->Javascript->link('charactor', false);?>
+<?php echo $this->Javascript->link('sync', false);?>
+
+		<script>
+		
+			$(function (){
+					var sl = new checkInUI();
+					
+					//初回1度だけ、通信をかける
+					Sync.once(2, function (res){
+                        //バイト予定が入っていたら
+						if(res.job.date) {
+							var date = res.job.date.split("-");
+							var times = res.job.startTime.split("-");
+							var comments = date[1]+"月"+date[2]+"日 "+times[0]+"時"+times[1]+"分から"+res.job.name+"でバイトが入ってるぽ！";
+							//バイト先とか、どうする？
+							$(".cloud").text(comments);
+						}
+					});
+					//
+					
+					//ポーリングスタート、間隔の時間設定はSync内で
+					Sync.start(2,function (res){
+							console.log(res.job);
+						if(res.job) {
+							sl.init("checkInSlider", res.job.id, false);
+						}
+					});
+					//
+					
+					//console.log("lastID",$("#timeline ul li:last-child").data("feed-id"))
+					//もっと読むのタップ時に一度だけポーリング
+					$("#moreFeed").bind("click", function (){
+						$(this).find("span").show();
+						var Itimers = setInterval(function () {
+							clearInterval(Itimers);
+							Sync.more(5, function (res){
+								console.log("応答",res.feeds)
+									if(res.feeds !== null) {
+										var dom = "";
+										for (var i = 0; i<res.feeds.length; i++) {
+											//1フィードごとに時間を計算する
+											var times = Global.compareTime(res.feeds[i].created);
+											
+											dom += '<li data-friend-jobkind="'+res.feeds[i].jobkind+'" data-friend-level="'+res.feeds[i].level+'" data-friend-level="'+res.feeds[i].id+'"><a href="/a/feeds/detail/'+res.feeds[i].id+'"><canvas width="80" height="80" class="avatarIcon"></canvas><div class="activity"><p class="comment">'+res.feeds[i].body+'</p><div class="footer"><p class="icon"><span class="comment">'+res.feeds[i].likesCount+'</span><span class="otsu">'+res.feeds[i].commentCount+'</span></p><p class="times">'+times+'</p></div></div></a></li>';
+>>>>>>> 020f34ca8b4b8df2ea8bdff7a8aaed509f45ddd9
 										}
 									$(dom).appendTo(".woodWrapper ul").hide().slideDown(1000, function (){
 										$("#moreFeed span").hide();
@@ -278,4 +332,7 @@
     <? } ?>
 </div>
 </div><!-- /#friendTimeline -->
+<<<<<<< HEAD
+>>>>>>> 020f34ca8b4b8df2ea8bdff7a8aaed509f45ddd9
+=======
 >>>>>>> 020f34ca8b4b8df2ea8bdff7a8aaed509f45ddd9
