@@ -37,7 +37,11 @@ foreach ($likes as $like) {
                 <?php endif; ?>
 
                 <div class="commentList">
-                    <p class="otsukareBtnSumi"><?php echo $this->Html->image('comment_btn_otsukare_sumi.png', array('alt'=>'オツカレ済！', 'width'=>'280')); ?></p>
+                    <?php if($like_flg) { ?>
+                    <p class="otsukareBtnSumi" style="display:none;"><?php echo $this->Html->image('comment_btn_otsukare_sumi.png', array('alt'=>'オツカレ済！', 'width'=>'280')); ?></p>
+                    <?php } else { ?>
+                    <p class="otsukareBtnSumi" style="display:block"><?php echo $this->Html->image('comment_btn_otsukare_sumi.png', array('alt'=>'オツカレ済！', 'width'=>'280')); ?></p>
+                    <?php } ?>
                     <ul>
                     <?php
                         foreach ($likes as $like) :
