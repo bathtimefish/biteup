@@ -43,7 +43,7 @@
 </div>
 
 
-<div class="woodFrame">
+<div id="timeline" class="woodFrame">
     <div class="woodWrapper">
         <?php if(!empty($feeds)) { // Friend Timeline Loop ?>
         <ul>
