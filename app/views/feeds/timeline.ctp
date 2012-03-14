@@ -6,29 +6,41 @@
 		
 			$(function (){
 					
-					var pasts = 123; // これ、最後のjobIDをどう取得してくる！？
-				
 					//もっと読むのタップ時に一度だけポーリング
 					$("#moreFeed").bind("click", function (){
 						$(this).find("span").show();
 						var Itimers = setInterval(function () {
 							clearInterval(Itimers);
-							Sync.once(7, function (res){
-									if(res.feeds) {
+							Sync.more(5, function (res){
+								//console.log("応答",res.feeds)
+									if(res.feeds !== null) {
 										var dom = "";
 										for (var i = 0; i<res.feeds.length; i++) {
+											//1フィードごとに時間を計算する
 											var times = Global.compareTime(res.feeds[i].created);
-											dom += '<li data-friend-jobkind="'+res.feeds[i].jobKind+'" data-friend-level="'+res.feeds[i].level+'"><a href="#"><canvas width="80" height="80" class="avatarIcon"></canvas><div class="activity"><p class="comment">'+res.feeds[i].body+'</p><div class="footer"><p class="icon"><span class="comment">'+res.feeds[i].likesCount+'</span><span class="otsu">'+res.feeds[i].commentCount+'</span></p><p class="times">'+times+'</p></div></div></a></li>';
+											
+											dom += '<li data-friend-jobkind="'+res.feeds[i].jobkind+'" data-friend-level="'+res.feeds[i].level+'" data-friend-level="'+res.feeds[i].id+'"><a href="/a/feeds/detail/'+res.feeds[i].id+'"><canvas width="80" height="80" class="avatarIcon"></canvas><div class="activity"><p class="comment">'+res.feeds[i].body+'</p><div class="footer"><p class="icon"><span class="comment">'+res.feeds[i].likesCount+'</span><span class="otsu">'+res.feeds[i].commentCount+'</span></p><p class="times">'+times+'</p></div></div></a></li>';
 										}
 									$(dom).appendTo(".woodWrapper ul").hide().slideDown(1000, function (){
 										$("#moreFeed span").hide();
 										});
 									Global.thumbnail2Canvas();
+								}else{
+									//もし{feed: null}だったら
+									$("#moreFeed").css({
+										"background":"url(/a/img/btn_readnomore.png) no-repeat center top",
+										"background-size":"299px 86px",
+										"width":"299px",
+										"height":"86px",
+										"padding-bottom":"0"
+										});
+									$("#moreFeed span").hide();
 								}
-							}, pasts);
-						}, 1000);
+								
+							},$("#timeline ul li:last-child").data("feed-id"));
+							
+						}, 500);
 					});
-					//
 				
 				});
 				
@@ -68,11 +80,13 @@
             </li>
             <?php } ?>
         </ul>
-        <p id="moreFeed">もっと読む…<span><img src="img/icon_otsukare_load.png" alt="loading"></span></p>
-        <?php } else { ?>
-        <p id="nolist">
-        上の検索から友達を探してサポートするぽ！
-        <p>
-        <?php } ?>
+    <?php } ?>
+    <?php if(!empty($feeds)) { ?>
+    <p id="moreFeed">もっと読む…<span><img src="/a/img/icon_otsukare_load.png" alt="loading"></span></p>
+    <? } else { ?>
+    <p id="nolist">
+    <?php echo $this->Html->link('予定を登録してバイトをするぽ！', array('controller'=>'jobs', 'action'=>'add')); ?>
+    </p>
+    <? } ?>
     </div>
 </div><!-- /#friendTimeline -->
